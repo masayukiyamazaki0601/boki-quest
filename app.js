@@ -634,6 +634,64 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '営業活動のために使用している携帯電話の利用料金100円が普通預金口座から引き落とされた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）通 信 費 100 / （貸方）普通預金 100',
+          '（借方）支払手数料 100 / （貸方）普通預金 100',
+          '（借方）雑 費 100 / （貸方）普通預金 100',
+          '（借方）通 信 費 100 / （貸方）現 金 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '通信費の発生 ➔ 普通預金の減少',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>携帯電話利用料金の引き落とし</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <p class="text-xs">
+                  電話代、インターネット利用料、郵便切手代、ハガキ代などの<strong>連絡・情報伝達に要した費用</strong>は、
+                  費用の発生として<strong>「通信費」</strong>勘定の借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">
+                  利用料金が<strong>普通預金口座から引き落とされた</strong>ため、資産の減少として
+                  <strong>「普通預金」</strong>勘定の貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    通 信 費 100
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    普通預金 100
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>電話・インターネットなどの<strong>通信サービス利用料</strong>は「通信費」で処理。「支払手数料」は銀行振込手数料などに使います。</li>
+                  <li>営業用の電話料金は日常的かつ明確な費用なので<strong>「通信費」</strong>に分類。「雑費」は他のどの勘定科目にも当てはまらない一時的な費用に使います。</li>
+                  <li>問題文に「普通預金口座から引き落とされた」とあるため貸方は<strong>「普通預金」</strong>。「現金」ではありません。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
