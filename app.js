@@ -1547,7 +1547,66 @@ const roadmapLevels = [
     subtitle: '品質不良などによる代金の減額『値引』の仕訳ルール。',
     url: 'http://localhost:3001/guides/sales-purchase-returns',
     tags: ['売上値引', '仕入値引', '値引'],
-    questions: []
+    questions: [
+      {
+        text: '先日掛けで仕入れた商品の一部に品質不良が見つかったため、仕入先に代金の値引きを依頼し、300円の値引きを受けた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 300 / （貸方）仕 入 300',
+          '（借方）仕 入 300 / （貸方）買 掛 金 300',
+          '（借方）買 掛 金 300 / （貸方）仕入値引 300',
+          '（借方）売 上 300 / （貸方）買 掛 金 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '仕入値引 ➔ 仕入の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>仕入値引を受けた場合の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（買掛金）</div>
+                <p class="text-xs">
+                  仕入値引（品質不良などによる代金の減額）を受けたため、
+                  支払うべき負債が減少します。負債の減少として<strong>「買掛金 300円」</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（仕入）</div>
+                <p class="text-xs">
+                  仕入値引により、費用（仕入）を取り消す必要があります。
+                  費用の減少として<strong>「仕入 300円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    買 掛 金 300
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    仕 入 300
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>貸借が逆（「仕入 300 / 買掛金 300」）になるのは誤りです。費用の取消しなので貸方に「仕入」を記入します。</li>
+                  <li>3分法では<strong>「仕入値引」という勘定科目は使いません</strong>。直接「仕入」を貸方に記入します。</li>
+                  <li>「売上 300 / 買掛金 300」は売上値引（売上側）の処理であり、仕入値引とは別物です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_8',
