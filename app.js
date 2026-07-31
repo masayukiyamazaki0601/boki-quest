@@ -1128,6 +1128,69 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '先週分の小口現金の支払報告（旅費交通費300円・通信費150円・消耗品費250円の合計700円）に基づき、定額に戻すため小切手を振り出して小口現金を補給した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）小口現金 700 / （貸方）当座預金 700',
+          '（借方）小口現金 700 / （貸方）現 金 700',
+          '（借方）当座預金 700 / （貸方）小口現金 700',
+          '（借方）旅費交通費 300 / （貸方）小口現金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の補給 ➔ 当座預金の減少',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>インプレスト・システムの補給時</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 補給時とは</div>
+                <p class="text-xs">
+                  支払報告時（前問）に各費用の発生と小口現金の減少を計上済みです。
+                  <strong>補給時</strong>は、減った小口現金を定額に戻すための仕訳を行います。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（小口現金の増加）</div>
+                <p class="text-xs">
+                  減った小口現金700円を定額に戻すため、資産の増加として<strong>「小口現金」700円</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（当座預金の減少）</div>
+                <p class="text-xs">
+                  <strong>小切手を振り出して</strong>補給したため、資産の減少として<strong>「当座預金」700円</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    小口現金 700
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    当座預金 700
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>小切手を振り出して補給したため貸方は<strong>「当座預金」</strong>の減少。「現金」ではありません。</li>
+                  <li>貸借が逆（「当座預金 700 / 小口現金 700」）になるのは誤りです。</li>
+                  <li>各費用を計上するのは<strong>支払報告時</strong>。補給時は小口現金の回復のみを記録します。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
