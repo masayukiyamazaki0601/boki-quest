@@ -1268,7 +1268,71 @@ const roadmapLevels = [
     subtitle: '後払い（掛け）の仕組み。権利である「売掛金」と、義務である「買掛金」の増減仕訳。',
     url: 'http://localhost:3001/guides/accounts-receivable-payable',
     tags: ['資産', '負債', '売掛金', '買掛金'],
-    questions: []
+    questions: [
+      {
+        text: '商品を販売した際に生じた未収代金600円を、取引先が銀行振込で支払った。振込手数料30円は当社が負担することとし、手数料を差し引いた金額が普通預金口座に入金された。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 570・支払手数料 30 / （貸方）売 掛 金 600',
+          '（借方）普通預金 600 / （貸方）売 掛 金 600',
+          '（借方）普通預金 570 / （貸方）売 掛 金 570',
+          '（借方）普通預金 570・雑 費 30 / （貸方）売 掛 金 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '売掛金の回収 ➔ 振込手数料差引',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>振込手数料を差し引かれた売掛金の回収</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
+                <p class="text-xs">
+                  未収代金600円の回収であるため、資産の減少として<strong>「売掛金 600円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（支払手数料）</div>
+                <p class="text-xs">
+                  振込手数料30円を当社が負担するため、費用の発生として<strong>「支払手数料 30円」</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（普通預金）</div>
+                <p class="text-xs">
+                  手数料を差し引いた金額<strong>570円（600−30）</strong>が入金されたため、
+                  資産の増加として<strong>「普通預金 570円」</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    普通預金 570<br>支払手数料 30
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    売 掛 金 600
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>手数料の処理をせず「普通預金 600」とするのは誤りです。差引後の570円が入金されています。</li>
+                  <li>「普通預金 570 / 売掛金 570」では売掛金の残高が正しく消えません。売掛金は<strong>全額600円</strong>を貸方に記入します。</li>
+                  <li>振込手数料は<strong>「支払手数料」</strong>（費用）で処理します。「雑費」は不適切です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_5',
