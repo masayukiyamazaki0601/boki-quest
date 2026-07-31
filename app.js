@@ -685,7 +685,63 @@ const roadmapLevels = [
     subtitle: '現金実際額と帳簿額が一致しない場合の「現金過不足」の処理。',
     url: 'http://localhost:3001/guides/cash-over-short',
     tags: ['現金過不足', '雑損', '雑益'],
-    questions: []
+    questions: [
+      {
+        text: '月末に金庫を調べたところ、現金の実際有高は1,200円であるのに対して、帳簿残高は1,500円であったため、適切に処理した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 300 / （貸方）現金過不足 300',
+          '（借方）現金過不足 300 / （貸方）現 金 300',
+          '（借方）雑 損 300 / （貸方）現 金 300',
+          '（借方）現金過不足 300 / （貸方）雑 益 300'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '現金過不足 ➔ 仮勘定',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>現金の実際有高と帳簿残高の不一致</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <strong>帳簿残高（1,500円）</strong>に対して<strong>実際有高（1,200円）</strong>が
+                <strong>300円不足</strong>しています（1,500円 − 1,200円 = 300円の不足）。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 処理の考え方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>実際の現金に帳簿を合わせるため、<strong>現金を300円減らす</strong>（貸方に「現金」）</li>
+                  <li>期中の発生時点では、相手科目は<strong>仮勘定「現金過不足」</strong>（借方）を使用</li>
+                </ul>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    現金過不足 300
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    現 金 300
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>実際有高の方が少ないため<strong>現金を減らす</strong>処理が必要。現金を増やす（借方）のは、実際有高が多い場合。</li>
+                  <li>決算時に原因不明の場合に<strong>「雑損」</strong>へ振り替えますが、期中（月末など）の発生時点では<strong>「現金過不足」</strong>勘定を使用します。</li>
+                  <li>「現金過不足」の振替先は原因判明時（立替金・通信費など）であり、期中発生時の貸借の組み合わせに注意。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_21',
