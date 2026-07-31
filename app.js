@@ -827,13 +827,13 @@ const roadmapLevels = [
     tags: ['費用', '収益', '仕入', '売上', '諸掛り'],
     questions: [
       {
-        text: '乙社へ商品1,500円を売り上げ、代金のうち500円は同社振出しの小切手を受け取り、残額は掛けとした。',
+        text: '商品2,000円を得意先に販売し、販売代金のうち800円については同店振出しの小切手で受け取り、残額は後日受け取る約束とした。',
         type: 'shiwake',
         choices: [
-          '（借方）現 金 500 / （貸方）売 上 1,500<br>（借方）売 掛 金 1,000',
-          '（借方）当座預金 500 / （貸方）売 上 1,500<br>（借方）売 掛 金 1,000',
-          '（借方）現 金 1,500 / （貸方）売 上 1,500',
-          '（借方）売 掛 金 1,500 / （貸方）売 上 1,500'
+          '（借方）現 金 800 / （貸方）売 上 2,000<br>（借方）売 掛 金 1,200',
+          '（借方）当座預金 800 / （貸方）売 上 2,000<br>（借方）売 掛 金 1,200',
+          '（借方）現 金 2,000 / （貸方）売 上 2,000',
+          '（借方）売 掛 金 2,000 / （貸方）売 上 2,000'
         ],
         correct: 0,
         explanation: {
@@ -847,14 +847,14 @@ const roadmapLevels = [
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加）</div>
                 <ul class="list-disc list-inside space-y-1">
-                  <li>同社振出しの<strong>小切手500円</strong>を受け取った → 他人振出小切手は<strong>「現金」</strong>として処理（直ちに預け入れた場合は「当座預金」）</li>
-                  <li>残額<strong>1,000円は掛け</strong>（後払い）→ 権利として<strong>「売掛金」</strong>を計上</li>
+                  <li>同店振出しの<strong>小切手800円</strong>を受け取った → 他人振出小切手は<strong>「現金」</strong>として処理（直ちに預け入れた場合は「当座預金」）</li>
+                  <li>残額<strong>1,200円は掛け</strong>（後払いの約束）→ 権利として<strong>「売掛金」</strong>を計上</li>
                 </ul>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（収益の発生）</div>
                 <p class="text-xs">
-                  商品1,500円を売り上げたため、収益の発生として<strong>「売上」1,500円</strong>を貸方に記入します。
+                  商品2,000円を販売したため、収益の発生として<strong>「売上」2,000円</strong>を貸方に記入します。
                 </p>
               </div>
               <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
@@ -864,10 +864,10 @@ const roadmapLevels = [
                 </div>
                 <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
                   <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    現 金 500<br>売 掛 金 1,000
+                    現 金 800<br>売 掛 金 1,200
                   </div>
                   <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 上 1,500
+                    売 上 2,000
                   </div>
                 </div>
               </div>
@@ -875,8 +875,8 @@ const roadmapLevels = [
                 <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
                 <ul class="list-disc list-inside space-y-1">
                   <li>他人振出小切手は<strong>「現金」</strong>で処理。「当座預金」になるのは<strong>直ちに預け入れた場合</strong>のみです。</li>
-                  <li>掛けの残額は<strong>「売掛金」</strong>（資産）。全額を現金で受け取ったわけではないため、「現金 1,500」とするのは誤りです。</li>
-                  <li>小切手で受け取った500円は<strong>現金として即時回収済み</strong>。「売掛金 1,500」とするのは誤りです。</li>
+                  <li>掛けの残額は<strong>「売掛金」</strong>（資産）。全額を現金で受け取ったわけではないため、「現金 2,000」とするのは誤りです。</li>
+                  <li>小切手で受け取った800円は<strong>現金として即時回収済み</strong>。「売掛金 2,000」とするのは誤りです。</li>
                 </ul>
               </div>
             </div>
