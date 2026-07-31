@@ -1404,7 +1404,73 @@ const roadmapLevels = [
     subtitle: 'クレジットカード売上と、差し引かれる『支払手数料』の仕訳テクニック。',
     url: 'http://localhost:3001/guides/credit-card-sales',
     tags: ['資産', '費用', 'クレジット売掛金', '支払手数料'],
-    questions: []
+    questions: [
+      {
+        text: '商品3,000円を販売し、代金はクレジットカードで決済された。なお、クレジットカード会社への手数料率は3%であり、手数料を差し引いた金額が後日入金される。',
+        type: 'shiwake',
+        choices: [
+          '（借方）クレジット売掛金 2,910 / （貸方）売 上 3,000<br>（借方）支払手数料 90',
+          '（借方）クレジット売掛金 3,000 / （貸方）売 上 3,000',
+          '（借方）売 掛 金 2,910 / （貸方）売 上 3,000<br>（借方）支払手数料 90',
+          '（借方）クレジット売掛金 2,910 / （貸方）売 上 2,910'
+        ],
+        correct: 0,
+        explanation: {
+          concept: 'クレジットカード売上 ➔ 手数料差引',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジットカード売上の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（クレジット売掛金）</div>
+                <p class="text-xs">
+                  クレジットカードで売上を決済すると、カード会社から後日入金される権利が生じます。
+                  この権利は<strong>「クレジット売掛金」</strong>（資産）として処理します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 手数料の計算</div>
+                <p class="text-xs">
+                  手数料率3% → <strong>3,000円 × 3% = 90円</strong><br>
+                  差引後の入金額 → <strong>3,000円 − 90円 = 2,910円</strong>
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（支払手数料）・貸方（売上）</div>
+                <p class="text-xs">
+                  手数料90円は費用の発生として<strong>「支払手数料」</strong>を借方に記入します。
+                  商品3,000円を販売したため、収益の発生として<strong>「売上 3,000円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    クレジット売掛金 2,910<br>支払手数料 90
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    売 上 3,000
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>手数料を差し引かず「クレジット売掛金 3,000」とするのは誤りです。入金額は2,910円です。</li>
+                  <li>クレジット売上は<strong>「クレジット売掛金」</strong>で処理します。「売掛金」は一般的な掛け売りの場合に使います。</li>
+                  <li>「クレジット売掛金 2,910 / 売上 2,910」では売上高が正しく認識されません。売上は<strong>全額3,000円</strong>で記録します。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_6',
