@@ -450,7 +450,59 @@ const roadmapLevels = [
     subtitle: 'すべての取引の基本となる「資産」。簿記での「現金」の定義と、「普通預金」のルール。',
     url: 'http://localhost:3001/guides/cash-and-deposit',
     tags: ['資産', '現金', '普通預金'],
-    questions: []
+    questions: [
+      {
+        text: '得意先に対する売掛金1,000円について、送金小切手を受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 1,000 / （貸方）売 掛 金 1,000',
+          '（借方）当座預金 1,000 / （貸方）売 掛 金 1,000',
+          '（借方）小 切 手 1,000 / （貸方）売 掛 金 1,000',
+          '（借方）受取手形 1,000 / （貸方）売 掛 金 1,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '送金小切手 ➔ 通貨代用証券',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>送金小切手の受取り</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <strong>送金小切手</strong>や他人振出の小切手などの<strong>「通貨代用証券」</strong>を受け取った場合は、
+                金銭的価値が高く直ちに現金化できるため、勘定科目<strong>「現金」</strong>（資産の増加）として処理します。
+              </p>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    現 金 1,000
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    売 掛 金 1,000
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                得意先に対する<strong>「掛け代金」の回収</strong>であるため、資産である<strong>「売掛金」</strong>の減少として貸方に処理します。
+              </p>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>送金小切手を銀行口座に預け入れた<strong>時点</strong>で「当座預金」になりますが、受け取った<strong>時点</strong>の仕訳は「現金」です。</li>
+                  <li>勘定科目に<strong>「小切手」</strong>は存在しません。他人振出の小切手や送金小切手はすべて「現金」で処理します。</li>
+                  <li>小切手と手形は別物。<strong>「受取手形」</strong>は約束手形や為替手形を受け取った際に使います。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_2',
