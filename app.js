@@ -1,3 +1,15 @@
+// ==========================================
+// 定数定義
+// ==========================================
+const APP_CONSTANTS = {
+  MAX_XP_PER_LEVEL: 300,
+  INITIAL_HEARTS: 5,
+  SCORE_PER_CORRECT: 10,
+  XP_PER_CORRECT: 15,
+  XP_RATE: 1.5,
+  MAX_CONSECUTIVE_CATEGORY: 2
+};
+
 // Application State
 // ==========================================
 const state = {
@@ -221,7 +233,7 @@ const sortQuestionsBySM2 = (questions) => {
 // 同じカテゴリ（資産・負債・費用など）が3回以上連続しないように並び替える
 // ただし、問題の順序は基本的に保持する
 const shuffleByCategory = (questions) => {
-  const maxConsecutive = 2;
+  const maxConsecutive = APP_CONSTANTS.MAX_CONSECUTIVE_CATEGORY;
   const buckets = {};
   
   // カテゴリごとに問題を分類
@@ -919,7 +931,7 @@ const syncHeader = () => {
   if (globalStreak) globalStreak.innerText = state.streak;
   
   if (globalHearts) {
-    if (state.currentService === 'boki_tutorial' || state.debugMode) {
+    if (isTutorialMode()) {
       globalHearts.innerHTML = '<span class="text-xs">∞</span>';
       document.getElementById('global-hearts-container')?.classList.add('animate-pulse');
     } else {
@@ -958,6 +970,20 @@ const showView = (viewName) => {
   if (viewName === 'quiz') renderQuiz();
   if (viewName === 'result') renderResult();
 };
+
+// ==========================================
+// Quiz Session Helper
+// ==========================================
+const startQuizSession = (questions) => {
+  state.activeQuestions = questions;
+  state.currentQuestionIndex = 0;
+  state.score = 0;
+  state.hearts = APP_CONSTANTS.INITIAL_HEARTS;
+  state.firstTimeWrongCount = 0;
+  showView('quiz');
+};
+
+const isTutorialMode = () => state.currentService === 'boki_tutorial' || state.debugMode;
 
 // ==========================================
 // UI Rendering Functions
@@ -1009,12 +1035,7 @@ const renderPortal = () => {
   // Bind events
   document.getElementById('btn-portal-tutorial').addEventListener('click', () => {
     state.currentService = 'boki_tutorial';
-    state.activeQuestions = generateTutorialQuestions();
-    state.currentQuestionIndex = 0;
-    state.score = 0;
-    state.hearts = 5;
-    state.firstTimeWrongCount = 0;
-    showView('quiz');
+    startQuizSession(generateTutorialQuestions());
   });
 
   document.getElementById('btn-portal-shiwake').addEventListener('click', () => {
@@ -1074,12 +1095,7 @@ const renderMap = () => {
       node.querySelector(`#pin-${lvl.id}`).addEventListener('click', () => {
         // レベルをクリックしたら問題を直接開始 (ダイアログ・確認画面をスキップ)
         state.currentLevelId = lvl.id;
-        state.activeQuestions = shuffleByCategory(interleaveAnswers([...lvl.questions]));
-        state.currentQuestionIndex = 0;
-        state.score = 0;
-        state.hearts = 5;
-        state.firstTimeWrongCount = 0;
-        showView('quiz');
+        startQuizSession(shuffleByCategory(interleaveAnswers([...lvl.questions])));
       });
     }
 
@@ -1117,7 +1133,7 @@ const showLevelDialog = (lvl) => {
       state.activeQuestions = [...lvl.questions];
       state.currentQuestionIndex = 0;
       state.score = 0;
-      state.hearts = 5;
+      state.hearts = APP_CONSTANTS.INITIAL_HEARTS;
       state.firstTimeWrongCount = 0;
       
       dialog.classList.add('hidden');
@@ -1195,7 +1211,7 @@ const renderQuiz = () => {
   
   const heartsCountEl = document.getElementById('quiz-hearts-count');
   if (heartsCountEl) {
-    if (state.currentService === 'boki_tutorial' || state.debugMode) {
+    if (isTutorialMode()) {
       heartsCountEl.innerHTML = '<span class="text-xs">∞</span>';
     } else {
       heartsCountEl.innerText = state.hearts;
@@ -1336,8 +1352,8 @@ const checkAnswer = () => {
   updateSM2(question, isCorrect);
   
   if (isCorrect) {
-    state.score += 10;
-    state.xp += 15;
+    state.score += APP_CONSTANTS.SCORE_PER_CORRECT;
+    state.xp += APP_CONSTANTS.XP_PER_CORRECT;
     playSound('correct');
     triggerConfetti();
     
@@ -1372,7 +1388,7 @@ const checkAnswer = () => {
     state.firstTimeWrongCount++;
     state.activeQuestions.push({ ...question });
     
-    if (state.currentService !== 'boki_tutorial' && !state.debugMode) {
+    if (!isTutorialMode()) {
       state.hearts--;
       syncHeader();
     }
@@ -1408,7 +1424,7 @@ const checkAnswer = () => {
         <div class="flex justify-between items-center pt-2">
           <span class="text-xs text-red-600 dark:text-red-400 font-semibold flex items-center gap-1">
             <i data-lucide="heart" class="w-4 h-4 fill-red-500 text-red-500 animate-pulse"></i> 
-            ライフ残量: ${state.currentService === 'boki_tutorial' || state.debugMode ? '∞' : state.hearts}
+            ライフ残量: ${isTutorialMode() ? '∞' : state.hearts}
           </span>
           <button id="quiz-next-btn" class="px-8 py-3 rounded-xl font-bold text-white bg-red-600 hover:bg-red-500 transition shadow-lg shadow-red-900/30">
             閉じて次へ
@@ -1422,7 +1438,7 @@ const checkAnswer = () => {
   const nextBtn = document.getElementById('quiz-next-btn');
   if (nextBtn) {
     nextBtn.addEventListener('click', () => {
-      if (state.hearts <= 0 && state.currentService !== 'boki_tutorial') {
+      if (state.hearts <= 0 && !isTutorialMode()) {
         showView('dashboard');
       } else {
         nextQuestion();
@@ -1469,12 +1485,13 @@ const renderResult = () => {
   
   if (nameEl) nameEl.innerText = courseTitle;
   if (scoreEl) scoreEl.innerText = `+${state.score} pt`;
-  if (xpEl) xpEl.innerText = `獲得XP: +${state.score * 1.5} XP`;
+  if (xpEl) xpEl.innerText = `獲得XP: +${state.score * APP_CONSTANTS.XP_RATE} XP`;
   
-  state.xp += state.score * 1.5;
-  if (state.xp >= 300) {
+  const earnedXP = state.score * APP_CONSTANTS.XP_RATE;
+  state.xp += earnedXP;
+  if (state.xp >= APP_CONSTANTS.MAX_XP_PER_LEVEL) {
     state.level++;
-    state.xp = state.xp - 300;
+    state.xp = state.xp - APP_CONSTANTS.MAX_XP_PER_LEVEL;
     state.streak++;
     
     const levelUpModal = document.getElementById('level-up-toast');
