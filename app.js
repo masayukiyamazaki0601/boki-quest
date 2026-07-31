@@ -917,6 +917,74 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '仕入先の請求額600円を支払うため、小切手600円を切り出した。当座預金の残高は400円であり、取引銀行と借越限度額1,000円の当座借越契約を結んでいる（二分法による処理）。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 600 / （貸方）当座預金 600',
+          '（借方）買 掛 金 600 / （貸方）当座預金 400<br>（貸方）当座借越 200',
+          '（借方）買 掛 金 600 / （貸方）当座預金 400<br>（貸方）短期借入金 200',
+          '（借方）買 掛 金 600 / （貸方）当座借越 600'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '当座借越の二分法 ➔ 当座預金＋当座借越',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>当座借越契約を利用した支払い（二分法）</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 二分法とは</div>
+                <p class="text-xs">
+                  当座預金の残高を超える金額の小切手を切り出した場合でも、<strong>当座借越契約</strong>を結んでいれば、
+                  限度額の範囲内で銀行が超える分を一時的に立て替えて支払ってくれます。
+                </p>
+                <p class="text-xs mt-1">
+                  この処理には「一分法」と「二分法」があり、<strong>「二分法」</strong>の場合は
+                  <strong>残高の範囲内と超えた分を区別</strong>して処理します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方の内訳</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>残高の400円分： 残高がゼロになるため、資産の減少として<strong>「当座預金 400」</strong></li>
+                  <li>超過した200円分（600−400）： 銀行からの借入れ（負債）となるため、負債の増加として<strong>「当座借越 200」</strong></li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <p class="text-xs">
+                  買掛金が減少するため、負債の減少として<strong>「買掛金」600円</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    買 掛 金 600
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    当座預金 400<br>当座借越 200
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>「一分法」</strong>または当座借越契約を考慮しない処理では「当座預金 600」としますが、二分法では残高を超過した部分に「当座預金」を用いません。</li>
+                  <li>決算時に当座借越の期末残高を<strong>「短期借入金」</strong>へ振り替える処理と混同しないでください。期中の取引時点では<strong>「当座借越」</strong>を用います。</li>
+                  <li>当座預金に残高（400円）が残っているのに、全額を「当座借越」で処理するのは誤り。まず既存残高を充当し、不足分のみを「当座借越」とします。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
