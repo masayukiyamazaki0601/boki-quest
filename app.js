@@ -273,7 +273,7 @@ const shuffleByCategory = (questions) => {
 };
 
 // 2択問題の正解位置(左右)が不規則になるように、選択肢と正解インデックスを入れ替える
-// ただし、同じ位置が3回以上連続しないようにする
+// ただし、借方/貸方の定位置問題（チュートリアル）は絶対に左右を入れ替えない
 const interleaveAnswers = (questions) => {
   let lastCorrect = null;
   let sameStreak = 0;
@@ -282,6 +282,11 @@ const interleaveAnswers = (questions) => {
     if (!q.choices || q.choices.length !== 2) {
       lastCorrect = null;
       sameStreak = 0;
+      return q;
+    }
+    
+    // 借方/貸方の定位置問題は左右を入れ替えない（借方=左側、貸方=右側は絶対）
+    if (q.choices.includes('借方 (左側)') && q.choices.includes('貸方 (右側)')) {
       return q;
     }
     
