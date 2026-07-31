@@ -1233,10 +1233,11 @@ const renderQuiz = () => {
   const actionBar = document.getElementById('quiz-action-bar');
   if (actionBar) {
     actionBar.className = "border-t border-gray-200 dark:border-gray-850 bg-gray-50 dark:bg-gray-950/80 p-4 transition-all duration-300";
+    const canGoBack = state.currentQuestionIndex > 0;
     actionBar.innerHTML = `
       <div class="max-w-xl mx-auto flex items-center justify-between gap-4">
-        <button id="quiz-skip-btn" class="px-6 py-3 rounded-xl font-bold text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition">
-          スキップ
+        <button id="quiz-prev-btn" class="px-6 py-3 rounded-xl font-bold ${canGoBack ? 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white' : 'text-gray-300 dark:text-gray-700 cursor-not-allowed'}" ${canGoBack ? '' : 'disabled'}>
+          ← 前の問題に戻る
         </button>
       </div>
     `;
@@ -1306,22 +1307,12 @@ const renderQuiz = () => {
   const checkBtn = document.getElementById('quiz-check-btn');
   if (checkBtn) checkBtn.addEventListener('click', checkAnswer);
   
-  const skipBtn = document.getElementById('quiz-skip-btn');
-  if (skipBtn) {
-    skipBtn.addEventListener('click', () => {
-      state.firstTimeWrongCount++;
-      state.activeQuestions.push({ ...question });
-      
-      if (state.currentService !== 'boki_tutorial' && !state.debugMode) {
-        state.hearts--;
-        syncHeader();
-      }
-      
-      if (state.hearts <= 0 && state.currentService !== 'boki_tutorial' && !state.debugMode) {
-        showView('dashboard');
-      } else {
-        nextQuestion();
-      }
+  const prevBtn = document.getElementById('quiz-prev-btn');
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      if (state.currentQuestionIndex <= 0) return;
+      state.currentQuestionIndex--;
+      renderQuiz();
     });
   }
 };
