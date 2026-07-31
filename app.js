@@ -5660,11 +5660,9 @@ const renderQuiz = () => {
       button.style.borderColor = themeHex;
       state.selectedAnswer = idx;
       
-      // 左右2択の問題は、選択した瞬間に正誤判定
-      if (isTwoChoice) {
-        checkAnswer();
-        return;
-      }
+      // すべての問題は、選択した瞬間に正誤判定（確認ボタンなし）
+      checkAnswer();
+      return;
       
       const checkBtn = document.getElementById('quiz-check-btn');
       if (checkBtn) {
