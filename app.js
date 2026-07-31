@@ -513,6 +513,68 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '当座預金口座を開設し、1,000円を普通預金口座から当座預金口座へ振り替えて入金した。また、小切手帳の交付を受け、手数料として100円を現金で支払った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）当座預金 1,000 / （貸方）普通預金 1,000<br>（借方）当座預金 100 / （貸方）現 金 100',
+          '（借方）当座預金 1,000 / （貸方）普通預金 1,000<br>（借方）支払手数料 100 / （貸方）現 金 100',
+          '（借方）当座預金 1,100 / （貸方）普通預金 1,000<br>（貸方）現 金 100',
+          '（借方）当座預金 1,000 / （貸方）普通預金 1,000<br>（借方）雑 費 100 / （貸方）当座預金 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '当座預金口座開設 ➔ 複合仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>口座間振替と小切手帳手数料の複合仕訳</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ ① 口座間の振替処理</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>普通預金口座から当座預金口座へ1,000円を振り替え</li>
+                  <li>資産の増加として借方に<strong>「当座預金 1,000」</strong></li>
+                  <li>資産の減少として貸方に<strong>「普通預金 1,000」</strong></li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ ② 小切手帳交付手数料</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>銀行へ支払った小切手帳の発行手数料は費用の発生として<strong>「支払手数料」</strong>の借方に記入</li>
+                  <li>現金で支払っているため貸方は<strong>「現金 100」</strong></li>
+                </ul>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    当座預金 1,000<br>支払手数料 100
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    普通預金 1,000<br>現 金 100
+                  </div>
+                </div>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                ※ このように1つの取引で複数の仕訳が発生する場合、<strong>複合仕訳</strong>として「（借方）当座預金 1,000・支払手数料 100 / （貸方）普通預金 1,000・現金 100」とまとめることもできます。
+              </p>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>小切手帳の手数料は<strong>「支払手数料」</strong>（費用）。「当座預金」や「雑費」ではありません。</li>
+                  <li>振替額は1,000円のみ。手数料100円を「当座預金」残高に加算して1,100円にするのは誤りです。</li>
+                  <li>手数料の支払いを「当座預金」の減少で処理するのも誤り。現金で支払ったので貸方は「現金」です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
