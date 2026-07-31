@@ -279,7 +279,7 @@ const interleaveAnswers = (questions) => {
   let sameStreak = 0;
   
   return questions.map(q => {
-    if (!q.choices || q.choices.length !== 2) {
+    if (!q.choices || q.choices.length < 2) {
       lastCorrect = null;
       sameStreak = 0;
       return q;
@@ -290,43 +290,74 @@ const interleaveAnswers = (questions) => {
       return q;
     }
     
-    const correct = q.correct;
-    const desiredCorrect = Math.random() < 0.5 ? 0 : 1;
-    
-    // 同じ位置が2回続いたら、次の問題は必ず反対側にする
-    // それ以外はランダム
-    let targetCorrect = correct;
-    if (sameStreak >= 2 && lastCorrect === correct) {
-      targetCorrect = correct === 0 ? 1 : 0;
-      sameStreak = 0;
-    } else if (lastCorrect === null || correct !== lastCorrect || Math.random() < 0.5) {
-      // ランダムに入れ替える (50%の確率で入れ替え)
-      if (desiredCorrect !== correct) {
-        targetCorrect = desiredCorrect;
+    // 2択問題の場合（既存のロジック）
+    if (q.choices.length === 2) {
+      const correct = q.correct;
+      const desiredCorrect = Math.random() < 0.5 ? 0 : 1;
+      
+      let targetCorrect = correct;
+      if (sameStreak >= 2 && lastCorrect === correct) {
+        targetCorrect = correct === 0 ? 1 : 0;
+        sameStreak = 0;
+      } else if (lastCorrect === null || correct !== lastCorrect || Math.random() < 0.5) {
+        if (desiredCorrect !== correct) {
+          targetCorrect = desiredCorrect;
+        }
       }
-    }
-    
-    if (targetCorrect !== correct) {
-      targetCorrect = targetCorrect;
-      if (sameStreak > 0 && lastCorrect === targetCorrect) {
+      
+      if (targetCorrect !== correct) {
+        if (sameStreak > 0 && lastCorrect === targetCorrect) {
+          sameStreak++;
+        } else {
+          sameStreak = 1;
+        }
+        return {
+          ...q,
+          choices: [q.choices[1], q.choices[0]],
+          correct: targetCorrect
+        };
+      }
+      
+      if (lastCorrect === correct) {
         sameStreak++;
       } else {
         sameStreak = 1;
       }
-      return {
-        ...q,
-        choices: [q.choices[1], q.choices[0]],
-        correct: targetCorrect
-      };
+      lastCorrect = correct;
+      return q;
     }
     
-    if (lastCorrect === correct) {
-      sameStreak++;
-    } else {
-      sameStreak = 1;
+    // 3択以上の場合：正解位置をランダムにシャッフル
+    // 正解の選択肢を特定
+    const correctChoice = q.choices[q.correct];
+    const correctIdx = q.correct;
+    
+    // 正解をランダムな位置に配置
+    const newCorrect = Math.floor(Math.random() * q.choices.length);
+    
+    // 正解以外の選択肢をシャッフル
+    const otherChoices = q.choices.filter((_, i) => i !== correctIdx);
+    for (let i = otherChoices.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [otherChoices[i], otherChoices[j]] = [otherChoices[j], otherChoices[i]];
     }
-    lastCorrect = correct;
-    return q;
+    
+    // 新しい選択肢配列を構築
+    const newChoices = [];
+    let otherIdx = 0;
+    for (let i = 0; i < q.choices.length; i++) {
+      if (i === newCorrect) {
+        newChoices.push(correctChoice);
+      } else {
+        newChoices.push(otherChoices[otherIdx++]);
+      }
+    }
+    
+    return {
+      ...q,
+      choices: newChoices,
+      correct: newCorrect
+    };
   });
 };
 
