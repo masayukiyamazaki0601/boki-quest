@@ -692,6 +692,62 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '普通預金口座に利息100円が入金された。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 100 / （貸方）有価証券利息 100',
+          '（借方）普通預金 100 / （貸方）受 取 利 息 100',
+          '（借方）現 金 100 / （貸方）受 取 利 息 100',
+          '（借方）受取利息 100 / （貸方）普通預金 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '利息の受取 ➔ 受取利息',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>普通預金の利息受取</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加）</div>
+                <p class="text-xs">
+                  普通預金口座に利息が入金されたため、資産の増加として<strong>「普通預金」</strong>勘定の借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（収益の発生）</div>
+                <p class="text-xs">
+                  預金や貸付金から生じる利息を受け取った場合は、収益の発生として<strong>「受取利息」</strong>勘定の貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    普通預金 100
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    受取利息 100
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>「有価証券利息」</strong>は国債や社債などの公社債を保有していることで受け取る利息に使用。預金の利息には<strong>「受取利息」</strong>を使います。</li>
+                  <li>手元で現金を受け取ったのではなく「普通預金口座に入金された」ため借方は<strong>「普通預金」</strong>。貸方は「現金」ではありません。</li>
+                  <li>収益である受取利息の発生は<strong>貸方</strong>、資産である普通預金の増加は<strong>借方</strong>に記入します（貸借の逆に注意）。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
