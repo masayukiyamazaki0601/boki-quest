@@ -217,11 +217,120 @@ const sortQuestionsBySM2 = (questions) => {
     .map(sq => sq.question);
 };
 
+// 同じカテゴリ（資産・負債・費用など）が3回以上連続しないように並び替える
+// ただし、問題の順序は基本的に保持する
+const shuffleByCategory = (questions) => {
+  const maxConsecutive = 2;
+  const buckets = {};
+  
+  // カテゴリごとに問題を分類
+  questions.forEach(q => {
+    const category = q.explanation?.concept?.split(' ➔ ')[1] || 'その他';
+    if (!buckets[category]) buckets[category] = [];
+    buckets[category].push(q);
+  });
+  
+  const result = [];
+  const lastCategoryCount = {};
+  
+  // 各カテゴリを順番に1問ずつ取り出して配置
+  // 同じカテゴリが連続しないようにする
+  while (Object.values(buckets).some(b => b.length > 0)) {
+    // 前回の配置カテゴリを追跡
+    let placed = false;
+    
+    // すべてのカテゴリをランダムな順序で試す
+    const categoryNames = Object.keys(buckets).filter(c => buckets[c].length > 0);
+    const shuffledCategories = categoryNames.sort(() => Math.random() - 0.5);
+    
+    for (const category of shuffledCategories) {
+      const currentCount = lastCategoryCount[category] || 0;
+      if (currentCount < maxConsecutive && buckets[category].length > 0) {
+        // このカテゴリの問題を1問取り出す
+        const q = buckets[category].shift();
+        result.push(q);
+        // 全カテゴリの連続カウントをリセットして、このカテゴリだけカウント
+        Object.keys(lastCategoryCount).forEach(k => { lastCategoryCount[k] = 0; });
+        lastCategoryCount[category] = 1;
+        placed = true;
+        break;
+      }
+    }
+    
+    // 配置できなかった場合（全部制限超過）、先頭のカテゴリから取る
+    if (!placed) {
+      const categoryNames2 = Object.keys(buckets).filter(c => buckets[c].length > 0);
+      if (categoryNames2.length > 0) {
+        const category = categoryNames2[0];
+        const q = buckets[category].shift();
+        result.push(q);
+        Object.keys(lastCategoryCount).forEach(k => { lastCategoryCount[k] = 0; });
+        lastCategoryCount[category] = 1;
+      }
+    }
+  }
+  return result;
+};
+
+// 2択問題の正解位置(左右)が不規則になるように、選択肢と正解インデックスを入れ替える
+// ただし、同じ位置が3回以上連続しないようにする
+const interleaveAnswers = (questions) => {
+  let lastCorrect = null;
+  let sameStreak = 0;
+  
+  return questions.map(q => {
+    if (!q.choices || q.choices.length !== 2) {
+      lastCorrect = null;
+      sameStreak = 0;
+      return q;
+    }
+    
+    const correct = q.correct;
+    const desiredCorrect = Math.random() < 0.5 ? 0 : 1;
+    
+    // 同じ位置が2回続いたら、次の問題は必ず反対側にする
+    // それ以外はランダム
+    let targetCorrect = correct;
+    if (sameStreak >= 2 && lastCorrect === correct) {
+      targetCorrect = correct === 0 ? 1 : 0;
+      sameStreak = 0;
+    } else if (lastCorrect === null || correct !== lastCorrect || Math.random() < 0.5) {
+      // ランダムに入れ替える (50%の確率で入れ替え)
+      if (desiredCorrect !== correct) {
+        targetCorrect = desiredCorrect;
+      }
+    }
+    
+    if (targetCorrect !== correct) {
+      targetCorrect = targetCorrect;
+      if (sameStreak > 0 && lastCorrect === targetCorrect) {
+        sameStreak++;
+      } else {
+        sameStreak = 1;
+      }
+      return {
+        ...q,
+        choices: [q.choices[1], q.choices[0]],
+        correct: targetCorrect
+      };
+    }
+    
+    if (lastCorrect === correct) {
+      sameStreak++;
+    } else {
+      sameStreak = 1;
+    }
+    lastCorrect = correct;
+    return q;
+  });
+};
+
 // ==========================================
 // Quiz Data Configuration
 // ==========================================
 const generateTutorialQuestions = () => {
-  const questions = bokiAccounts.map(acc => {
+  // 問題生成後に正解位置を不規則化し、同じカテゴリが連続しないように分散する
+  const questions = shuffleByCategory(interleaveAnswers(bokiAccounts.map(acc => {
     const isBS = ['資産', '負債', '純資産', '評価勘定'].includes(acc.category);
     
     let bsText = '';
@@ -281,7 +390,7 @@ const generateTutorialQuestions = () => {
         `
       }
     };
-  });
+  })));
   
   return sortQuestionsBySM2(questions);
 };
@@ -423,6 +532,138 @@ const roadmapLevels = [
           concept: '当座借越契約',
           brilliantExplanation: '当座借越契約がある場合は、借越限度額内であれば「当座預金」のみで処理します（実際に借越額が確定してから当座借越へ振り替えます）。'
         }
+      },
+      {
+        text: '【現金売上】商品 3,000円を現金で売り上げた。',
+        choices: [
+          '(借) 現金 3,000 / (貸) 売上 3,000',
+          '(借) 売上 3,000 / (貸) 現金 3,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金売上',
+          brilliantExplanation: '現金（資産）の増加を借方に、売上（収益）の発生を貸方に記録します。'
+        }
+      },
+      {
+        text: '【普通預金の引出】普通預金口座から現金 5,000円を引き出した。',
+        choices: [
+          '(借) 現金 5,000 / (貸) 普通預金 5,000',
+          '(借) 普通預金 5,000 / (貸) 現金 5,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '普通預金の引出',
+          brilliantExplanation: '現金（資産）の増加を借方に、普通預金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【現金仕入】商品 4,000円を現金で仕入れた。',
+        choices: [
+          '(借) 仕入 4,000 / (貸) 現金 4,000',
+          '(借) 現金 4,000 / (貸) 仕入 4,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金仕入',
+          brilliantExplanation: '仕入（費用）の発生を借方に、現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【売掛金の入金】売掛金 7,000円が普通預金口座に振り込まれた。',
+        choices: [
+          '(借) 普通預金 7,000 / (貸) 売掛金 7,000',
+          '(借) 売掛金 7,000 / (貸) 普通預金 7,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '売掛金の回収（入金）',
+          brilliantExplanation: '普通預金（資産）の増加を借方に、回収された売掛金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【現金過不足】現金の実際有高を確認したところ、帳簿残高より 500円多かった。原因不明のため現金過不足で処理する。',
+        choices: [
+          '(借) 現金 500 / (貸) 現金過不足 500',
+          '(借) 現金過不足 500 / (貸) 現金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金過不足',
+          brilliantExplanation: '現金（資産）の増加を借方に、原因不明のため現金過不足（貸方）で処理します。'
+        }
+      },
+      {
+        text: '【借入金の入金】取引銀行から 10,000円を借り入れ、普通預金口座に入金された。',
+        choices: [
+          '(借) 普通預金 10,000 / (貸) 借入金 10,000',
+          '(借) 借入金 10,000 / (貸) 普通預金 10,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '借入金',
+          brilliantExplanation: '普通預金（資産）の増加を借方に、借入金（負債）の発生を貸方に記録します。'
+        }
+      },
+      {
+        text: '【給料の支払】従業員への給料 8,000円が普通預金口座から引き落とされた。',
+        choices: [
+          '(借) 給料 8,000 / (貸) 普通預金 8,000',
+          '(借) 普通預金 8,000 / (貸) 給料 8,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '給料の支払い',
+          brilliantExplanation: '給料（費用）の発生を借方に、普通預金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【消耗品の購入】事務用の消耗品 1,200円を現金で購入した。',
+        choices: [
+          '(借) 消耗品費 1,200 / (貸) 現金 1,200',
+          '(借) 現金 1,200 / (貸) 消耗品費 1,200'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '消耗品費',
+          brilliantExplanation: '消耗品費（費用）の発生を借方に、現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【買掛金の振込】買掛金 6,000円を普通預金口座から振り込んで支払った。',
+        choices: [
+          '(借) 買掛金 6,000 / (貸) 普通預金 6,000',
+          '(借) 普通預金 6,000 / (貸) 買掛金 6,000'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '買掛金の支払い',
+          brilliantExplanation: '買掛金（負債）の減少を借方に、普通預金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【受取手数料】商品の発送を代理で行い、手数料 250円を現金で受け取った。',
+        choices: [
+          '(借) 現金 250 / (貸) 受取手数料 250',
+          '(借) 受取手数料 250 / (貸) 現金 250'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '受取手数料',
+          brilliantExplanation: '現金（資産）の増加を借方に、受取手数料（収益）の発生を貸方に記録します。'
+        }
+      },
+      {
+        text: '【仮払金の精算】従業員に仮払いしていた 1,000円が、旅費交通費 800円で精算され、残額 200円を現金で受け取った。',
+        choices: [
+          '(借) 旅費交通費 800 , 現金 200 / (貸) 仮払金 1,000',
+          '(借) 仮払金 1,000 / (貸) 旅費交通費 800 , 現金 200'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '仮払金の精算',
+          brilliantExplanation: '旅費交通費（費用）800円と現金（資産）200円を借方に、仮払金（資産）の減少 1,000円を貸方に記録します。'
+        }
       }
     ]
   },
@@ -493,6 +734,126 @@ const roadmapLevels = [
         explanation: {
           concept: '小口現金の不足',
           brilliantExplanation: '小口現金の実際有高が帳簿より少ないため、<strong>小口現金 2,000円（貸方）</strong>を減らし、相手科目は <strong>現金過不足 2,000円（借方）</strong>とします。'
+        }
+      },
+      {
+        text: '【小口現金の補給（現金）】支払報告にもとづいて、現金 1,500円を小口現金係に渡して小口現金を補給した。',
+        choices: [
+          '(借) 小口現金 1,500 / (貸) 現金 1,500',
+          '(借) 現金 1,500 / (貸) 小口現金 1,500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の補給（現金）',
+          brilliantExplanation: '小口現金（資産）の増加を借方に、現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【小口現金の補給（普通預金引出）】支払報告にもとづいて、普通預金口座から 800円を引き出して小口現金を補給した。',
+        choices: [
+          '(借) 小口現金 800 / (貸) 普通預金 800',
+          '(借) 普通預金 800 / (貸) 小口現金 800'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の補給（普通預金）',
+          brilliantExplanation: '小口現金（資産）の増加を借方に、普通預金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【郵便料金の支払】小口現金から郵便料金 250円を支払ったとの報告を受けた。',
+        choices: [
+          '(借) 通信費 250 / (貸) 小口現金 250',
+          '(借) 小口現金 250 / (貸) 通信費 250'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '通信費の支払',
+          brilliantExplanation: '通信費（費用）の発生を借方に、小口現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【消耗品の購入（小口現金）】小口現金から事務用の消耗品 600円を購入したとの報告を受けた。',
+        choices: [
+          '(借) 消耗品費 600 / (貸) 小口現金 600',
+          '(借) 小口現金 600 / (貸) 消耗品費 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '消耗品の購入（小口現金）',
+          brilliantExplanation: '消耗品費（費用）の発生を借方に、小口現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【電車賃の支払】営業のため電車を利用し、運賃 320円を小口現金から支払ったとの報告を受けた。',
+        choices: [
+          '(借) 旅費交通費 320 / (貸) 小口現金 320',
+          '(借) 小口現金 320 / (貸) 旅費交通費 320'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '旅費交通費の支払',
+          brilliantExplanation: '旅費交通費（費用）の発生を借方に、小口現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【小口現金の残高超過】小口現金係が保管する現金の実際有高を確認したところ、帳簿残高より 500円多かった。原因不明のため現金過不足で処理する。正しい仕訳は？',
+        choices: [
+          '(借) 小口現金 500 / (貸) 現金過不足 500',
+          '(借) 現金過不足 500 / (貸) 小口現金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の超過',
+          brilliantExplanation: '小口現金の実際有高が帳簿より多いため、<strong>小口現金 500円（借方）</strong>を増やし、相手科目は <strong>現金過不足 500円（貸方）</strong>とします。'
+        }
+      },
+      {
+        text: '【現金過不足の原因判明（小口）】小口現金の超過額 500円について調査したところ、400円は雑収入の未記帳、残額は原因不明である。',
+        choices: [
+          '(借) 現金過不足 500 / (貸) 雑益 400 , 雑収入 100',
+          '(借) 現金過不足 500 / (貸) 受取手数料 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金超過の原因判明',
+          brilliantExplanation: '原因判明分は雑益（収益）として貸方に計上し、現金過不足を借方に減らします。残額100円も原因不明のため雑収入（収益）として処理します。'
+        }
+      },
+      {
+        text: '【小口現金の補給（普通預金）】小口現金の残高が定額の 3,000円に満たなくなったため、普通預金口座から 2,400円を引き出し、小口現金係に渡して補給した。',
+        choices: [
+          '(借) 小口現金 2,400 / (貸) 普通預金 2,400',
+          '(借) 普通預金 2,400 / (貸) 小口現金 2,400'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の補給（普通預金）',
+          brilliantExplanation: '小口現金（資産）の増加と普通預金（資産）の減少を記録します。この方式を「定額資金前渡制度」といいます。'
+        }
+      },
+      {
+        text: '【雑費の支払】小口現金から新聞代 450円を支払ったとの報告を受けた。',
+        choices: [
+          '(借) 雑費 450 / (貸) 小口現金 450',
+          '(借) 小口現金 450 / (貸) 雑費 450'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '雑費の支払',
+          brilliantExplanation: '雑費（費用）の発生を借方に、小口現金（資産）の減少を貸方に記録します。'
+        }
+      },
+      {
+        text: '【小口現金の廃止・返還】小口現金制度を廃止し、残高 700円を普通預金口座に預け入れた。',
+        choices: [
+          '(借) 普通預金 700 / (貸) 小口現金 700',
+          '(借) 小口現金 700 / (貸) 普通預金 700'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の廃止',
+          brilliantExplanation: '普通預金（資産）の増加を借方に、小口現金（資産）の減少を貸方に記録します。'
         }
       }
     ]
@@ -3656,7 +4017,7 @@ const renderPortal = () => {
     state.score = 0;
     state.hearts = 5;
     state.firstTimeWrongCount = 0;
-    showView('dashboard');
+    showView('quiz');
   });
 
   document.getElementById('btn-portal-shiwake').addEventListener('click', () => {
@@ -3714,7 +4075,14 @@ const renderMap = () => {
 
     if (isUnlocked) {
       node.querySelector(`#pin-${lvl.id}`).addEventListener('click', () => {
-        showLevelDialog(lvl);
+        // レベルをクリックしたら問題を直接開始 (ダイアログ・確認画面をスキップ)
+        state.currentLevelId = lvl.id;
+        state.activeQuestions = shuffleByCategory(interleaveAnswers([...lvl.questions]));
+        state.currentQuestionIndex = 0;
+        state.score = 0;
+        state.hearts = 5;
+        state.firstTimeWrongCount = 0;
+        showView('quiz');
       });
     }
 
@@ -3924,6 +4292,12 @@ const renderQuiz = () => {
       button.classList.add('selected');
       button.style.borderColor = themeHex;
       state.selectedAnswer = idx;
+      
+      // 左右2択の問題は、選択した瞬間に正誤判定
+      if (isTwoChoice) {
+        checkAnswer();
+        return;
+      }
       
       const checkBtn = document.getElementById('quiz-check-btn');
       if (checkBtn) {
