@@ -1062,7 +1062,74 @@ const roadmapLevels = [
     subtitle: '細かい経費を管理する『小口現金（インプレスト・システム）』の流れをマスターします。',
     url: 'http://localhost:3001/guides/petty-cash',
     tags: ['資産', '小口現金', '旅費交通費'],
-    questions: []
+    questions: [
+      {
+        text: '週末になり、小口現金係から今週分の支払報告を受けた。なお、当店では定額資金前渡制度（インプレスト・システム）を採用している。支払報告の内容は、旅費交通費300円、通信費150円、消耗品費250円であった。',
+        type: 'shiwake',
+        choices: [
+          '（借方）旅費交通費 300 / （貸方）小口現金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250',
+          '（借方）旅費交通費 300 / （貸方）当座預金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250',
+          '（借方）旅費交通費 300 / （貸方）現 金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250',
+          '（借方）小口現金 700 / （貸方）当座預金 700'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の支払報告 ➔ 費用の認識',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>インプレスト・システムの支払報告時</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ インプレスト・システムとは</div>
+                <p class="text-xs">
+                  あらかじめ<strong>一定額の小口現金</strong>を渡しておき、細かい支払いを行わせる制度です。
+                  支払報告を受けた時点で<strong>費用の発生</strong>を認識し、<strong>小口現金の減少</strong>を記録します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>旅費交通費 300円</strong>（費用の発生）</li>
+                  <li><strong>通信費 150円</strong>（費用の発生）</li>
+                  <li><strong>消耗品費 250円</strong>（費用の発生）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（小口現金の減少）</div>
+                <p class="text-xs">
+                  小口現金係が支払った合計<strong>700円</strong>（300＋150＋250）だけ小口現金が減少するため、
+                  資産の減少として<strong>「小口現金」700円</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    旅費交通費 300<br>通 信 費 150<br>消耗品費 250
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    小口現金 700
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>支払報告時点では、貸方は<strong>「小口現金」</strong>の減少。「当座預金」や「現金」ではありません（補充は後日行います）。</li>
+                  <li>「小口現金 700 / 当座預金 700」は<strong>補充時の仕訳</strong>であり、支払報告時点の仕訳ではありません。</li>
+                  <li>各費用の合計が700円であることを確認し、貸方も700円で記録します。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_3',
