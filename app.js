@@ -1615,7 +1615,65 @@ const roadmapLevels = [
     subtitle: 'お金の貸し借りと利息（支払利息・受取利息）の計算および手形を用いた取引。',
     url: 'http://localhost:3001/guides/loans-and-interest',
     tags: ['貸付金', '借入金', '手形借入金'],
-    questions: []
+    questions: [
+      {
+        text: '取引先への貸付金500円を貸し付けるにあたり、手形を振り出してもらい受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）手形貸付金 500 / （貸方）現 金 500',
+          '（借方）貸 付 金 500 / （貸方）現 金 500',
+          '（借方）現 金 500 / （貸方）手形貸付金 500',
+          '（借方）受取手形 500 / （貸方）現 金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '手形貸付金 ➔ 手形を伴う貸付',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>手形を伴う貸付金の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（手形貸付金）</div>
+                <p class="text-xs">
+                  貸付金を返済してもらうために<strong>手形</strong>を受け取った場合は、
+                  <strong>「手形貸付金」</strong>（資産）として処理します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（現金）</div>
+                <p class="text-xs">
+                  貸し付けたお金が実際に手元から出ていくため、資産の減少として<strong>「現金 500円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    手形貸付金 500
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    現 金 500
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>「貸付金」</strong>は手形を伴わない普通の貸付に使います。手形を受け取った場合は<strong>「手形貸付金」</strong>です。</li>
+                  <li>貸借が逆（「現金 / 手形貸付金」）になるのは誤りです。お金を貸し出すので現金は減少します。</li>
+                  <li><strong>「受取手形」</strong>は商品売買の代金として受け取った手形に使います。貸付金の手形には「手形貸付金」を使います。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_9',
