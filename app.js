@@ -1,4 +1,4 @@
-// ==========================================
+  // ==========================================
 // 定数定義
 // ==========================================
 const APP_CONSTANTS = {
@@ -1757,7 +1757,67 @@ const roadmapLevels = [
     subtitle: '固定資産（建物・土地・備品）の取得と付随費用、後払い時の「未払金」の区別。',
     url: 'http://localhost:3001/guides/fixed-assets-purchase',
     tags: ['建物', '備品', '未払金', '付随費用'],
-    questions: []
+    questions: [
+      {
+        text: '事務所の敷地として土地1,000円を購入し、代金は月末に支払うこととした。なお、購入に際して登記費用50円を現金で支払った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）土 地 1,000 / （貸方）未払金 1,000<br>（借方）支払手数料 50 / （貸方）現 金 50',
+          '（借方）土 地 1,050 / （貸方）未払金 1,000<br>（貸方）現 金 50',
+          '（借方）土 地 1,000 / （貸方）買掛金 1,000<br>（借方）支払手数料 50 / （貸方）現 金 50',
+          '（借方）土 地 1,050 / （貸方）未払金 1,050'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '固定資産の取得 ➔ 付随費用は取得原価に含める',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>土地の購入と付随費用の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（土地）</div>
+                <p class="text-xs">
+                  固定資産を取得する際に発生した<strong>登記費用などの付随費用</strong>は、
+                  購入代金に加算して<strong>取得原価</strong>とします。
+                  したがって、土地の金額は <strong>1,000円 ＋ 50円 ＝ 1,050円</strong> となります。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（未払金・現金）</div>
+                <p class="text-xs">
+                  後払いとなる購入代金1,000円は、商品以外の取引であるため<strong>「未払金」</strong>（負債）で処理します。<br>
+                  現金で支払った50円は<strong>「現金」</strong>（資産の減少）で処理します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    土 地 1,050
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    未払金 1,000<br>現 金 50
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>付随費用（登記費用）を「支払手数料」で処理するのは誤り</strong>です。取得原価に含めます。</li>
+                  <li>商品以外の購入に対する未払代金は<strong>「未払金」</strong>を使用します。「買掛金」は商品の仕入に使います。</li>
+                  <li>現金で支払った登記費用50円まで「未払金」に含めるのは誤りです。貸方は「未払金 1,000 / 現金 50」に分かれます。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_12',
