@@ -575,6 +575,65 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '普通預金口座から当座預金口座へ500円、定期預金口座へ300円をそれぞれ預け入れた。その際、振込手数料10円が普通預金口座から引き落とされた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）当座預金 500 / （貸方）普通預金 810<br>（借方）定期預金 300<br>（借方）支払手数料 10',
+          '（借方）当座預金 500 / （貸方）普通預金 800<br>（借方）定期預金 300<br>（借方）雑 費 10 / （貸方）現 金 10',
+          '（借方）当座預金 505 / （貸方）普通預金 810<br>（借方）定期預金 305',
+          '（借方）当座預金 500 / （貸方）普通預金 800<br>（借方）定期預金 300<br>（借方）当座預金 10 / （貸方）普通預金 10'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '預金間振替 ➔ 複合仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>預金口座間の振替と振込手数料の複合仕訳</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加・費用の発生）</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>当座預金口座への預け入れ → <strong>「当座預金」500円</strong>（資産の増加）</li>
+                  <li>定期預金口座への預け入れ → <strong>「定期預金」300円</strong>（資産の増加）</li>
+                  <li>発生した振込手数料10円 → <strong>「支払手数料」</strong>（費用の発生）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>当座預金への振替額500円、定期預金への振替額300円、および振込手数料10円の<strong>合計810円</strong>がすべて普通預金口座から引き落とし</li>
+                  <li>資産の減少として<strong>「普通預金」810円</strong>を計上</li>
+                </ul>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    当座預金 500<br>定期預金 300<br>支払手数料 10
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    普通預金 810
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>振込手数料は<strong>「支払手数料」</strong>（費用）で処理。「雑費」や「現金」ではありません。</li>
+                  <li>振込手数料は<strong>独立した費用</strong>として処理するため、預金本体の額面（500円・300円）には加算しません。</li>
+                  <li>手数料を「当座預金」の増加で処理するのは誤り。銀行に支払った費用なので預金残高にはなりません。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
