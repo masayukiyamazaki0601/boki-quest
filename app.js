@@ -790,6 +790,58 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '決算日となり、以前発生した現金過不足勘定の残高（借方残高100円）について原因が判明しなかったため、適切な勘定科目へ振り替えた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）雑 損 失 100 / （貸方）現金過不足 100',
+          '（借方）現金過不足 100 / （貸方）雑 収 益 100',
+          '（借方）雑 損 失 100 / （貸方）現 金 100',
+          '（借方）現 金 100 / （貸方）雑 収 益 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '決算日の現金過不足振替 ➔ 雑損失',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>決算日の現金過不足の振替（原因不明）</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                現金過不足の<strong>借方残高（現金が帳簿より不足していた状態）</strong>の原因が決算日になっても判明しなかったため、
+                費用である<strong>「雑損失」</strong>として計上します。
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                決算にあたり、一時的な仮勘定である<strong>「現金過不足」をゼロ</strong>にして財務諸表に残さないようにするため、
+                現在残っている借方残高100円を相殺消去（貸方に記入）します。
+              </p>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    雑 損 失 100
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    現金過不足 100
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>貸方残高（現金が実際より多かった状態）</strong>の現金過不足は「雑収益」で振替えますが、今回は<strong>借方残高（現金不足）</strong>の処理なので「雑損失」です。</li>
+                  <li>現金の減少自体は過不足発生時に<strong>すでに帳簿へ反映済み</strong>。決算時に消去すべきなのは「現金過不足」勘定であり、再度「現金」を減らすと二重減額になります。</li>
+                  <li>「現金の増加＋雑収益」は貸方残高の過不足を決算整理する場合の処理で、今回は不適切です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
