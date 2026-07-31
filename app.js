@@ -463,344 +463,215 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/cash-and-deposit',
     tags: ['資産', '現金', '普通預金'],
     questions: [
+      // ===== 現金預金 問題1〜20 (ユーザー追加分) =====
       {
-        text: '得意先に対する売掛金1,000円について、送金小切手を受け取った。',
+        text: '得意先より売掛金800円の回収として、300円は同店振り出しの小切手で受け取り、残額は当店の普通預金口座へ振り込まれた。正しい仕訳を選択しなさい。',
         type: 'shiwake',
         choices: [
-          '（借方）現 金 1,000 / （貸方）売 掛 金 1,000',
-          '（借方）当座預金 1,000 / （貸方）売 掛 金 1,000',
-          '（借方）小 切 手 1,000 / （貸方）売 掛 金 1,000',
-          '（借方）受取手形 1,000 / （貸方）売 掛 金 1,000'
+          '（借方）現 金 300 / （貸方）売 掛 金 800<br>（借方）普通預金 500',
+          '（借方）当座預金 300 / （貸方）売 掛 金 800<br>（借方）普通預金 500',
+          '（借方）小 切 手 300 / （貸方）売 掛 金 800<br>（借方）普通預金 500',
+          '（借方）普通預金 800 / （貸方）売 掛 金 800'
         ],
         correct: 0,
         explanation: {
-          concept: '送金小切手 ➔ 通貨代用証券',
+          concept: '売掛金の回収 ➔ 現金＋普通預金',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>送金小切手の受取り</span>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <strong>送金小切手</strong>や他人振出の小切手などの<strong>「通貨代用証券」</strong>を受け取った場合は、
-                金銭的価値が高く直ちに現金化できるため、勘定科目<strong>「現金」</strong>（資産の増加）として処理します。
-              </p>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    現 金 1,000
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 掛 金 1,000
-                  </div>
-                </div>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                得意先に対する<strong>「掛け代金」の回収</strong>であるため、資産である<strong>「売掛金」</strong>の減少として貸方に処理します。
-              </p>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>送金小切手を銀行口座に預け入れた<strong>時点</strong>で「当座預金」になりますが、受け取った<strong>時点</strong>の仕訳は「現金」です。</li>
-                  <li>勘定科目に<strong>「小切手」</strong>は存在しません。他人振出の小切手や送金小切手はすべて「現金」で処理します。</li>
-                  <li>小切手と手形は別物。<strong>「受取手形」</strong>は約束手形や為替手形を受け取った際に使います。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '得意先丙社に対する売掛金800円の回収として、同社振出の小切手800円を受け取り、直ちに当座預金口座へ預け入れた。',
-        type: 'shiwake',
-        choices: [
-          '（借方）現 金 800 / （貸方）売 掛 金 800',
-          '（借方）当 座 預 金 800 / （貸方）売 掛 金 800',
-          '（借方）小 切 手 800 / （貸方）売 掛 金 800',
-          '（借方）当 座 預 金 800 / （貸方）受 取 手 形 800'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '他人振出小切手 ➔ 当座預金',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>小切手を直ちに当座預金へ預け入れた場合</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（当座預金）</div>
-                <p class="text-xs">
-                  他人振出の小切手を受け取った<strong>時点</strong>では通常「現金」として処理しますが、
-                  本問のように<strong>「受け取り、直ちに当座預金口座へ預け入れた」</strong>場合は、
-                  直接<strong>「当座預金」</strong>の増加として処理します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
-                <p class="text-xs">
-                  売掛金の回収であるため、資産の減少として<strong>「売掛金」800円</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    当座預金 800
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 掛 金 800
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>他人振出小切手の受取時は<strong>「現金」</strong>で処理するのが原則ですが、<strong>「直ちに当座預金に預け入れた」</strong>場合（ただし書き）は「当座預金」とします。</li>
-                  <li>簿記に<strong>「小切手」という勘定科目は存在しません</strong>。他人振出小切手は「現金」（直ちに入金した場合は「当座預金」）で処理します。</li>
-                  <li>回収したのは手形ではなく<strong>「売掛金」</strong>。「受取手形」を貸方に使うのは誤りです。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '当座預金口座を開設し、1,000円を普通預金口座から当座預金口座へ振り替えて入金した。また、小切手帳の交付を受け、手数料として100円を現金で支払った。',
-        type: 'shiwake',
-        choices: [
-          '（借方）当座預金 1,000 / （貸方）普通預金 1,000<br>（借方）当座預金 100 / （貸方）現 金 100',
-          '（借方）当座預金 1,000 / （貸方）普通預金 1,000<br>（借方）支払手数料 100 / （貸方）現 金 100',
-          '（借方）当座預金 1,100 / （貸方）普通預金 1,000<br>（貸方）現 金 100',
-          '（借方）当座預金 1,000 / （貸方）普通預金 1,000<br>（借方）雑 費 100 / （貸方）当座預金 100'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '当座預金口座開設 ➔ 複合仕訳',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>口座間振替と小切手帳手数料の複合仕訳</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ ① 口座間の振替処理</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>普通預金口座から当座預金口座へ1,000円を振り替え</li>
-                  <li>資産の増加として借方に<strong>「当座預金 1,000」</strong></li>
-                  <li>資産の減少として貸方に<strong>「普通預金 1,000」</strong></li>
-                </ul>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ ② 小切手帳交付手数料</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>銀行へ支払った小切手帳の発行手数料は費用の発生として<strong>「支払手数料」</strong>の借方に記入</li>
-                  <li>現金で支払っているため貸方は<strong>「現金 100」</strong></li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    当座預金 1,000<br>支払手数料 100
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    普通預金 1,000<br>現 金 100
-                  </div>
-                </div>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                ※ このように1つの取引で複数の仕訳が発生する場合、<strong>複合仕訳</strong>として「（借方）当座預金 1,000・支払手数料 100 / （貸方）普通預金 1,000・現金 100」とまとめることもできます。
-              </p>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>小切手帳の手数料は<strong>「支払手数料」</strong>（費用）。「当座預金」や「雑費」ではありません。</li>
-                  <li>振替額は1,000円のみ。手数料100円を「当座預金」残高に加算して1,100円にするのは誤りです。</li>
-                  <li>手数料の支払いを「当座預金」の減少で処理するのも誤り。現金で支払ったので貸方は「現金」です。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '普通預金口座から当座預金口座へ500円、定期預金口座へ300円をそれぞれ預け入れた。その際、振込手数料10円が普通預金口座から引き落とされた。',
-        type: 'shiwake',
-        choices: [
-          '（借方）当座預金 500 / （貸方）普通預金 810<br>（借方）定期預金 300<br>（借方）支払手数料 10',
-          '（借方）当座預金 500 / （貸方）普通預金 800<br>（借方）定期預金 300<br>（借方）雑 費 10 / （貸方）現 金 10',
-          '（借方）当座預金 505 / （貸方）普通預金 810<br>（借方）定期預金 305',
-          '（借方）当座預金 500 / （貸方）普通預金 800<br>（借方）定期預金 300<br>（借方）当座預金 10 / （貸方）普通預金 10'
-        ],
-        correct: 0,
-        explanation: {
-          concept: '預金間振替 ➔ 複合仕訳',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>預金口座間の振替と振込手数料の複合仕訳</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加・費用の発生）</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>当座預金口座への預け入れ → <strong>「当座預金」500円</strong>（資産の増加）</li>
-                  <li>定期預金口座への預け入れ → <strong>「定期預金」300円</strong>（資産の増加）</li>
-                  <li>発生した振込手数料10円 → <strong>「支払手数料」</strong>（費用の発生）</li>
-                </ul>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>当座預金への振替額500円、定期預金への振替額300円、および振込手数料10円の<strong>合計810円</strong>がすべて普通預金口座から引き落とし</li>
-                  <li>資産の減少として<strong>「普通預金」810円</strong>を計上</li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    当座預金 500<br>定期預金 300<br>支払手数料 10
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    普通預金 810
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>振込手数料は<strong>「支払手数料」</strong>（費用）で処理。「雑費」や「現金」ではありません。</li>
-                  <li>振込手数料は<strong>独立した費用</strong>として処理するため、預金本体の額面（500円・300円）には加算しません。</li>
-                  <li>手数料を「当座預金」の増加で処理するのは誤り。銀行に支払った費用なので預金残高にはなりません。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '営業活動のために使用している携帯電話の利用料金100円が普通預金口座から引き落とされた。',
-        type: 'shiwake',
-        choices: [
-          '（借方）通 信 費 100 / （貸方）普通預金 100',
-          '（借方）支払手数料 100 / （貸方）普通預金 100',
-          '（借方）雑 費 100 / （貸方）普通預金 100',
-          '（借方）通 信 費 100 / （貸方）現 金 100'
-        ],
-        correct: 0,
-        explanation: {
-          concept: '通信費の発生 ➔ 普通預金の減少',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>携帯電話利用料金の引き落とし</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
-                <p class="text-xs">
-                  電話代、インターネット利用料、郵便切手代、ハガキ代などの<strong>連絡・情報伝達に要した費用</strong>は、
-                  費用の発生として<strong>「通信費」</strong>勘定の借方に記入します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
-                <p class="text-xs">
-                  利用料金が<strong>普通預金口座から引き落とされた</strong>ため、資産の減少として
-                  <strong>「普通預金」</strong>勘定の貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    通 信 費 100
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    普通預金 100
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>電話・インターネットなどの<strong>通信サービス利用料</strong>は「通信費」で処理。「支払手数料」は銀行振込手数料などに使います。</li>
-                  <li>営業用の電話料金は日常的かつ明確な費用なので<strong>「通信費」</strong>に分類。「雑費」は他のどの勘定科目にも当てはまらない一時的な費用に使います。</li>
-                  <li>問題文に「普通預金口座から引き落とされた」とあるため貸方は<strong>「普通預金」</strong>。「現金」ではありません。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '普通預金口座に利息100円が入金された。',
-        type: 'shiwake',
-        choices: [
-          '（借方）普通預金 100 / （貸方）有価証券利息 100',
-          '（借方）普通預金 100 / （貸方）受 取 利 息 100',
-          '（借方）現 金 100 / （貸方）受 取 利 息 100',
-          '（借方）受取利息 100 / （貸方）普通預金 100'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '利息の受取 ➔ 受取利息',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>普通預金の利息受取</span>
+                <span>売掛金の回収（小切手＋振込）</span>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加）</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>同店振り出しの<strong>小切手300円</strong> → 他人振出小切手は<strong>「現金」</strong>として処理</li>
+                  <li>振込額<strong>500円</strong>（800−300） → <strong>「普通預金」</strong>の増加</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
                 <p class="text-xs">
-                  普通預金口座に利息が入金されたため、資産の増加として<strong>「普通預金」</strong>勘定の借方に記入します。
+                  売掛金800円の回収であるため、資産の減少として<strong>「売掛金 800円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>他店振り出しの小切手は「現金」として処理します。「当座預金」は当店振出の小切手を回収した場合です。</li>
+                  <li>「小切手」という勘定科目は存在しません。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '仕入先より商品900円を仕入れ、代金のうち400円は普通預金口座から振り込んで支払った。その際、当店負担の振込手数料100円もあわせて同口座から引き落とされた。なお、残額は掛けとした。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仕 入 500 / （貸方）普通預金 500',
+          '（借方）仕 入 900 / （貸方）普通預金 500<br>（借方）支払手数料 100 / （貸方）買 掛 金 500',
+          '（借方）仕 入 900 / （貸方）普通預金 400<br>（借方）雑 費 100 / （貸方）買 掛 金 600',
+          '（借方）仕 入 900 / （貸方）普通預金 400<br>（貸方）買 掛 金 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '仕入と振込手数料 ➔ 複合仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>仕入代金の一部振込と振込手数料の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>仕 入 900円</strong>（費用の発生・仕入全額）</li>
+                  <li><strong>支払手数料 100円</strong>（費用の発生・当店負担の振込手数料）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>普通預金 500円</strong>（400円振込＋100円手数料の合計）</li>
+                  <li><strong>買 掛 金 500円</strong>（残額の掛け分）</li>
+                </ul>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>振込手数料は<strong>「支払手数料」</strong>（費用）で処理します。「雑費」は不適切です。</li>
+                  <li>貸方の合計は900円（400＋100＋500）になるよう、借方が900円（仕入900）と対応しているか確認しましょう。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '当期の決算において、現金の帳簿残高は800円であったが、実際有額は700円であった。差額100円のうち60円は通信費の記入漏れであることが判明したが、残額については原因が判明しなかった。正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）通 信 費 60 / （貸方）現 金 100<br>（借方）雑 損 40',
+          '（借方）通 信 費 60 / （貸方）現金過不足 100<br>（借方）雑 損 40',
+          '（借方）現 金 100 / （貸方）通 信 費 60<br>（貸方）雑 益 40',
+          '（借方）雑 損 100 / （貸方）現 金 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金過不足の決算整理 ➔ 通信費・雑損',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>決算日の現金過不足が原因判明</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                帳簿残高800円に対して実際有額700円のため<strong>100円（800−700）の現金不足</strong>です。
+                実額に合わせて<strong>現金を100円減額</strong>します（貸方：現金）。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>通 信 費 60円</strong>（記入漏れと判明した費用）</li>
+                  <li><strong>雑 損 40円</strong>（原因不明の残額）</li>
+                </ul>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>期中ではなく<strong>決算時点</strong>で原因判明のため、「現金過不足」勘定を経由せず直接費用（通信費・雑損）と現金の減額で処理します。</li>
+                  <li>現金が不足しているため貸方は「現金」です。現金を増やす処理（借方：現金）になるのは実際有額が多い場合です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '期中に現金過不足として処理していた借方残高500円について決算日において調査したところ、売掛金の回収額300円の記帳漏れであることが判明した。残額については原因が不明のため、正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 500 / （貸方）売 掛 金 300<br>（貸方）雑 益 200',
+          '（借方）売 掛 金 300 / （貸方）現金過不足 500<br>（借方）雑 損 200',
+          '（借方）現金過不足 500 / （貸方）売 掛 金 300<br>（貸方）雑 益 200',
+          '（借方）売 掛 金 500 / （貸方）現金過不足 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '現金過不足の原因判明 ➔ 売掛金・雑損',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>借方残高の現金過不足の決算整理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                借方残高500円は<strong>現金が帳簿より不足している状態</strong>です。決算時に原因を調査した結果、
+                売掛金の回収記帳漏れ300円が判明しました。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>売 掛 金 300円</strong>（回収の記帳漏れを修正。売掛金を減らし忘れていたため借方で減少させる）</li>
+                  <li><strong>雑 損 200円</strong>（原因不明の残額）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <p class="text-xs">
+                  <strong>現金過不足 500円</strong>を貸方に記入し、仮勘定の借方残高を相殺してゼロにします。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>回収漏れだった売掛金は<strong>すでに入金（現金の増加）済みの状態</strong>。現金を再度増やすと二重計上になります。</li>
+                  <li>借方残高（不足）は「雑損」、貸方残高（過剰）は「雑益」に振り替えます。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '所有する株式の配当金領収証200円を指定の金融機関に持参して現金で受け取り、ただちに全額を当店の普通預金口座へ預け入れた。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 200 / （貸方）受取配当金 200',
+          '（借方）普通預金 200 / （貸方）現 金 200',
+          '（借方）普通預金 200 / （貸方）受取配当金 200',
+          '（借方）普通預金 200 / （貸方）有価証券利息 200'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '配当金領収証 ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>配当金領収証を即日預け入れた場合</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 考え方</div>
+                <p class="text-xs">
+                  配当金領収証を受け取った時点では<strong>「現金 / 受取配当金」</strong>と処理しますが、
+                  <strong>「ただちに普通預金口座へ預け入れた」</strong>場合は、途中の「現金」を経由せず
+                  <strong>「普通預金 / 受取配当金」</strong>と直接処理します。
                 </p>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（収益の発生）</div>
                 <p class="text-xs">
-                  預金や貸付金から生じる利息を受け取った場合は、収益の発生として<strong>「受取利息」</strong>勘定の貸方に記入します。
+                  株式の配当金は収益として<strong>「受取配当金」</strong>の貸方に記入します。
                 </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    普通預金 100
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    受取利息 100
-                  </div>
-                </div>
               </div>
               <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
                 <ul class="list-disc list-inside space-y-1">
-                  <li><strong>「有価証券利息」</strong>は国債や社債などの公社債を保有していることで受け取る利息に使用。預金の利息には<strong>「受取利息」</strong>を使います。</li>
-                  <li>手元で現金を受け取ったのではなく「普通預金口座に入金された」ため借方は<strong>「普通預金」</strong>。貸方は「現金」ではありません。</li>
-                  <li>収益である受取利息の発生は<strong>貸方</strong>、資産である普通預金の増加は<strong>借方</strong>に記入します（貸借の逆に注意）。</li>
+                  <li>株式配当金は<strong>「受取配当金」</strong>。「有価証券利息」は公社債（国債・社債）の利子に使います。</li>
+                  <li>「現金 200 / 受取配当金 200」で処理した後に預け入れる手続きは、本問の「ただちに預け入れた」条件では省略できます。</li>
                 </ul>
               </div>
             </div>
@@ -808,13 +679,309 @@ const roadmapLevels = [
         }
       },
       {
-        text: '以前から保有していた売掛債権200円の回収手段として、取引先から切り出された小切手200円を受け取った。なお、この小切手は以前に当社が自らの支払いのために振り出したものであった。',
+        text: '売掛金800円の回収として、得意先負担の振込手数料100円が差し引かれた後の金額が当店の普通預金口座へ振り込まれた。正しい仕訳を選択しなさい。',
         type: 'shiwake',
         choices: [
-          '（借方）現 金 200 / （貸方）売 掛 金 200',
-          '（借方）当座預金 200 / （貸方）売 掛 金 200',
-          '（借方）受取手形 200 / （貸方）売 掛 金 200',
-          '（借方）小 切 手 200 / （貸方）売 掛 金 200'
+          '（借方）普通預金 700 / （貸方）売 掛 金 800<br>（借方）支払手数料 100',
+          '（借方）普通預金 800 / （貸方）売 掛 金 800',
+          '（借方）普通預金 700 / （貸方）売 掛 金 700',
+          '（借方）普通預金 800 / （貸方）売 掛 金 700<br>（貸方）受取手数料 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '売掛金の回収 ➔ 手数料は得意先負担',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>振込手数料が得意先負担の場合</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ ポイント</div>
+                <p class="text-xs">
+                  振込手数料が<strong>「得意先（相手）負担」</strong>である場合、当店側では手数料の費用処理は行いません。
+                  差し引かれた手数料は得意先が負担したものであり、当店の帳簿上では
+                  売掛金800円が<strong>全額普通預金に入金された</strong>ものとして処理します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 仕訳</div>
+                <p class="text-xs">
+                  <strong>（借方）普通預金 800 / （貸方）売 掛 金 800</strong>
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>手数料負担が「当店」の場合</strong>は「支払手数料」を計上しますが、<strong>「得意先負担」の場合は手数料を当店で処理しません</strong>。</li>
+                  <li>700円で入金されていても、当店の売掛金債権は800円全額が回収された扱いです。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '従業員が店舗の消耗品500円を購入し、代金を店舗の手元現金から支払った際、誤って普通預金口座からの引き落としとして帳簿に記帳していたことが判明した。本日行う修正仕訳として正しいものを選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）消 耗 品 費 500 / （貸方）現 金 500',
+          '（借方）現 金 500 / （貸方）普通預金 500',
+          '（借方）普通預金 500 / （貸方）現 金 500',
+          '（借方）普通預金 500 / （貸方）消 耗 品 費 500'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '訂正仕訳 ➔ 現金と普通預金の修正',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>誤った仕訳の訂正</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                正しい仕訳は <strong>（借）消耗品費 500 / （貸）現金 500</strong>。<br>
+                誤って計上した仕訳は <strong>（借）消耗品費 500 / （貸）普通預金 500</strong>。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 修正の考え方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>借方の<strong>「消耗品費 500」は正しい</strong>ため修正不要</li>
+                  <li>誤って減額していた<strong>「普通預金」を借方に戻す</strong>（＋500）</li>
+                  <li>実際に減少していた<strong>「現金」を貸方に計上</strong>（−500）</li>
+                </ul>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「（借）消耗品費 / （貸）現金」は<strong>最初から正しく行うべき仕訳</strong>です。修正仕訳の借方は「普通預金」になります。</li>
+                  <li>正しい処理での貸方（現金）と誤りの貸方（普通預金）を入れ替えるイメージです。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '買掛金600円を支払うため、普通預金口座から振り込んだ。なお、当店負担の振込手数料100円もあわせて同口座から引き落とされている。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 600 / （貸方）普通預金 700<br>（借方）支払手数料 100',
+          '（借方）買 掛 金 700 / （貸方）普通預金 700',
+          '（借方）買 掛 金 500 / （貸方）普通預金 600<br>（借方）支払手数料 100',
+          '（借方）買 掛 金 600 / （貸方）普通預金 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '買掛金の支払い ➔ 普通預金＋支払手数料',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>買掛金の支払いと振込手数料</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>買 掛 金 600円</strong>（負債の減少）</li>
+                  <li><strong>支払手数料 100円</strong>（費用の発生・当店負担分）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <p class="text-xs">
+                  買掛金の振込額600円と振込手数料100円の<strong>合計700円</strong>が普通預金口座から引き落とされたため、
+                  資産の減少として<strong>「普通預金 700円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>振込手数料を「買掛金」に加算（700）したり逆に減額（500）したりしないようにしましょう。</li>
+                  <li>振込手数料は「支払手数料」で処理することが重要です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算にあたり、現金過不足勘定（貸方残高500円）の原因を調べたところ、受取手数料300円の記入漏れが判明した。残額については原因不明のため、正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）受取手数料 300 / （貸方）現金過不足 500<br>（借方）雑 損 200',
+          '（借方）現金過不足 500 / （貸方）受取手数料 300<br>（貸方）雑 益 200',
+          '（借方）現 金 500 / （貸方）受取手数料 300<br>（貸方）雑 益 200',
+          '（借方）現金過不足 500 / （貸方）雑 益 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '現金過不足の原因判明 ➔ 受取手数料・雑益',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>貸方残高の現金過不足の決算整理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                貸方残高500円は<strong>現金が実際より過剰（プラス）</strong>の状態です。
+                原因のうち受取手数料300円の記入漏れが判明しました。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <p class="text-xs">
+                  仮勘定の貸方残高を打ち消すため<strong>「現金過不足 500円」</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>受取手数料 300円</strong>（収益の発生・記入漏れの修正）</li>
+                  <li><strong>雑 益 200円</strong>（原因不明の残額・収益）</li>
+                </ul>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>貸方残高（過剰）の場合は<strong>「雑益」</strong>、借方残高（不足）の場合は<strong>「雑損」</strong>に振り替えます。</li>
+                  <li>現金の増減は期中の過不足発生時に<strong>すでに反映済み</strong>。決算時に再度「現金」を動かす必要はありません。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '期中に売上代金として受け取っていた公社債の期限到来利札100円（受取時に「現金」として処理済み）を金融機関で換金し、そのまま普通預金口座へ全額預け入れた。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 100 / （貸方）有価証券利息 100',
+          '（借方）普通預金 100 / （貸方）現 金 100',
+          '（借方）現 金 100 / （貸方）有価証券利息 100',
+          '（借方）普通預金 100 / （貸方）売 上 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '公社債利札の換金 ➔ 普通預金への預け入れ',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>利札の換金（受け取り済みの現金を預け入れ）</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 考え方</div>
+                <p class="text-xs">
+                  公社債の期限到来利札は<strong>受取時に「現金 / 有価証券利息」と処理済み</strong>です。
+                  本問では単に手元にある現金100円を<strong>普通預金口座へ預け入れる</strong>だけなので、
+                  収益の計上は行いません。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 仕訳</div>
+                <p class="text-xs">
+                  <strong>（借方）普通預金 100 / （貸方）現 金 100</strong>
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「受取時に現金として処理済み」という条件を見落とすと、「有価証券利息」を計上する誤りをしがちです。</li>
+                  <li>利札を受け取った時点と換金時点を区別しましょう。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '店舗の家賃800円が当店の普通預金口座から自動引き落としされた。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）支払家賃 800 / （貸方）当座預金 800',
+          '（借方）受取家賃 800 / （貸方）普通預金 800',
+          '（借方）支払家賃 800 / （貸方）普通預金 800',
+          '（借方）支払家賃 800 / （貸方）現 金 800'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '家賃の支払い ➔ 支払家賃・普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>家賃の自動引き落とし</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <p class="text-xs">
+                  店舗の家賃は費用の発生として<strong>「支払家賃」800円</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">
+                  <strong>普通預金口座</strong>から引き落とされたため、資産の減少として<strong>「普通預金 800円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「普通預金」から引き落とされたので貸方は「普通預金」です。「当座預金」や「現金」ではありません。</li>
+                  <li>「受取家賃」は家賃を<strong>受け取った</strong>場合（収益）に使います。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '当期の決算において、現金の帳簿残高は500円であったが、実際有額は800円であった。原因はすべて不明であるため、正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 300 / （貸方）雑 益 300',
+          '（借方）雑 損 300 / （貸方）現 金 300',
+          '（借方）現金過不足 300 / （貸方）雑 益 300',
+          '（借方）現 金 300 / （貸方）現金過不足 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金過不足の決算整理 ➔ 雑益',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>決算日の現金過不足（実際の方が多い）</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                帳簿残高500円に対して実際有額800円のため<strong>300円（800−500）の現金過剰</strong>です。
+                帳簿残高を実際有額に合わせるため、<strong>現金を300円増加</strong>させます（借方：現金）。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（収益の発生）</div>
+                <p class="text-xs">
+                  決算期末で原因不明の過剰額は<strong>「雑益」300円</strong>（収益）に振り替えます。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>決算時点で原因不明の場合は<strong>「現金過不足」ではなく直接「雑益」へ振り替え</strong>ます。</li>
+                  <li>「雑損」になるのは<strong>現金が不足</strong>している場合です（実際の方が少ない）。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品900円を売り上げ、代金のうち300円は当店振り出しの小切手で受け取り、残額は普通預金口座へ振り込まれた。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 300 / （貸方）売 上 900<br>（借方）普通預金 600',
+          '（借方）当座預金 300 / （貸方）売 上 900<br>（借方）普通預金 600',
+          '（借方）小 切 手 300 / （貸方）売 上 900<br>（借方）普通預金 600',
+          '（借方）普通預金 900 / （貸方）売 上 900'
         ],
         correct: 1,
         explanation: {
@@ -823,163 +990,26 @@ const roadmapLevels = [
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>自己振出小切手が戻ってきた場合の処理</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ なぜ「当座預金」になるのか</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>他人が振り出した小切手（他人振出小切手）は<strong>「現金」</strong>で処理するのが原則</li>
-                  <li>ただし、<strong>自己振出小切手</strong>を回収した場合は処理が異なります</li>
-                  <li>自社が小切手を振り出した際に<strong>「当座預金」の減少</strong>として処理済み</li>
-                  <li>その小切手が自社に戻ってきたため、振り出し時に減少させた当座預金を<strong>元に戻す（増加させる）</strong>必要があります</li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    当座預金 200
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 掛 金 200
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li><strong>他人振出小切手</strong>は「現金」ですが、<strong>自己振出小切手</strong>は「当座預金」で処理します。「小切手＝現金」の原則に囚われると間違えやすい定番のひっかけです。</li>
-                  <li>約束手形や為替手形を受け取った場合の<strong>「受取手形」</strong>とは勘定科目が異なります。</li>
-                  <li>簿記の勘定科目に<strong>「小切手」</strong>は存在しません。小切手の種類に応じて「現金」または「当座預金」を使用します。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '売掛代金の未収分350円の回収として、取引先A商店が振り出した小切手350円を受け取った。この小切手はすぐに当座預金口座へ入金処理された。',
-        type: 'shiwake',
-        choices: [
-          '（借方）現 金 350 / （貸方）売 掛 金 350',
-          '（借方）当座預金 350 / （貸方）受取手形 350',
-          '（借方）当座預金 350 / （貸方）売 掛 金 350',
-          '（借方）小 切 手 350 / （貸方）当座預金 350'
-        ],
-        correct: 2,
-        explanation: {
-          concept: '他人振出小切手の即時入金 ➔ 当座預金',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>小切手を直ちに当座預金へ入金した場合</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（当座預金）</div>
-                <p class="text-xs">
-                  他人が振り出した小切手は本来<strong>「通貨代用証券」</strong>として「現金」勘定で処理しますが、
-                  「受け取って<strong>すぐに当座預金に預け入れた</strong>」場合は、一度現金を経由させず、
-                  直接<strong>「当座預金」</strong>の増加として処理します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
-                <p class="text-xs">
-                  売掛金の回収が完了したため、資産の減少として<strong>「売掛金」350円</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    当座預金 350
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 掛 金 350
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>「他人振出小切手＝現金」という基本ルールのみに注目するのは誤り。<strong>「直ちに当座預金に預け入れた」</strong>という条件がある場合は借方は「当座預金」です。</li>
-                  <li>回収したのは<strong>「売掛金」</strong>であり「受取手形」ではありません。手段が小切手であることや預け入れの処理は合っていても、相手科目が誤ると不正解です。</li>
-                  <li>簿記に<strong>「小切手」という勘定科目は存在しません</strong>。また、売掛金の減少も記録されていないため誤りです。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '仕入先の請求額600円を支払うため、小切手600円を切り出した。当座預金の残高は400円であり、取引銀行と借越限度額1,000円の当座借越契約を結んでいる（二分法による処理）。',
-        type: 'shiwake',
-        choices: [
-          '（借方）買 掛 金 600 / （貸方）当座預金 600',
-          '（借方）買 掛 金 600 / （貸方）当座預金 400<br>（貸方）当座借越 200',
-          '（借方）買 掛 金 600 / （貸方）当座預金 400<br>（貸方）短期借入金 200',
-          '（借方）買 掛 金 600 / （貸方）当座借越 600'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '当座借越の二分法 ➔ 当座預金＋当座借越',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>当座借越契約を利用した支払い（二分法）</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 二分法とは</div>
-                <p class="text-xs">
-                  当座預金の残高を超える金額の小切手を切り出した場合でも、<strong>当座借越契約</strong>を結んでいれば、
-                  限度額の範囲内で銀行が超える分を一時的に立て替えて支払ってくれます。
-                </p>
-                <p class="text-xs mt-1">
-                  この処理には「一分法」と「二分法」があり、<strong>「二分法」</strong>の場合は
-                  <strong>残高の範囲内と超えた分を区別</strong>して処理します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方の内訳</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>残高の400円分： 残高がゼロになるため、資産の減少として<strong>「当座預金 400」</strong></li>
-                  <li>超過した200円分（600−400）： 銀行からの借入れ（負債）となるため、負債の増加として<strong>「当座借越 200」</strong></li>
-                </ul>
+                <span>当店（自己）振出の小切手を回収した場合</span>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
-                <p class="text-xs">
-                  買掛金が減少するため、負債の減少として<strong>「買掛金」600円</strong>を借方に記入します。
-                </p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>当座預金 300円</strong>（自己振出小切手の回収＝当座預金の復元）</li>
+                  <li><strong>普通預金 600円</strong>（振込分）</li>
+                </ul>
               </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    買 掛 金 600
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    当座預金 400<br>当座借越 200
-                  </div>
-                </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <p class="text-xs">
+                  商品900円を販売したため、収益の発生として<strong>「売上 900円」</strong>を貸方に記入します。
+                </p>
               </div>
               <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
                 <ul class="list-disc list-inside space-y-1">
-                  <li><strong>「一分法」</strong>または当座借越契約を考慮しない処理では「当座預金 600」としますが、二分法では残高を超過した部分に「当座預金」を用いません。</li>
-                  <li>決算時に当座借越の期末残高を<strong>「短期借入金」</strong>へ振り替える処理と混同しないでください。期中の取引時点では<strong>「当座借越」</strong>を用います。</li>
-                  <li>当座預金に残高（400円）が残っているのに、全額を「当座借越」で処理するのは誤り。まず既存残高を充当し、不足分のみを「当座借越」とします。</li>
+                  <li><strong>「当店（自己）振り出しの小切手」</strong>を回収した場合は当座預金で処理します。他店振出（現金）との違いに注意。</li>
+                  <li>「小切手」という勘定科目は存在しません。</li>
                 </ul>
               </div>
             </div>
@@ -987,66 +1017,290 @@ const roadmapLevels = [
         }
       },
       {
-        text: '新会計年度の開始日（4月1日）となったため、前期末の決算で当座預金勘定の貸方残高を整理するために計上した当座借越250円について、再振替仕訳（逆仕訳）を実施した。',
+        text: '出張中の従業員へ手渡していた旅費の仮払金300円のうち、実際の旅費交通費は200円であった。残額100円は現金で返還を受け、ただちに普通預金口座へ預け入れた。正しい仕訳を選択しなさい。',
         type: 'shiwake',
         choices: [
-          '（借方）当座預金 250 / （貸方）当座借越 250',
-          '（借方）当座借越 250 / （貸方）当座預金 250',
-          '（借方）当座借越 250 / （貸方）再振替仕訳 250',
-          '（借方）短期借入金 250 / （貸方）当座預金 250'
+          '（借方）旅費交通費 200 / （貸方）仮 払 金 300<br>（借方）現 金 100',
+          '（借方）旅費交通費 200 / （貸方）仮 払 金 300<br>（借方）普通預金 100',
+          '（借方）旅費交通費 300 / （貸方）仮 払 金 300',
+          '（借方）仮 払 金 300 / （貸方）旅費交通費 200<br>（貸方）普通預金 100'
         ],
         correct: 1,
         explanation: {
-          concept: '当座借越の再振替仕訳 ➔ 逆仕訳',
+          concept: '仮払金の清算 ➔ 普通預金',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>期首の当座借越の再振替仕訳</span>
+                <span>仮払金の清算と余剰金の預け入れ</span>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 再振替仕訳とは</div>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>旅費交通費 200円</strong>（費用の発生・実際にかかった旅費）</li>
+                  <li><strong>普通預金 100円</strong>（返還金を直接普通預金口座へ入金）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
                 <p class="text-xs">
-                  前期末の決算において、当座預金のマイナス状態（貸方残高）を整理するために行った
-                  決算振替仕訳（<strong>借方：当座預金 ／ 貸方：当座借越</strong>）は、
-                  期首において元の状態に戻す<strong>「再振替仕訳（逆仕訳）」</strong>を行います。
+                  仮払金300円を<strong>全額消去</strong>します（資産・仮払金の減少）。
                 </p>
-                <p class="text-xs mt-1">
-                  再振替仕訳は、決算で行った仕訳の<strong>「借方」と「貸方」を単純に入れ替える</strong>ことで行います。
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>返還された100円を「現金」で一度受けてから預け入れるのではなく、<strong>「普通預金」に直接計上</strong>するのが本問のポイントです。</li>
+                  <li>仮払金は預けた時点では費用ではなく<strong>資産（仮払金）</strong>として処理されていることにも注意。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '備品800円を購入し、代金は後払いとした。また、納品時の発送費用100円は現金で支払った。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）備 品 800 / （貸方）買 掛 金 800<br>（借方）支払運賃 100 / （貸方）現 金 100',
+          '（借方）備 品 900 / （貸方）買 掛 金 800<br>（貸方）現 金 100',
+          '（借方）備 品 900 / （貸方）未 払 金 800<br>（貸方）現 金 100',
+          '（借方）備 品 800 / （貸方）未 払 金 800<br>（借方）支払運賃 100 / （貸方）現 金 100'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '固定資産の取得 ➔ 付随費用は取得原価に含める',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>固定資産の付随費用の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（取得原価）</div>
+                <p class="text-xs">
+                  固定資産の購入にかかった<strong>付随費用（発送費用100円）は取得原価に含め</strong>ます。
+                  したがって備品は <strong>800円＋100円＝900円</strong> となります。
                 </p>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（当座借越）</div>
-                <p class="text-xs">
-                  負債として計上していた当座借越を消去するため、<strong>当座借越 250円</strong>（負債の減少）とします。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（当座預金）</div>
-                <p class="text-xs">
-                  当座預金勘定を再びマイナスの状態（貸方残高）に戻すため、<strong>当座預金 250円</strong>（資産の減少側）とします。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    当座借越 250
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    当座預金 250
-                  </div>
-                </div>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>未 払 金 800円</strong>（商品以外の後払い代金は「未払金」）</li>
+                  <li><strong>現 金 100円</strong>（現金で支払った付随費用）</li>
+                </ul>
               </div>
               <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
                 <ul class="list-disc list-inside space-y-1">
-                  <li>「借方：当座預金 ／ 貸方：当座借越」は<strong>決算整理時（期末）</strong>に行う振替仕訳そのものです。期首に行う再振替仕訳は<strong>これの逆</strong>になります。</li>
-                  <li><strong>「再振替仕訳」という勘定科目は存在しません</strong>。再振替仕訳は「処理の名称」であり、仕訳自体は通常の勘定科目（当座借越と当座預金）を用います。</li>
-                  <li>前期末の決算処理で<strong>「当座借越」勘定</strong>を用いて整理しているため、期首の再振替でも同一の「当座借越」勘定を相殺消去します。「短期借入金」にすると当座借越の残高が残ってしまいます。</li>
+                  <li>付随費用を<strong>「支払運賃」などの独立した費用</strong>で処理するのは誤り。取得原価に含めます。</li>
+                  <li>商品以外の購入の後払いは<strong>「未払金」</strong>。「買掛金」は商品仕入に使います。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '期中に生じた現金過不足（借方残高100円）について、決算日までに原因が判明しなかった。正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）雑 損 100 / （貸方）現 金 100',
+          '（借方）雑 損 100 / （貸方）現金過不足 100',
+          '（借方）現金過不足 100 / （貸方）雑 益 100',
+          '（借方）現 金 100 / （貸方）現金過不足 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '現金過不足の決算整理 ➔ 雑損',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>借方残高の現金過不足を決算整理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                期中に計上していた<strong>「現金過不足」（借方残高100円＝現金不足）</strong>の原因が決算日までに判明しなかったため、
+                <strong>「雑損」（費用）</strong>へ振り替えます。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 仕訳</div>
+                <p class="text-xs">
+                  借方の<strong>「雑損 100円」</strong>（費用の発生）と、現金過不足勘定を相殺消去するための<strong>貸方「現金過不足 100円」</strong>。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>現金の減少は期中の過不足発生時にすでに反映済みです。決算整理では「現金過不足」勘定を消去します。</li>
+                  <li>借方残高（不足）→「雑損」、貸方残高（過剰）→「雑益」と決まっています。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品500円を仕入れ、代金は普通預金口座から振り込んで支払った。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仕 入 500 / （貸方）当座預金 500',
+          '（借方）仕 入 500 / （貸方）普通預金 500',
+          '（借方）仕 入 500 / （貸方）現 金 500',
+          '（借方）仕 入 500 / （貸方）買 掛 金 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '仕入の支払い ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>商品仕入の代金を普通預金から支払い</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <p class="text-xs">
+                  商品を仕入れたため<strong>「仕入」500円</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">
+                  普通預金口座から振り込んだため、資産の減少として<strong>「普通預金 500円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「普通預金」から支払ったので貸方は「普通預金」です。「当座預金」「現金」は不適切です。</li>
+                  <li>「買掛金」は掛けで仕入れた場合に使います。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '水道光熱費200円および通信費100円が当店の普通預金口座から自動引き落としされた。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）水道光熱費 200 / （貸方）普通預金 300<br>（借方）通 信 費 100',
+          '（借方）水道光熱費 200 / （貸方）当座預金 300<br>（借方）通 信 費 100',
+          '（借方）水道光熱費 200 / （貸方）現 金 300<br>（借方）通 信 費 100',
+          '（借方）雑 費 300 / （貸方）普通預金 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '複数費用の引き落とし ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>複数費用が同一口座から引き落とし</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>水道光熱費 200円</strong></li>
+                  <li><strong>通 信 費 100円</strong></li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">
+                  各費用の<strong>合計300円</strong>が普通預金口座から引き落とされたため、
+                  資産の減少として<strong>「普通預金 300円」</strong>を貸方にまとめます。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>複数の費用をまとめて<strong>「雑費」</strong>にするのは誤り。各費用勘定に分けて計上します。</li>
+                  <li>「普通預金」から引き落とされたので「当座預金」や「現金」は不適切です。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '本日、取引先より売掛金400円が普通預金口座に振り込まれたが、担当者が誤って「現金」の増加として処理していた。本日行う修正仕訳として正しいものを選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 400 / （貸方）売 掛 金 400',
+          '（借方）現 金 400 / （貸方）普通預金 400',
+          '（借方）普通預金 400 / （貸方）現 金 400',
+          '（借方）売 掛 金 400 / （貸方）現 金 400'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '訂正仕訳 ➔ 現金を普通預金に修正',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>誤って現金と処理した売掛金回収の訂正</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                誤った仕訳は <strong>（借）現金 400 / （貸）売掛金 400</strong>。<br>
+                正しい仕訳は <strong>（借）普通預金 400 / （貸）売掛金 400</strong>。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 修正仕訳</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>間違えて計上した<strong>「現金」を貸方に戻す</strong>（−400）</li>
+                  <li>正しく増加すべき<strong>「普通預金」を借方に計上</strong>（＋400）</li>
+                  <li>貸方の「売掛金」は正しいため修正不要</li>
+                </ul>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「現金 400 / 普通預金 400」は逆。借方に増やすべきは「普通預金」、減らすべきは「現金」です。</li>
+                  <li>「売掛金」を動かすと二重に回収仕訳されてしまうため、貸方の売掛金には触れません。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算にあたり、現金過不足勘定（借方残高500円）のうち、300円は支払手数料の記帳漏れであることが判明し、残額は原因不明であった。正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）支払手数料 300 / （貸方）現金過不足 500<br>（借方）雑 損 200',
+          '（借方）現金過不足 500 / （貸方）支払手数料 300<br>（貸方）雑 益 200',
+          '（借方）支払手数料 300 / （貸方）現 金 500<br>（借方）雑 損 200',
+          '（借方）支払手数料 300 / （貸方）現金過不足 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金過不足の決算整理 ➔ 支払手数料・雑損',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>借方残高の過不足（原因一部判明）</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>支払手数料 300円</strong>（記帳漏れと判明した費用）</li>
+                  <li><strong>雑 損 200円</strong>（原因不明の残額・費用）</li>
+                </ul>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方</div>
+                <p class="text-xs">
+                  現金過不足勘定の借方残高500円を<strong>相殺消去</strong>するため貸方に<strong>「現金過不足 500円」</strong>を記入します。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed>
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>借方残高（不足）の場合は<strong>「雑損」</strong>です。「雑益」は貸方残高（過剰）の場合に使います。</li>
+                  <li>現金の減少は期中に反映済み。決算時は「現金過不足」を消去します。</li>
                 </ul>
               </div>
             </div>
@@ -1063,14 +1317,54 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/petty-cash',
     tags: ['資産', '小口現金', '旅費交通費'],
     questions: [
-      {
-        text: '週末になり、小口現金係から今週分の支払報告を受けた。なお、当店では定額資金前渡制度（インプレスト・システム）を採用している。支払報告の内容は、旅費交通費300円、通信費150円、消耗品費250円であった。',
+{
+        text: '小口係より用度係へ、小口資金の前渡額として小切手500円を振り出して交付した。正しい仕訳を選択しなさい。',
         type: 'shiwake',
         choices: [
-          '（借方）旅費交通費 300 / （貸方）小口現金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250',
-          '（借方）旅費交通費 300 / （貸方）当座預金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250',
-          '（借方）旅費交通費 300 / （貸方）現 金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250',
-          '（借方）小口現金 700 / （貸方）当座預金 700'
+          '（借方）小口現金 500 / （貸方）現 金 500',
+          '（借方）小口現金 500 / （貸方）当座預金 500',
+          '（借方）小口現金 500 / （貸方）普通預金 500',
+          '（借方）当座預金 500 / （貸方）小口現金 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '小口資金の前渡 ➔ 当座預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>小口資金の前渡（小切手）</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加）</div>
+                <p class="text-xs">
+                  小口資金を前渡するため、資産の増加として<strong>「小口現金 500円」</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">
+                  小切手を振り出して交付したため、資産の減少として<strong>「当座預金 500円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>小切手を振り出した場合、貸方は「当座預金」の減少です。「現金」や「普通預金」ではありません。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より、タクシー代300円および文房具代200円の支払報告を受けた（補給なし）。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）旅費交通費 300 / （貸方）小口現金 500<br>（借方）消耗品費 200',
+          '（借方）旅費交通費 300 / （貸方）現 金 500<br>（借方）消耗品費 200',
+          '（借方）旅費交通費 300 / （貸方）当座預金 500<br>（借方）消耗品費 200',
+          '（借方）小口現金 500 / （貸方）現 金 500'
         ],
         correct: 0,
         explanation: {
@@ -1079,115 +1373,489 @@ const roadmapLevels = [
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>インプレスト・システムの支払報告時</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ インプレスト・システムとは</div>
-                <p class="text-xs">
-                  あらかじめ<strong>一定額の小口現金</strong>を渡しておき、細かい支払いを行わせる制度です。
-                  支払報告を受けた時点で<strong>費用の発生</strong>を認識し、<strong>小口現金の減少</strong>を記録します。
-                </p>
+                <span>支払報告時（補給なし）</span>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
                 <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
                 <ul class="list-disc list-inside space-y-1">
-                  <li><strong>旅費交通費 300円</strong>（費用の発生）</li>
-                  <li><strong>通信費 150円</strong>（費用の発生）</li>
-                  <li><strong>消耗品費 250円</strong>（費用の発生）</li>
+                  <li><strong>旅費交通費 300円</strong>（タクシー代）</li>
+                  <li><strong>消耗品費 200円</strong>（文房具代）</li>
                 </ul>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（小口現金の減少）</div>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
                 <p class="text-xs">
-                  小口現金係が支払った合計<strong>700円</strong>（300＋150＋250）だけ小口現金が減少するため、
-                  資産の減少として<strong>「小口現金」700円</strong>を貸方に記入します。
+                  補給なしのため、小口現金の<strong>合計500円</strong>の減少として<strong>「小口現金」</strong>を貸方に記入します。
                 </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    旅費交通費 300<br>通 信 費 150<br>消耗品費 250
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    小口現金 700
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>支払報告時点では、貸方は<strong>「小口現金」</strong>の減少。「当座預金」や「現金」ではありません（補充は後日行います）。</li>
-                  <li>「小口現金 700 / 当座預金 700」は<strong>補充時の仕訳</strong>であり、支払報告時点の仕訳ではありません。</li>
-                  <li>各費用の合計が700円であることを確認し、貸方も700円で記録します。</li>
-                </ul>
               </div>
             </div>
           `
         }
       },
       {
-        text: '先週分の小口現金の支払報告（旅費交通費300円・通信費150円・消耗品費250円の合計700円）に基づき、定額に戻すため小切手を振り出して小口現金を補給した。',
+        text: '用度係より電話代400円と切手代200円の支払報告を受け、ただちに同額の小切手を振り出して本日補給した。正しい仕訳を選択しなさい。',
         type: 'shiwake',
         choices: [
-          '（借方）小口現金 700 / （貸方）当座預金 700',
-          '（借方）小口現金 700 / （貸方）現 金 700',
-          '（借方）当座預金 700 / （貸方）小口現金 700',
-          '（借方）旅費交通費 300 / （貸方）小口現金 700<br>（借方）通 信 費 150<br>（借方）消耗品費 250'
+          '（借方）通 信 費 600 / （貸方）当座預金 600',
+          '（借方）通 信 費 600 / （貸方）小口現金 600',
+          '（借方）小口現金 600 / （貸方）当座預金 600',
+          '（借方）通 信 費 600 / （貸方）現 金 600'
         ],
         correct: 0,
         explanation: {
-          concept: '小口現金の補給 ➔ 当座預金の減少',
+          concept: '支払報告と同時補給 ➔ 直接処理',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>インプレスト・システムの補給時</span>
+                <span>報告と同時に即時補給する場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                報告と補給が同時の場合は、小口現金を介さず<strong>直接「費用（借方）/ 当座預金（貸方）」</strong>で処理します。
+              </p>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <p class="text-xs">電話代・切手代は<strong>「通信費」600円</strong>として借方に計上します。</p>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 補給時とは</div>
-                <p class="text-xs">
-                  支払報告時（前問）に各費用の発生と小口現金の減少を計上済みです。
-                  <strong>補給時</strong>は、減った小口現金を定額に戻すための仕訳を行います。
-                </p>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">小切手を振り出したため<strong>「当座預金 600円」</strong>を貸方に計上します。</p>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より電気代800円の支払報告を受けた。なお、補給は後日行うこととした。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '仕訳なし',
+          '（借方）水道光熱費 800 / （貸方）当座預金 800',
+          '（借方）水道光熱費 800 / （貸方）小口現金 800',
+          '（借方）水道光熱費 800 / （貸方）未 払 金 800'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '支払報告のみ ➔ 小口現金の減少',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>報告のみで補給しない場合</span>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（小口現金の増加）</div>
-                <p class="text-xs">
-                  減った小口現金700円を定額に戻すため、資産の増加として<strong>「小口現金」700円</strong>を借方に記入します。
-                </p>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <p class="text-xs">電気代は<strong>「水道光熱費」800円</strong>として借方に計上します。</p>
               </div>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（当座預金の減少）</div>
-                <p class="text-xs">
-                  <strong>小切手を振り出して</strong>補給したため、資産の減少として<strong>「当座預金」700円</strong>を貸方に記入します。
-                </p>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs">補給は後日のため、小口現金の減少として<strong>「小口現金 800円」</strong>を貸方に計上します。</p>
               </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    小口現金 700
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    当座預金 700
-                  </div>
-                </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '週末に用度係から旅費交通費700円の支払報告を受けたため、直ちに現金で補給を行った。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）旅費交通費 700 / （貸方）当座預金 700',
+          '（借方）旅費交通費 700 / （貸方）現 金 700',
+          '（借方）小口現金 700 / （貸方）現 金 700',
+          '（借方）旅費交通費 700 / （貸方）小口現金 700'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '報告と同時に現金で補給 ➔ 直接処理',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>報告と同時に現金で補給する場合</span>
               </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>小切手を振り出して補給したため貸方は<strong>「当座預金」</strong>の減少。「現金」ではありません。</li>
-                  <li>貸借が逆（「当座預金 700 / 小口現金 700」）になるのは誤りです。</li>
-                  <li>各費用を計上するのは<strong>支払報告時</strong>。補給時は小口現金の回復のみを記録します。</li>
-                </ul>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（費用の発生）</div>
+                <p class="text-xs">旅費交通費の<strong>「費用」700円</strong>を借方に計上します。</p>
               </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（資産の減少）</div>
+                <p class="text-xs"><strong>現金で補給</strong>したため、<strong>「現金 700円」</strong>を貸方に計上します。</p>
+              </div>
+            </div>
+          `
+        }
+      },
+      {
+        text: '小口資金の前渡枠を増額するため、用度係へ小切手300円を追加交付した。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）小口現金 300 / （貸方）当座預金 300',
+          '（借方）当座預金 300 / （貸方）小口現金 300',
+          '（借方）小口現金 300 / （貸方）現 金 300',
+          '仕訳なし'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '前渡枠の増額 ➔ 追加交付',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>小口資金の追加交付</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                前渡枠の増額や追加設定の際も、初回交付時と同様に<strong>借方「小口現金」、貸方「当座預金」</strong>で処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算にあたり、用度係の手元にある小口現金の未報告分（雑費200円）があることが判明した。適切な決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '仕訳なし',
+          '（借方）雑 費 200 / （貸方）当座預金 200',
+          '（借方）雑 費 200 / （貸方）小口現金 200',
+          '（借方）小口現金 200 / （貸方）雑 費 200'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '決算時の未報告分 ➔ 費用計上',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>決算時の未報告分の処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                決算時には未報告の支払分も<strong>当期の費用として計上</strong>し、小口現金を減額処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より、お茶代100円（接待交際費）およびノート代200円（消耗品費）の支払報告を受けた（補給なし）。適切な仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）接待交際費 100 / （貸方）小口現金 300<br>（借方）消耗品費 200',
+          '（借方）雑 費 300 / （貸方）小口現金 300',
+          '（借方）接待交際費 100 / （貸方）当座預金 300<br>（借方）消耗品費 200',
+          '（借方）小口現金 300 / （貸方）現 金 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '費用の分類 ➔ 接待交際費・消耗品費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>用途に応じた費用の分類</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                用途に応じて<strong>「接待交際費」と「消耗品費」</strong>に分けて計上し、合計額を小口現金の減少とします。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '前週に支払報告を受けていた400円（報告時に費用処理済み）について、本日、同額の小切手を振り出して用度係に補給した。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）各費用勘定 400 / （貸方）当座預金 400',
+          '（借方）小口現金 400 / （貸方）当座預金 400',
+          '（借方）小口現金 400 / （貸方）現 金 400',
+          '仕訳なし'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '後日の補給 ➔ 小口現金の回復',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>報告後に補給する場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                報告時に費用処理が完了している場合、後日の補給時には<strong>「小口現金（借）/ 当座預金（貸）」</strong>と仕訳します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '小口現金の実査を行ったところ、帳簿残高900円に対し実際有額は800円であった（原因不明）。適切な処理を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現金過不足 100 / （貸方）小口現金 100',
+          '（借方）雑 損 100 / （貸方）小口現金 100',
+          '（借方）小口現金 100 / （貸方）現金過不足 100',
+          '（借方）現金過不足 100 / （貸方）現 金 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の実査 ➔ 現金過不足',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>小口現金も「現金過不足」を用いる</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                小口現金であっても、期中の手元実額とのズレは<strong>「現金過不足」勘定</strong>を用いて実際有額へ合わせます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より郵送代300円の支払報告を受けたため、普通預金口座から即時引き落としにより補給を行った。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）通 信 費 300 / （貸方）普通預金 300',
+          '（借方）通 信 費 300 / （貸方）小口現金 300',
+          '（借方）小口現金 300 / （貸方）普通預金 300',
+          '（借方）通 信 費 300 / （貸方）現 金 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '同時補給 ➔ 出金元に応じた処理',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>普通預金から同時補給する場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                支払報告と同時補給の場合、出金元（本問では普通預金）を貸方に計上し、費用を借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '小口資金の減額に伴い、用度係から手元資金のうち200円の返還を現金で受け取った。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 200 / （貸方）小口現金 200',
+          '（借方）小口現金 200 / （貸方）現 金 200',
+          '（借方）当座預金 200 / （貸方）小口現金 200',
+          '仕訳なし'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口資金の返還 ➔ 受取',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>小口資金の返還を受けた場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                小口資金の返還を受けた場合、手元現金（資産）の増加を借方に、小口現金（資産）の減少を貸方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より、文具代100円の支払報告とともに残額の現金400円が返還され、小口現金制度を廃止した。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）消耗品費 100 / （貸方）小口現金 500<br>（借方）現 金 400',
+          '（借方）消耗品費 100 / （貸方）当座預金 500<br>（借方）現 金 400',
+          '（借方）小口現金 500 / （貸方）現 金 500',
+          '（借方）雑 費 500 / （貸方）小口現金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金制度の廃止 ➔ 精算',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>制度廃止時の精算処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                制度廃止時には、未処理の費用（借方）と返還された現金（借方）を計上し、小口現金勘定（全額）を消去します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '小口現金の実査を行った際、帳簿残高400円に対し実際有額が500円であった（原因不明）。適切な期中処理を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）小口現金 100 / （貸方）現金過不足 100',
+          '（借方）現金過不足 100 / （貸方）小口現金 100',
+          '（借方）小口現金 100 / （貸方）雑 益 100',
+          '（借方）現 金 100 / （貸方）小口現金 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口現金の実査 ➔ 過剰の場合',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>実際有額が多い場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                実際有額が多い場合は、帳簿上の小口現金を増加（借方）させ、相手勘定を<strong>「現金過不足」（貸方）</strong>とします。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より電車代200円の支払報告を受け、小切手を振り出して補給した。ただし、報告時に誤って「旅費交通費200円 / 小口現金200円」と記帳していた。本日行う補給の正当な仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）小口現金 200 / （貸方）当座預金 200',
+          '（借方）旅費交通費 200 / （貸方）当座預金 200',
+          '（借方）当座預金 200 / （貸方）小口現金 200',
+          '仕訳なし'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '報告後の補給 ➔ 小口現金の回復',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>報告後の補給仕訳</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                既に報告時点で小口現金を減額処理しているため、補給時には<strong>「小口現金」を増加（借方）</strong>させる仕訳を行います。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算にあたり、小口現金過不足（借方残高100円）の原因が判明しなかったため整理を行う。正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）雑 損 100 / （貸方）現金過不足 100',
+          '（借方）現金過不足 100 / （貸方）雑 益 100',
+          '（借方）雑 損 100 / （貸方）小口現金 100',
+          '（借方）雑 益 100 / （貸方）現金過不足 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '決算整理 ➔ 雑損',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>借方残高の現金過不足の決算整理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                借方残高の現金過不足を打ち消すため貸方に記入し、相手勘定を<strong>「雑損」（費用）</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より、備品修理代400円の支払報告を受けた（補給なし）。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）修 繕 費 400 / （貸方）小口現金 400',
+          '（借方）備 品 400 / （貸方）小口現金 400',
+          '（借方）修 繕 費 400 / （貸方）当座預金 400',
+          '（借方）雑 費 400 / （貸方）小口現金 400'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '修理代の処理 ➔ 修繕費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>備品の修理代の処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                建物の維持や修繕のための支払いは<strong>「修繕費」（費用）</strong>の発生として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '用度係より、取引先への祝電代200円の支払報告を受けた（補給なし）。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）接待交際費 200 / （貸方）小口現金 200',
+          '（借方）通 信 費 200 / （貸方）小口現金 200',
+          '（借方）雑 費 200 / （貸方）小口現金 200',
+          '（借方）接待交際費 200 / （貸方）当座預金 200'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '祝電代の処理 ➔ 接待交際費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>取引先への祝電代の処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                取引先に対する慶弔関連や贈答の費用は<strong>「接待交際費」（費用）</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '期首において、小口資金前渡額600円を当座預金口座から引き出して用度係に手渡した。正しい仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）小口現金 600 / （貸方）当座預金 600',
+          '（借方）小口現金 600 / （貸方）現 金 600',
+          '（借方）当座預金 600 / （貸方）小口現金 600',
+          '（借方）現 金 600 / （貸方）当座預金 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小口資金の新規前渡 ➔ 設定',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>新規前渡（設定）の仕訳</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                小口資金の新規前渡（設定）の仕訳であり、借方に<strong>「小口現金」</strong>、貸方に<strong>「当座預金」</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算日において、用度係から未報告であった消耗品費300円の支払報告を受けるとともに、同時に同額を小切手を振り出して補給した。正しい決算整理仕訳を選択しなさい。',
+        type: 'shiwake',
+        choices: [
+          '（借方）消 耗 品 費 300 / （貸方）当座預金 300',
+          '（借方）消 耗 品 費 300 / （貸方）小口現金 300',
+          '（借方）小口現金 300 / （貸方）当座預金 300',
+          '（借方）消 耗 品 費 300 / （貸方）現 金 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '決算日同時補給 ➔ 直接処理',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>決算日でも同時補給は直接処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                決算日であっても、報告と補給を同時に行う場合は<strong>「各費用（借方）/ 当座預金（貸方）」</strong>で直接処理します。
+              </p>
             </div>
           `
         }
@@ -1202,122 +1870,506 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/sales-and-purchases',
     tags: ['費用', '収益', '仕入', '売上', '諸掛り'],
     questions: [
-      {
-        text: '商品1,200円を仕入れ、代金は掛けとした。なお、商品の引取運賃80円は現金で支払った。',
+{
+        text: '商品500円を売り上げ、代金は掛けとした。',
         type: 'shiwake',
         choices: [
-          '（借方）仕 入 1,200 / （貸方）買 掛 金 1,200<br>（借方）発 送 費 80 / （貸方）現 金 80',
-          '（借方）仕 入 1,280 / （貸方）買 掛 金 1,280',
-          '（借方）仕 入 1,200 / （貸方）買 掛 金 1,200<br>（借方）仕 入 80 / （貸方）現 金 80',
-          '（借方）仕 入 1,200 / （貸方）買 掛 金 1,200<br>（借方）諸 掛 り 80 / （貸方）現 金 80'
+          '（借方）現 金 500 / （貸方）売 上 500',
+          '（借方）売 上 500 / （貸方）売 掛 金 500',
+          '（借方）売 掛 金 500 / （貸方）売 上 500',
+          '（借方）買 掛 金 500 / （貸方）仕 入 500'
         ],
-        correct: 0,
+        correct: 2,
         explanation: {
-          concept: '仕入と引取運賃 ➔ 発送費',
+          concept: '売上の掛け ➔ 売掛金',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>仕入の掛けと引取運賃の処理</span>
+                <span>掛け売上の処理</span>
               </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                代金を後日受け取る権利が生じたため、<strong>「売掛金（資産）」の増加</strong>として借方に計上します。
+              </p>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（仕入）</div>
-                <p class="text-xs">
-                  商品1,200円を仕入れたため、費用の発生として<strong>「仕入 1,200円」</strong>を借方に記入します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（買掛金）</div>
-                <p class="text-xs">
-                  代金は掛け（後払い）のため、負債の発生として<strong>「買掛金 1,200円」</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 引取運賃の処理</div>
-                <p class="text-xs">
-                  商品の引取運賃80円は、購入側が負担する費用です。費用の発生として<strong>「発送費 80円」</strong>を借方に記入し、
-                  現金で支払ったため<strong>「現金 80円」</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    仕 入 1,200<br>発 送 費 80
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    買 掛 金 1,200<br>現 金 80
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>引取運賃を<strong>「仕入」に加算</strong>するのは誤りです。運賃は独立した費用「発送費」として処理します。</li>
-                  <li><strong>「諸掛り」という勘定科目は存在しません</strong>。運送賃は「発送費」で処理します。</li>
-                  <li>仕入額は掛けの1,200円のみ。運賃を買掛金に加算しないよう注意してください。</li>
-                </ul>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 仕訳</div>
+                <p class="text-xs"><strong>（借方）売 掛 金 500 / （貸方）売 上 500</strong></p>
               </div>
             </div>
           `
         }
       },
       {
-        text: '商品2,000円を得意先に販売し、販売代金のうち800円については同店振出しの小切手で受け取り、残額は後日受け取る約束とした。',
+        text: '商品300円を売り上げ、代金は得意先振出の小切手で受け取った。',
         type: 'shiwake',
         choices: [
-          '（借方）現 金 800 / （貸方）売 上 2,000<br>（借方）売 掛 金 1,200',
-          '（借方）当座預金 800 / （貸方）売 上 2,000<br>（借方）売 掛 金 1,200',
-          '（借方）現 金 2,000 / （貸方）売 上 2,000',
-          '（借方）売 掛 金 2,000 / （貸方）売 上 2,000'
+          '（借方）現 金 300 / （貸方）売 上 300',
+          '（借方）当座預金 300 / （貸方）売 上 300',
+          '（借方）受取手形 300 / （貸方）売 上 300',
+          '（借方）売 上 300 / （貸方）当座預金 300'
         ],
         correct: 0,
         explanation: {
-          concept: '売上の一部回収 ➔ 複合仕訳',
+          concept: '他人振出小切手 ➔ 現金',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>売上代金の受取方法が異なる場合の複合仕訳</span>
+                <span>他人振出小切手の受取</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（資産の増加）</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>同店振出しの<strong>小切手800円</strong>を受け取った → 他人振出小切手は<strong>「現金」</strong>として処理（直ちに預け入れた場合は「当座預金」）</li>
-                  <li>残額<strong>1,200円は掛け</strong>（後払いの約束）→ 権利として<strong>「売掛金」</strong>を計上</li>
-                </ul>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                他人（他店）が振り出した小切手を受け取った場合は、すぐに換金できるため<strong>「現金」の増加</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品400円を売り上げ、代金として以前に当店が振り出した小切手を受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 400 / （貸方）売 上 400',
+          '（借方）当座預金 400 / （貸方）売 上 400',
+          '（借方）支払手形 400 / （貸方）売 上 400',
+          '（借方）売 上 400 / （貸方）現 金 400'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '自己振出小切手の回収 ➔ 当座預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>自己振出小切手の回収</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（収益の発生）</div>
-                <p class="text-xs">
-                  商品2,000円を販売したため、収益の発生として<strong>「売上」2,000円</strong>を貸方に記入します。
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                自己（当店）が振り出した小切手を受け取った場合は、<strong>「当座預金」の増加（減少の取り消し）</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品600円を売り上げ、代金のうち200円は注文時に受け取った手付金と相殺し、残額は掛けとした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）前 払 金 200 / （貸方）売 上 600<br>（借方）売 掛 金 400',
+          '（借方）現 金 200 / （貸方）売 上 600<br>（借方）売 掛 金 400',
+          '（借方）売 掛 金 600 / （貸方）売 上 400<br>（貸方）前 受 金 200',
+          '（借方）前 受 金 200 / （貸方）売 上 600<br>（借方）売 掛 金 400'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '前受金の取り崩し ➔ 複合仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>注文時の手付金（前受金）の処理</span>
               </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    現 金 800<br>売 掛 金 1,200
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 上 2,000
-                  </div>
-                </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                販売前に受け取っていた手付金は<strong>「前受金（負債）」</strong>として計上されているため、売上時にこれを取り崩します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品800円を売り上げ、代金は掛けとした。なお、当店負担の発送費100円は現金で支払った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 800 / （貸方）売 上 900<br>（借方）発 送 費 100',
+          '（借方）売 掛 金 800 / （貸方）売 上 800<br>（借方）発 送 費 100 / （貸方）現 金 100',
+          '（借方）売 掛 金 900 / （貸方）売 上 800<br>（貸方）現 金 100',
+          '（借方）売 掛 金 700 / （貸方）売 上 800<br>（借方）発 送 費 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '当店負担の発送費 ➔ 発送費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>当店負担の発送費の処理</span>
               </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>他人振出小切手は<strong>「現金」</strong>で処理。「当座預金」になるのは<strong>直ちに預け入れた場合</strong>のみです。</li>
-                  <li>掛けの残額は<strong>「売掛金」</strong>（資産）。全額を現金で受け取ったわけではないため、「現金 2,000」とするのは誤りです。</li>
-                  <li>小切手で受け取った800円は<strong>現金として即時回収済み</strong>。「売掛金 2,000」とするのは誤りです。</li>
-                </ul>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                当店負担の発送費は、売上とは別に<strong>「発送費（費用）」</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品700円を売り上げ、代金は掛けとした。なお、先方負担の発送費100円を現金で立て替え払いし、商品代金に含めて請求した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 800 / （貸方）売 上 700<br>（貸方）現 金 100',
+          '（借方）売 掛 金 700 / （貸方）売 上 800<br>（借方）発 送 費 100',
+          '（借方）売 掛 金 700 / （貸方）売 上 700<br>（借方）立 替 金 100 / （貸方）現 金 100',
+          '（借方）売 掛 金 800 / （貸方）売 上 800'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '先方負担の発送費 ➔ 商品代金に含める',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>立て替えた発送費を商品代金に含めて請求</span>
               </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                先方負担の発送費を商品代金に含める場合、その立替分も含めた<strong>総額を「売掛金」</strong>として計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品500円を売り上げ、代金は掛けとした。なお、先方負担の発送費100円を現金で支払い、立替金として処理した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 600 / （貸方）売 上 500<br>（貸方）現 金 100',
+          '（借方）売 掛 金 500 / （貸方）売 上 600<br>（借方）発 送 費 100',
+          '（借方）売 掛 金 500 / （貸方）売 上 500<br>（借方）立 替 金 100 / （貸方）現 金 100',
+          '（借方）売 掛 金 500 / （貸方）売 上 400<br>（貸方）現 金 100'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '立替金として処理 ➔ 立替金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>立替金として区別して処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品代金と区別して処理する指示があるため、立て替えた発送費は<strong>「立替金（資産）」</strong>として計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品900円を売り上げ、代金は得意先宛の約束手形を振り出し、同店の引き受けを得た。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 900 / （貸方）売 上 900',
+          '（借方）支払手形 900 / （貸方）売 上 900',
+          '（借方）受取手形 900 / （貸方）売 上 900',
+          '（借方）未収入金 900 / （貸方）売 上 900'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '為替手形の引き受け ➔ 受取手形',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>得意先が引き受けた手形</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                自らが振り出した手形であっても、得意先が引き受けた（支払いを約束した）場合は<strong>「受取手形」</strong>となります。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品500円をクレジット払いの条件で売り上げた。なお、信販会社への支払手数料100円を計上し、残額は後日入金される。',
+        type: 'shiwake',
+        choices: [
+          '（借方）クレジット売掛金 500 / （貸方）売 上 400<br>（貸方）受取手数料 100',
+          '（借方）クレジット売掛金 400 / （貸方）売 上 500<br>（借方）支払手数料 100',
+          '（借方）売 掛 金 400 / （貸方）売 上 500<br>（借方）支払手数料 100',
+          '（借方）未収入金 400 / （貸方）売 上 500<br>（借方）支払手数料 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: 'クレジット売上 ➔ クレジット売掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジット売上の処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                クレジット売上の未収分は<strong>「クレジット売掛金」</strong>とし、販売時に負担する手数料は<strong>「支払手数料」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品800円を売り上げ、代金のうち300円は同店振出の小切手で受け取り、残額は掛けとした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 300 / （貸方）売 上 800<br>（借方）売 掛 金 500',
+          '（借方）当座預金 300 / （貸方）売 上 800<br>（借方）売 掛 金 500',
+          '（借方）現 金 300 / （貸方）売 上 800<br>（借方）未収入金 500',
+          '（借方）受取手形 300 / （貸方）売 上 800<br>（借方）売 掛 金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '小切手と掛けの複合仕訳 ➔ 現金・売掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>受取手段が異なる複合仕訳</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                他人振出小切手は<strong>「現金」</strong>、残りの掛け代金は<strong>「売掛金」</strong>として借方に複合仕訳を行います。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで売り上げていた商品につき、品違いのため200円の返品を受け、売掛金から減額した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 200 / （貸方）売 上 200',
+          '（借方）仕 入 200 / （貸方）売 掛 金 200',
+          '（借方）売 上 200 / （貸方）買 掛 金 200',
+          '（借方）売 上 200 / （貸方）売 掛 金 200'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '売上返品 ➔ 売上の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>掛け売上の返品処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                返品（売上戻り）が生じた場合、販売時の仕訳を逆にして<strong>売上と売掛金をそれぞれ取り消し</strong>ます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に現金で売り上げていた商品につき、キズがあったため100円の返品を受け、同額を現金で返金した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 100 / （貸方）現 金 100',
+          '（借方）現 金 100 / （貸方）売 上 100',
+          '（借方）売 上 100 / （貸方）現 金 100',
+          '（借方）売 上 100 / （貸方）当座預金 100'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '現金売上の返品 ➔ 現金返金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>現金売上の返品処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                現金で返金したため貸方に<strong>「現金」</strong>を計上し、借方で返品分の<strong>「売上」を取り消し</strong>ます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品700円を売り上げ、代金につき取引銀行を通じて電子記録債権の発生記録を行った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）受取手形 700 / （貸方）売 上 700',
+          '（借方）電子記録債権 700 / （貸方）売 上 700',
+          '（借方）売 掛 金 700 / （貸方）電子記録債務 700',
+          '（借方）売 上 700 / （貸方）電子記録債権 700'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '電子記録債権の発生 ➔ 売上',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子記録債権で決済する売上</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                電子記録債権が発生した場合は、<strong>「電子記録債権（資産）」</strong>を借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品500円を売り上げ、代金は同業他社が発行した商品券300円と、現金200円で受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）受取商品券 300 / （貸方）売 上 500<br>（借方）現 金 200',
+          '（借方）商 品 券 300 / （貸方）売 上 500<br>（借方）現 金 200',
+          '（借方）他店商品券 500 / （貸方）売 上 500',
+          '（借方）売 上 500 / （貸方）受取商品券 300<br>（貸方）現 金 200'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '他社発行の商品券 ➔ 受取商品券',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>他店発行の商品券の受取</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                他店が発行した商品券を受け取った場合は、<strong>「受取商品券（資産）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品400円を現金で売り上げていたが、誤って借方を売掛金として起票していた。本日、誤りを発見したためこれを訂正する。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 400 / （貸方）売 上 400',
+          '（借方）売 上 400 / （貸方）売 掛 金 400',
+          '（借方）売 掛 金 400 / （貸方）現 金 400',
+          '（借方）現 金 400 / （貸方）売 掛 金 400'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '訂正仕訳 ➔ 売掛金を現金に修正',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>誤った勘定科目の訂正</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                誤って計上した<strong>売掛金を貸方で取り消し</strong>、正しい勘定科目である<strong>現金を借方</strong>に計上して訂正します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品800円を売り上げ、代金として得意先が受け取っていた配当金領収証300円と、現金500円を受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）受取配当金 300 / （貸方）売 上 800<br>（借方）現 金 500',
+          '（借方）当座預金 300 / （貸方）売 上 800<br>（借方）現 金 500',
+          '（借方）現 金 800 / （貸方）売 上 800',
+          '（借方）有価証券 300 / （貸方）売 上 800<br>（借方）現 金 500'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '配当金領収証 ➔ 通貨代用証券',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>配当金領収証は現金として処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                配当金領収証（株式配当金領収証）はすぐに換金可能な<strong>「通貨代用証券」</strong>であるため、現金に含めて処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品600円を売り上げ、代金は普通預金口座に振り込まれた。なお、当店負担の振込手数料100円が差し引かれ、実際には500円が入金された。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 500 / （貸方）売 上 600<br>（借方）売上値引 100',
+          '（借方）普通預金 500 / （貸方）売 上 600<br>（借方）支払手数料 100',
+          '（借方）普通預金 600 / （貸方）売 上 600',
+          '（借方）普通預金 500 / （貸方）売 上 600<br>（借方）雑 損 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '振込手数料差引 ➔ 支払手数料',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>当店負担の振込手数料</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                当店が負担した振込手数料は<strong>「支払手数料（費用）」</strong>として借方に計上し、売上は<strong>総額</strong>で処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品700円を売り上げ、代金として同店が別の得意先から受け取っていた約束手形を裏書譲渡された。',
+        type: 'shiwake',
+        choices: [
+          '（借方）支払手形 700 / （貸方）売 上 700',
+          '（借方）未収入金 700 / （貸方）売 上 700',
+          '（借方）裏書手形 700 / （貸方）売 上 700',
+          '（借方）受取手形 700 / （貸方）売 上 700'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '裏書譲渡 ➔ 受取手形',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>裏書譲渡された手形の受取</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                他人が振り出した約束手形を譲り受けた場合も、手形代金を受け取る権利となるため<strong>「受取手形」</strong>で処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算において、かねて貸方残高として計上していた現金過不足300円の原因が、商品売上の記入漏れであることが判明した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現金過不足 300 / （貸方）売 上 300',
+          '（借方）現 金 300 / （貸方）売 上 300',
+          '（借方）売 上 300 / （貸方）現金過不足 300',
+          '（借方）雑 益 300 / （貸方）売 上 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金過不足の原因判明 ➔ 売上',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>現金過不足の原因が売上と判明</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                現金過不足（実際より帳簿が少なかった際の貸方計上分）の原因が売上と判明したため、<strong>借方で取り崩し、貸方に売上</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算において、売上勘定の残高900円を損益勘定に振り替える。',
+        type: 'shiwake',
+        choices: [
+          '（借方）損 益 900 / （貸方）売 上 900',
+          '（借方）売 上 900 / （貸方）繰越利益剰余金 900',
+          '（借方）繰越利益剰余金 900 / （貸方）売 上 900',
+          '（借方）売 上 900 / （貸方）損 益 900'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '決算振替仕訳 ➔ 損益勘定へ',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>売上勘定の損益への振替</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                収益である売上勘定（貸方残高）をゼロにするため<strong>借方に仕訳</strong>し、相手科目として<strong>「損益」勘定の貸方</strong>に振り替えます。
+              </p>
             </div>
           `
         }
@@ -1332,65 +2384,506 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/accounts-receivable-payable',
     tags: ['資産', '負債', '売掛金', '買掛金'],
     questions: [
-      {
-        text: '商品を販売した際に生じた未収代金600円を、取引先が銀行振込で支払った。振込手数料30円は当社が負担することとし、手数料を差し引いた金額が普通預金口座に入金された。',
+{
+        text: '商品400円を仕入れ、代金は掛けとした。',
         type: 'shiwake',
         choices: [
-          '（借方）普通預金 570・支払手数料 30 / （貸方）売 掛 金 600',
-          '（借方）普通預金 600 / （貸方）売 掛 金 600',
-          '（借方）普通預金 570 / （貸方）売 掛 金 570',
-          '（借方）普通預金 570・雑 費 30 / （貸方）売 掛 金 600'
+          '（借方）買 掛 金 400 / （貸方）仕 入 400',
+          '（借方）売 掛 金 400 / （貸方）仕 入 400',
+          '（借方）仕 入 400 / （貸方）売 掛 金 400',
+          '（借方）仕 入 400 / （貸方）買 掛 金 400'
         ],
-        correct: 0,
+        correct: 3,
         explanation: {
-          concept: '売掛金の回収 ➔ 振込手数料差引',
+          concept: '仕入の掛け ➔ 買掛金',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>振込手数料を差し引かれた売掛金の回収</span>
+                <span>掛け仕入の処理</span>
               </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品の仕入代金を後日支払う義務が生じたため、<strong>「買掛金（負債）」の増加</strong>として貸方に計上します。
+              </p>
               <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
-                <p class="text-xs">
-                  未収代金600円の回収であるため、資産の減少として<strong>「売掛金 600円」</strong>を貸方に記入します。
-                </p>
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 仕訳</div>
+                <p class="text-xs"><strong>（借方）仕 入 400 / （貸方）買 掛 金 400</strong></p>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（支払手数料）</div>
-                <p class="text-xs">
-                  振込手数料30円を当社が負担するため、費用の発生として<strong>「支払手数料 30円」</strong>を借方に記入します。
-                </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品600円を売り上げ、代金は掛けとした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 600 / （貸方）売 上 600',
+          '（借方）売 上 600 / （貸方）売 掛 金 600',
+          '（借方）現 金 600 / （貸方）売 上 600',
+          '（借方）買 掛 金 600 / （貸方）売 上 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '売上の掛け ➔ 売掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>掛け売上の処理</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（普通預金）</div>
-                <p class="text-xs">
-                  手数料を差し引いた金額<strong>570円（600−30）</strong>が入金されたため、
-                  資産の増加として<strong>「普通預金 570円」</strong>を借方に記入します。
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品の代金を後日受け取る権利が生じたため、<strong>「売掛金（資産）」の増加</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '買掛金500円の支払いとして、当店が小切手を振り出して得意先に渡した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 500 / （貸方）現 金 500',
+          '（借方）買 掛 金 500 / （貸方）当座預金 500',
+          '（借方）当座預金 500 / （貸方）買 掛 金 500',
+          '（借方）買 掛 金 500 / （貸方）支払手形 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '買掛金の支払い ➔ 自己振出小切手',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>自己振出小切手による支払い</span>
               </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    普通預金 570<br>支払手数料 30
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 掛 金 600
-                  </div>
-                </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                自己振出の小切手により代金を支払った場合は、<strong>「当座預金（資産）」の減少</strong>として貸方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '売掛金700円の回収として、得意先が振り出した小切手を受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）当座預金 700 / （貸方）売 掛 金 700',
+          '（借方）受取手形 700 / （貸方）売 掛 金 700',
+          '（借方）売 掛 金 700 / （貸方）現 金 700',
+          '（借方）現 金 700 / （貸方）売 掛 金 700'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '売掛金の回収 ➔ 他人振出小切手',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>他人振出小切手の受取</span>
               </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>手数料の処理をせず「普通預金 600」とするのは誤りです。差引後の570円が入金されています。</li>
-                  <li>「普通預金 570 / 売掛金 570」では売掛金の残高が正しく消えません。売掛金は<strong>全額600円</strong>を貸方に記入します。</li>
-                  <li>振込手数料は<strong>「支払手数料」</strong>（費用）で処理します。「雑費」は不適切です。</li>
-                </ul>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                他人（他店）が振り出した小切手はすぐに換金できる<strong>通貨代用証券</strong>であるため、<strong>「現金（資産）」の増加</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '買掛金800円を普通預金口座から振り込んで支払った。なお、振込手数料100円は当店が負担した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 800 / （貸方）普通預金 900<br>（借方）支払手数料 100',
+          '（借方）買 掛 金 900 / （貸方）普通預金 900',
+          '（借方）買 掛 金 800 / （貸方）普通預金 700<br>（貸方）受取手数料 100',
+          '（借方）買 掛 金 700 / （貸方）普通預金 800<br>（借方）支払手数料 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '買掛金の支払い ➔ 振込手数料',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>当店負担の振込手数料</span>
               </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                買掛金の減少分に加え、当店負担の振込手数料を<strong>「支払手数料（費用）」</strong>として借方に計上し、合計額を預金から減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '売掛金900円が普通預金口座に振り込まれた。なお、当店負担の振込手数料100円が差し引かれている。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 800 / （貸方）売 掛 金 900<br>（借方）売 掛 金 100',
+          '（借方）普通預金 900 / （貸方）売 掛 金 900',
+          '（借方）普通預金 800 / （貸方）売 掛 金 900<br>（借方）支払手数料 100',
+          '（借方）普通預金 800 / （貸方）売 掛 金 900<br>（借方）売上値引 100'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '売掛金の回収 ➔ 手数料差引',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>回収時に差し引かれた手数料</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                回収時に差し引かれた当店負担の振込手数料は、<strong>「支払手数料（費用）」</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '以前に掛けで仕入れた商品につき、品違いがあったため200円を返品し、買掛金から差し引いた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仕 入 200 / （貸方）買 掛 金 200',
+          '（借方）買 掛 金 200 / （貸方）現 金 200',
+          '（借方）買 掛 金 200 / （貸方）売 上 200',
+          '（借方）買 掛 金 200 / （貸方）仕 入 200'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '仕入返品 ➔ 仕入の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>仕入品の返品（仕入戻し）</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                仕入品の返品（仕入戻し）が生じた場合、仕入時の<strong>逆仕訳</strong>を行い、仕入と買掛金を取り消します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '以前に掛けで売り上げた商品につき、キズがあったため300円の返品を受け、売掛金から差し引いた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 300 / （貸方）売 掛 金 300',
+          '（借方）売 掛 金 300 / （貸方）売 上 300',
+          '（借方）売 上 300 / （貸方）買 掛 金 300',
+          '（借方）仕 入 300 / （貸方）売 掛 金 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '売上返品 ➔ 売上の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>販売品の返品（売上戻り）</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                販売品の返品（売上戻り）が生じた場合、販売時の<strong>逆仕訳</strong>を行い、売上と売掛金を取り消します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '店舗用のパソコン（備品）400円を購入し、代金は翌月末に支払うこととした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）備 品 400 / （貸方）買 掛 金 400',
+          '（借方）仕 入 400 / （貸方）未 払 金 400',
+          '（借方）備 品 400 / （貸方）未 払 金 400',
+          '（借方）備 品 400 / （貸方）未収入金 400'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '備品の購入 ➔ 未払金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>商品以外の物品の後払い購入</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品以外の物品（備品など）を後払いで購入した場合の未払代金は、<strong>「未払金（負債）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '不要になった備品（帳簿価額500円）を同額で売却し、代金は翌月末に受け取ることとした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 500 / （貸方）備 品 500',
+          '（借方）未収入金 500 / （貸方）売 上 500',
+          '（借方）未 払 金 500 / （貸方）備 品 500',
+          '（借方）未収入金 500 / （貸方）備 品 500'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '備品の売却 ➔ 未収入金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>商品以外の物品の売却</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品以外の物品を売却し、代金を後日受け取る場合は<strong>「未収入金（資産）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: 'かねてクレジット払いで売り上げていた商品の代金600円が、普通預金口座に振り込まれた。なお、販売時に支払手数料の処理は適切に行われている。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 600 / （貸方）クレジット売掛金 600',
+          '（借方）普通預金 600 / （貸方）売 上 600',
+          '（借方）普通預金 600 / （貸方）売 掛 金 600',
+          '（借方）普通預金 600 / （貸方）未収入金 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: 'クレジット売上代金の入金 ➔ クレジット売掛金の減少',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジット売上代金の入金</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                クレジット売上代金の入金時は、販売時に計上していた<strong>「クレジット売掛金（資産）」</strong>を貸方に計上して減少させます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '売掛金700円の回収として、得意先が振り出した約束手形を受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）支払手形 700 / （貸方）売 掛 金 700',
+          '（借方）受取手形 700 / （貸方）売 掛 金 700',
+          '（借方）受取手形 700 / （貸方）売 上 700',
+          '（借方）現 金 700 / （貸方）売 掛 金 700'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '売掛金の回収 ➔ 受取手形',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>得意先から手形を受領</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                得意先から手形を受け取ったため、手形代金を請求する権利である<strong>「受取手形（資産）」</strong>を計上し、売掛金を減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '買掛金800円の支払いとして、当店が約束手形を振り出して得意先に渡した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 800 / （貸方）受取手形 800',
+          '（借方）支払手形 800 / （貸方）買 掛 金 800',
+          '（借方）買 掛 金 800 / （貸方）現 金 800',
+          '（借方）買 掛 金 800 / （貸方）支払手形 800'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '買掛金の支払い ➔ 支払手形',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>約束手形の振出し</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                手形を振り出して代金を支払う義務が生じたため、<strong>「支払手形（負債）」</strong>を貸方に計上し、買掛金を減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '取引銀行を通じて、買掛金500円につき電子記録債務の発生記録を行った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）電子記録債務 500 / （貸方）買 掛 金 500',
+          '（借方）買 掛 金 500 / （貸方）支払手形 500',
+          '（借方）買 掛 金 500 / （貸方）電子記録債務 500',
+          '（借方）電子記録債権 500 / （貸方）買 掛 金 500'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '電子記録債務の発生 ➔ 買掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子記録債務の発生</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                買掛金の支払いとして電子記録債務が発生したため、借方で買掛金を減らし、貸方に<strong>「電子記録債務（負債）」</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '取引銀行を通じて、売掛金600円につき電子記録債権の発生記録を行った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）電子記録債権 600 / （貸方）売 掛 金 600',
+          '（借方）売 掛 金 600 / （貸方）電子記録債権 600',
+          '（借方）電子記録債権 600 / （貸方）受取手形 600',
+          '（借方）受取手形 600 / （貸方）売 掛 金 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '電子記録債権の発生 ➔ 売掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子記録債権の発生</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                売掛金が電子記録債権に代わったため、借方に<strong>「電子記録債権（資産）」</strong>を計上し、貸方で売掛金を減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '売掛金400円を回収するため、先に当店が発行していた商品券100円と、現金300円を受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）商 品 券 100 / （貸方）売 上 400<br>（借方）現 金 300',
+          '（借方）売 掛 金 400 / （貸方）商 品 券 100<br>（貸方）現 金 300',
+          '（借方）受取商品券 100 / （貸方）売 掛 金 400<br>（借方）現 金 300',
+          '（借方）商 品 券 100 / （貸方）売 掛 金 400<br>（借方）現 金 300'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '自社発行の商品券回収 ➔ 商品券勘定',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>当店発行の商品券の受取</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                当店が発行した商品券を受け取った場合、発行時に計上した負債である<strong>「商品券」勘定</strong>を借方に記入して取り崩します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '買掛金500円を支払うため、商品注文時に支払っていた前払金200円を充当し、残額は現金で支払った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 500 / （貸方）前 受 金 200<br>（貸方）現 金 300',
+          '（借方）買 掛 金 500 / （貸方）前 払 金 200<br>（貸方）現 金 300',
+          '（借方）前 払 金 200 / （貸方）買 掛 金 500<br>（借方）現 金 300',
+          '（借方）買 掛 金 300 / （貸方）現 金 500<br>（借方）前 払 金 200'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '前払金の充当 ➔ 買掛金の支払い',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>前払金の充当と残額の支払い</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                買掛金の決済にあたり、あらかじめ計上していた<strong>「前払金（資産）」</strong>を取り崩し、不足額のみを現金で支払います。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '前期に発生した売掛金300円が、得意先の倒産により貸し倒れた。なお、貸倒引当金の残高は500円ある。',
+        type: 'shiwake',
+        choices: [
+          '（借方）貸倒引当金 300 / （貸方）売 掛 金 300',
+          '（借方）貸倒損失 300 / （貸方）売 掛 金 300',
+          '（借方）貸倒損失 300 / （貸方）貸倒引当金 300',
+          '（借方）貸倒引当金 500 / （貸方）売 掛 金 300<br>（貸方）貸倒損失 200'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '前期発生債権の貸倒れ ➔ 貸倒引当金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>前期以前の債権の貸倒れ</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                前期以前の債権が貸し倒れた場合、設定されている<strong>「貸倒引当金（評価勘定）」</strong>を優先して取り崩し、売掛金を減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '当期に発生した売掛金200円が、得意先の倒産により貸し倒れた。なお、貸倒引当金の残高は400円ある。',
+        type: 'shiwake',
+        choices: [
+          '（借方）貸倒引当金 200 / （貸方）売 掛 金 200',
+          '（借方）貸倒引当金繰入 200 / （貸方）売 掛 金 200',
+          '（借方）貸倒損失 200 / （貸方）売 掛 金 200',
+          '（借方）売 掛 金 200 / （貸方）貸倒引当金 200'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '当期発生債権の貸倒れ ➔ 貸倒損失',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>当期発生債権の貸倒れ</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                当期に発生した債権の貸倒れに対しては、貸倒引当金を取り崩すことはできず、全額を<strong>「貸倒損失（費用）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品仕入時の代金800円を掛けとした際、誤って貸方を「売掛金」として起票していた。本日誤りを発見したため、これを訂正する。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 800 / （貸方）買 掛 金 800',
+          '（借方）買 掛 金 800 / （貸方）売 掛 金 800',
+          '（借方）買 掛 金 800 / （貸方）仕 入 800',
+          '（借方）仕 入 800 / （貸方）買 掛 金 800'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '訂正仕訳 ➔ 売掛金を買掛金に修正',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>誤った勘定科目の訂正</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                誤って貸方に計上した<strong>「売掛金」を借方に記入して取り消し</strong>、正しい負債である<strong>「買掛金」を貸方</strong>に計上して訂正します。
+              </p>
             </div>
           `
         }
@@ -1405,67 +2898,502 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/credit-card-sales',
     tags: ['資産', '費用', 'クレジット売掛金', '支払手数料'],
     questions: [
-      {
-        text: '商品3,000円を販売し、代金はクレジットカードで決済された。なお、クレジットカード会社への手数料率は3%であり、手数料を差し引いた金額が後日入金される。',
+{
+        text: '従業員の交通系ICカードに現金300円をチャージした。なお、チャージ時点では仮払金として処理する。',
         type: 'shiwake',
         choices: [
-          '（借方）クレジット売掛金 2,910 / （貸方）売 上 3,000<br>（借方）支払手数料 90',
-          '（借方）クレジット売掛金 3,000 / （貸方）売 上 3,000',
-          '（借方）売 掛 金 2,910 / （貸方）売 上 3,000<br>（借方）支払手数料 90',
-          '（借方）クレジット売掛金 2,910 / （貸方）売 上 2,910'
+          '（借方）仮 払 金 300 / （貸方）現 金 300',
+          '（借方）旅費交通費 300 / （貸方）現 金 300',
+          '（借方）前 払 金 300 / （貸方）現 金 300',
+          '（借方）現 金 300 / （貸方）仮 払 金 300'
         ],
         correct: 0,
         explanation: {
-          concept: 'クレジットカード売上 ➔ 手数料差引',
+          concept: 'ICカードチャージ ➔ 仮払金',
           brilliantExplanation: `
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>クレジットカード売上の処理</span>
+                <span>ICカードへのチャージ（仮払金として処理）</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（クレジット売掛金）</div>
-                <p class="text-xs">
-                  クレジットカードで売上を決済すると、カード会社から後日入金される権利が生じます。
-                  この権利は<strong>「クレジット売掛金」</strong>（資産）として処理します。
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                用途が確定する前のICカードへのチャージ額は、一時的な前渡しとして<strong>「仮払金（資産）」</strong>で処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '従業員が出張から戻り、先にチャージして仮払金としていた交通系ICカードから交通費200円を支払った旨の報告を受けた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）旅費交通費 200 / （貸方）現 金 200',
+          '（借方）旅費交通費 200 / （貸方）仮 払 金 200',
+          '（借方）旅費交通費 200 / （貸方）仮 払 金 300<br>（借方）現 金 100',
+          '（借方）仮 払 金 200 / （貸方）旅費交通費 200'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '仮払金の精算 ➔ 旅費交通費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>交通費の支払い確定時</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 手数料の計算</div>
-                <p class="text-xs">
-                  手数料率3% → <strong>3,000円 × 3% = 90円</strong><br>
-                  差引後の入金額 → <strong>3,000円 − 90円 = 2,910円</strong>
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                交通費の支払いが確定したため<strong>「旅費交通費（費用）」</strong>を計上し、同額の<strong>「仮払金」</strong>を貸方で減少させます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '交通系ICカードのチャージ残高（仮払金）100円につき、不要となったため現金で払い戻しを受けた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仮 払 金 100 / （貸方）現 金 100',
+          '（借方）現 金 100 / （貸方）旅費交通費 100',
+          '（借方）現 金 100 / （貸方）前 払 金 100',
+          '（借方）現 金 100 / （貸方）仮 払 金 100'
+        ],
+        correct: 3,
+        explanation: {
+          concept: 'ICカード払戻 ➔ 仮払金の取崩し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>チャージ残高の払い戻し</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（支払手数料）・貸方（売上）</div>
-                <p class="text-xs">
-                  手数料90円は費用の発生として<strong>「支払手数料」</strong>を借方に記入します。
-                  商品3,000円を販売したため、収益の発生として<strong>「売上 3,000円」</strong>を貸方に記入します。
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                払い戻しにより現金が増加するため借方に<strong>「現金」</strong>、不要となった<strong>「仮払金」</strong>を貸方に計上して取り消します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '従業員の交通系ICカードに普通預金から500円をチャージした。なお、当店ではチャージ時に全額を旅費交通費として処理している。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仮 払 金 500 / （貸方）普通預金 500',
+          '（借方）旅費交通費 500 / （貸方）現 金 500',
+          '（借方）旅費交通費 500 / （貸方）普通預金 500',
+          '（借方）前払費用 500 / （貸方）普通預金 500'
+        ],
+        correct: 2,
+        explanation: {
+          concept: 'チャージ時直接費用処理 ➔ 旅費交通費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>チャージ時に費用処理する指示がある場合</span>
               </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    クレジット売掛金 2,910<br>支払手数料 90
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 上 3,000
-                  </div>
-                </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                実務的な処理として、チャージ時に直接<strong>「旅費交通費」</strong>として費用計上する指示がある場合はそれに従います。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品600円を売り上げ、代金は交通系電子マネーで決済されたため、同額を電子マネー勘定で処理した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 600 / （貸方）売 上 600',
+          '（借方）売 掛 金 600 / （貸方）売 上 600',
+          '（借方）電子マネー 600 / （貸方）売 上 600',
+          '（借方）クレジット売掛金 600 / （貸方）売 上 600'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '電子マネー受取 ➔ 電子マネー勘定',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子マネーでの決済受取</span>
               </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>手数料を差し引かず「クレジット売掛金 3,000」とするのは誤りです。入金額は2,910円です。</li>
-                  <li>クレジット売上は<strong>「クレジット売掛金」</strong>で処理します。「売掛金」は一般的な掛け売りの場合に使います。</li>
-                  <li>「クレジット売掛金 2,910 / 売上 2,910」では売上高が正しく認識されません。売上は<strong>全額3,000円</strong>で記録します。</li>
-                </ul>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                電子マネー勘定での処理が指定されている場合、受け取った残高は<strong>「電子マネー（資産）」の増加</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '店舗で保有する電子マネー残高600円を、普通預金口座に入金（銀行口座へ出金）した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 600 / （貸方）電子マネー 600',
+          '（借方）普通預金 600 / （貸方）売 上 600',
+          '（借方）電子マネー 600 / （貸方）普通預金 600',
+          '（借方）普通預金 600 / （貸方）現 金 600'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '電子マネーの預金振替 ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子マネー残高の銀行口座への振替</span>
               </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                電子マネーを預金口座に振り替えたため、借方に<strong>「普通預金」の増加</strong>、貸方に<strong>「電子マネー」の減少</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '文房具（消耗品）200円を購入し、代金は店舗で保有する電子マネー（資産）で支払った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）消耗品費 200 / （貸方）現 金 200',
+          '（借方）消耗品費 200 / （貸方）当座預金 200',
+          '（借方）消耗品費 200 / （貸方）仮 払 金 200',
+          '（借方）消耗品費 200 / （貸方）電子マネー 200'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '電子マネーでの支払い ➔ 消耗品費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子マネーでの消耗品購入</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                費用の発生として<strong>「消耗品費」</strong>を借方に計上し、支払いに充てた<strong>「電子マネー」</strong>を貸方で減少させます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品800円を売り上げ、代金はスマートフォンのQRコード決済とし、決済手数料100円を差し引かれた残額を未収入金として処理した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）未収入金 800 / （貸方）売 上 700<br>（貸方）受取手数料 100',
+          '（借方）未収入金 700 / （貸方）売 上 800<br>（借方）支払手数料 100',
+          '（借方）売 掛 金 700 / （貸方）売 上 800<br>（借方）支払手数料 100',
+          '（借方）電子マネー 700 / （貸方）売 上 800<br>（借方）支払手数料 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: 'QRコード決済 ➔ 未収入金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>QRコード決済の処理</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                決済代行会社への債権は<strong>「未収入金」</strong>、販売時に負担する手数料は<strong>「支払手数料（費用）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: 'QRコード決済による未収入金700円が、当店の普通預金口座に振り込まれた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 700 / （貸方）売 上 700',
+          '（借方）普通預金 700 / （貸方）売 掛 金 700',
+          '（借方）普通預金 700 / （貸方）未収入金 700',
+          '（借方）普通預金 700 / （貸方）電子マネー 700'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '未収入金の回収 ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>QRコード決済代金の入金</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                代金が回収されたため<strong>「普通預金」</strong>を増加させ、借方に計上していた<strong>「未収入金」</strong>を貸方で減少させます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品900円をクレジットカード払いの条件で売り上げた。なお、信販会社への手数料100円を計上し、残額は後日入金される。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 800 / （貸方）売 上 900<br>（借方）支払手数料 100',
+          '（借方）クレジット売掛金 800 / （貸方）売 上 900<br>（借方）支払手数料 100',
+          '（借方）未収入金 800 / （貸方）売 上 900<br>（借方）支払手数料 100',
+          '（借方）クレジット売掛金 900 / （貸方）売 上 900'
+        ],
+        correct: 1,
+        explanation: {
+          concept: 'クレジット売上 ➔ クレジット売掛金・支払手数料',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジットカード決済の売上</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                クレジットカード決済による売上債権は<strong>「クレジット売掛金」</strong>、負担する手数料は<strong>「支払手数料」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: 'かねてクレジットカード払いで売り上げていた代金につき、信販会社から普通預金口座へ800円が振り込まれた。なお、販売時に手数料は適切に処理されている。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 800 / （貸方）クレジット売掛金 800',
+          '（借方）普通預金 800 / （貸方）売 掛 金 800',
+          '（借方）普通預金 800 / （貸方）売 上 800',
+          '（借方）普通預金 800 / （貸方）未収入金 800'
+        ],
+        correct: 0,
+        explanation: {
+          concept: 'クレジット売掛金の入金 ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジット売上代金の入金</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                入金時は、販売時に計上していた<strong>「クレジット売掛金」</strong>を貸方に計上して減少させます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品500円を売り上げ、代金はクレジットカード払いの条件とした。なお、信販会社への手数料は入金時に計上するため、売上時は総額で処理する。',
+        type: 'shiwake',
+        choices: [
+          '（借方）クレジット売掛金 450 / （貸方）売 上 500<br>（借方）支払手数料 50',
+          '（借方）クレジット売掛金 500 / （貸方）売 上 500',
+          '（借方）売 掛 金 500 / （貸方）売 上 500',
+          '（借方）未収入金 500 / （貸方）売 上 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '総額処理のクレジット売上 ➔ クレジット売掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>入金時手数料計上の指示がある場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                入金時に手数料を計上する指示がある場合、販売時は手数料を差し引かず、売上総額を<strong>「クレジット売掛金」</strong>として計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '上記（問題12）のクレジット売掛金500円につき、手数料50円が差し引かれ、残額が普通預金口座に振り込まれた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 450 / （貸方）クレジット売掛金 500<br>（借方）支払手数料 50',
+          '（借方）普通預金 450 / （貸方）クレジット売掛金 500<br>（借方）売上値引 50',
+          '（借方）普通預金 450 / （貸方）売 掛 金 500<br>（借方）支払手数料 50',
+          '（借方）普通預金 500 / （貸方）クレジット売掛金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '入金時の手数料計上 ➔ 支払手数料',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジット売掛金の回収と手数料</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                総額で計上していたクレジット売掛金を取り崩し、差し引かれた額を<strong>「支払手数料」</strong>として入金時に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品400円を売り上げ、得意先がデビットカードで決済したため、ただちに当店の普通預金口座に入金された。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 400 / （貸方）売 上 400',
+          '（借方）売 掛 金 400 / （貸方）売 上 400',
+          '（借方）普通預金 400 / （貸方）売 上 400',
+          '（借方）クレジット売掛金 400 / （貸方）売 上 400'
+        ],
+        correct: 2,
+        explanation: {
+          concept: 'デビットカード決済 ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>デビットカード決済の即時入金</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                デビットカード決済は即時に預金口座の資金が移動するため、代金を受け取った側は直ちに<strong>「普通預金」</strong>を増加させます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品300円を仕入れ、代金は当店のデビットカードを利用して決済したため、ただちに普通預金口座から引き落とされた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仕 入 300 / （貸方）買 掛 金 300',
+          '（借方）仕 入 300 / （貸方）普通預金 300',
+          '（借方）仕 入 300 / （貸方）現 金 300',
+          '（借方）仕 入 300 / （貸方）未 払 金 300'
+        ],
+        correct: 1,
+        explanation: {
+          concept: 'デビットカード支払い ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>デビットカードでの即時支払い</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                デビットカードで支払った場合は即座に口座から引き落とされるため、貸方に<strong>「普通預金」の減少</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '備品500円を購入し、代金はクレジットカードで決済した。代金は翌月に預金口座から引き落とされる。',
+        type: 'shiwake',
+        choices: [
+          '（借方）備 品 500 / （貸方）買 掛 金 500',
+          '（借方）備 品 500 / （貸方）未 払 金 500',
+          '（借方）備 品 500 / （貸方）普通預金 500',
+          '（借方）仕 入 500 / （貸方）未 払 金 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: 'クレジットカード後払い ➔ 未払金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジットカードでの後払い購入</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品以外の物品（備品など）をクレジットカードで後払い購入した場合の債務は、<strong>「未払金（負債）」</strong>で処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '店舗で利用している電子マネー（資産）に、普通預金口座から400円をチャージした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）仮 払 金 400 / （貸方）普通預金 400',
+          '（借方）電子マネー 400 / （貸方）普通預金 400',
+          '（借方）現 金 400 / （貸方）普通預金 400',
+          '（借方）旅費交通費 400 / （貸方）普通預金 400'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '電子マネーへのチャージ ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>店舗用電子マネーへのチャージ</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                店舗用の電子マネー勘定に直接チャージした場合、<strong>「電子マネー」の増加</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '商品700円を売り上げ、代金は電子マネーで決済された。なお、決済時に手数料100円が差し引かれ、残額が電子マネー勘定にチャージされた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）電子マネー 700 / （貸方）売 上 700',
+          '（借方）電子マネー 600 / （貸方）売 上 700<br>（借方）支払手数料 100',
+          '（借方）電子マネー 600 / （貸方）売 上 700<br>（借方）売 上 100',
+          '（借方）クレジット売掛金 600 / （貸方）売 上 700<br>（借方）支払手数料 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '電子マネー決済 ➔ 手数料差引',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>電子マネー決済と手数料</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                決済時に差し引かれる手数料は<strong>「支払手数料」</strong>、実際にチャージされた額を<strong>「電子マネー」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先月クレジットカードで決済して購入した備品の代金500円が、本日、普通預金口座から引き落とされた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）未 払 金 500 / （貸方）普通預金 500',
+          '（借方）買 掛 金 500 / （貸方）普通預金 500',
+          '（借方）備 品 500 / （貸方）普通預金 500',
+          '（借方）未払費用 500 / （貸方）普通預金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: 'クレジットカード代金の引落し ➔ 未払金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジットカード代金の口座引落し</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                購入時に計上していた<strong>「未払金」</strong>を借方に記入して減少させ、引き落とし元である<strong>「普通預金」</strong>を貸方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '従業員が出張用の交通系ICカードに現金200円をチャージした際、一時的に立替金として処理していたが、本日これを全額旅費交通費に振り替えた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）旅費交通費 200 / （貸方）仮 払 金 200',
+          '（借方）旅費交通費 200 / （貸方）立 替 金 200',
+          '（借方）旅費交通費 200 / （貸方）現 金 200',
+          '（借方）仮 払 金 200 / （貸方）立 替 金 200'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '立替金の振替 ➔ 旅費交通費',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>立替金から旅費交通費への振替</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                一時的に計上していた<strong>「立替金」</strong>を貸方に記入して取り消し、正しい使途である<strong>「旅費交通費」</strong>に振り替えます。
+              </p>
             </div>
           `
         }
@@ -1480,14 +3408,39 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/returns-and-shipping',
     tags: ['売上', '仕入', '返品'],
     questions: [
-      {
-        text: '先日掛けで販売した商品のうち、一部が不良品のため返品された。返品分の売上金額は1,500円である。',
+{
+        text: '先に掛けで仕入れた商品につき、品違いのため200円を返品し、買掛金から差し引いた。',
         type: 'shiwake',
         choices: [
-          '（借方）売 上 1,500 / （貸方）売 掛 金 1,500',
-          '（借方）売 掛 金 1,500 / （貸方）売 上 1,500',
-          '（借方）仕 入 1,500 / （貸方）売 掛 金 1,500',
-          '（借方）売 上 戻 り 1,500 / （貸方）売 掛 金 1,500'
+          '（借方）仕 入 200 / （貸方）買 掛 金 200',
+          '（借方）買 掛 金 200 / （貸方）現 金 200',
+          '（借方）買 掛 金 200 / （貸方）仕 入 200',
+          '（借方）現 金 200 / （貸方）仕 入 200'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '仕入返品 ➔ 仕入の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>仕入品の返品（仕入戻し）</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品の返品（仕入戻し）をした場合は、仕入時の<strong>逆仕訳</strong>を行い、買掛金と仕入をそれぞれ減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで売り上げた商品につき、キズがあったため300円の返品を受け、売掛金から差し引いた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 300 / （貸方）売 掛 金 300',
+          '（借方）売 掛 金 300 / （貸方）売 上 300',
+          '（借方）売 上 300 / （貸方）現 金 300',
+          '（借方）返 品 300 / （貸方）売 掛 金 300'
         ],
         correct: 0,
         explanation: {
@@ -1496,44 +3449,461 @@ const roadmapLevels = [
             <div class="space-y-3 font-sans">
               <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
                 <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>売上を返品された場合の処理</span>
+                <span>販売品の返品（売上戻り）</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（売上）</div>
-                <p class="text-xs">
-                  売上を返品された場合は、収益（売上）を取り消す必要があります。
-                  収益の減少として<strong>「売上 1,500円」</strong>を借方に記入します。
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品の返品（売上戻り）を受けた場合は、販売時の<strong>逆仕訳</strong>を行い、売上と売掛金をそれぞれ減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に現金で仕入れた商品につき、不良品であったため100円を返品し、同額を現金で受け取った。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 100 / （貸方）買 掛 金 100',
+          '（借方）仕 入 100 / （貸方）現 金 100',
+          '（借方）買 掛 金 100 / （貸方）現 金 100',
+          '（借方）現 金 100 / （貸方）仕 入 100'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '現金仕入の返品 ➔ 現金受取',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>現金仕入の返品</span>
               </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
-                <p class="text-xs">
-                  掛けで販売していたため、返品により売掛金が減少します。
-                  資産の減少として<strong>「売掛金 1,500円」</strong>を貸方に記入します。
-                </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                現金で返金を受けたため借方に<strong>「現金」</strong>を計上し、貸方で返品分の<strong>「仕入」を取り消し</strong>ます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に現金で売り上げた商品につき、品違いのため200円の返品を受け、同額を現金で返金した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 200 / （貸方）現 金 200',
+          '（借方）現 金 200 / （貸方）売 上 200',
+          '（借方）売 上 200 / （貸方）売 掛 金 200',
+          '（借方）売 掛 金 200 / （貸方）現 金 200'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金売上の返品 ➔ 現金返金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>現金売上の返品</span>
               </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    売 上 1,500
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    売 掛 金 1,500
-                  </div>
-                </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                現金で返金したため貸方に<strong>「現金」</strong>を計上し、借方で返品分の<strong>「売上」を取り消し</strong>ます。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先にクレジット払いの条件で売り上げた商品につき、300円の返品を受けた。なお、販売時の手数料等の処理は取り消さないものとする。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 300 / （貸方）売 上 300',
+          '（借方）売 上 300 / （貸方）クレジット売掛金 300',
+          '（借方）売 上 300 / （貸方）売 掛 金 300',
+          '（借方）クレジット売掛金 300 / （貸方）売 上 300'
+        ],
+        correct: 1,
+        explanation: {
+          concept: 'クレジット売上の返品 ➔ クレジット売掛金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>クレジット売上の返品処理</span>
               </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>貸借が逆（「売掛金 1,500 / 売上 1,500」）になるのは誤りです。売上の取消しなので借方に「売上」を記入します。</li>
-                  <li>「仕入 1,500 / 売掛金 1,500」は仕入の処理です。売上返品は「売上」を取り消します。</li>
-                  <li>3分法では「売上戻り」という勘定科目は使いません。直接「売上」を借方に記入します。</li>
-                </ul>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                クレジット売上の返品が生じた場合は、借方に<strong>「売上」</strong>、貸方に<strong>「クレジット売掛金」</strong>を計上して減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで仕入れた商品に破損があったため400円を返品し、代金は買掛金と相殺した。なお、返品に伴う発送費100円は当店が全額現金で負担した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 400 / （貸方）仕 入 400<br>（借方）発 送 費 100 / （貸方）現 金 100',
+          '（借方）買 掛 金 400 / （貸方）仕 入 300<br>（貸方）現 金 100',
+          '（借方）買 掛 金 400 / （貸方）仕 入 400<br>（借方）支払手数料 100 / （貸方）現 金 100',
+          '（借方）買 掛 金 500 / （貸方）仕 入 400<br>（貸方）現 金 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '仕入返品と発送費 ➔ 複合仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>返品と当店負担の発送費</span>
               </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                買掛金と仕入の相殺に加え、当店負担の発送費は<strong>「発送費（費用）」</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで売り上げた商品につき200円の返品を受け、売掛金から差し引いた。なお、返品に伴う発送費100円は当店が現金で負担した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 200 / （貸方）売 掛 金 300<br>（借方）発 送 費 100',
+          '（借方）売 上 200 / （貸方）売 掛 金 200<br>（借方）発 送 費 100 / （貸方）現 金 100',
+          '（借方）売 掛 金 200 / （貸方）売 上 200<br>（借方）発 送 費 100 / （貸方）現 金 100',
+          '（借方）売 上 300 / （貸方）売 掛 金 200<br>（貸方）現 金 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '売上返品と発送費 ➔ 複合仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>返品と当店負担の発送費</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                売掛金と売上の相殺に加え、当店負担の発送費は<strong>「発送費（費用）」</strong>として借方に計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで仕入れた商品につき300円を返品した。なお、返品にかかった発送費100円は先方負担であるが、当店が現金で立て替え払いし、買掛金から差し引くこととした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 400 / （貸方）仕 入 300<br>（貸方）現 金 100',
+          '（借方）買 掛 金 300 / （貸方）仕 入 300<br>（借方）立 替 金 100 / （貸方）現 金 100',
+          '（借方）買 掛 金 300 / （貸方）仕 入 300<br>（借方）発 送 費 100 / （貸方）現 金 100',
+          '（借方）買 掛 金 200 / （貸方）仕 入 300<br>（貸方）現 金 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '仕入返品と立替発送費 ➔ 買掛金から控除',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>立て替えた発送費を買掛金から差し引く</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                先方負担の発送費を立て替えた分について買掛金から差し引くため、返品分と合わせた<strong>400円の買掛金</strong>を借方で減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで売り上げた商品につき400円の返品を受けた。なお、返品にかかった発送費100円は先方負担であり、当店が現金で立て替え払いし、売掛金に含めることとした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 400 / （貸方）売 掛 金 400',
+          '（借方）売 上 400 / （貸方）売 掛 金 400<br>（借方）発 送 費 100 / （貸方）現 金 100',
+          '（借方）売 上 400 / （貸方）売 掛 金 300<br>（貸方）現 金 100',
+          '（借方）売 上 400 / （貸方）売 掛 金 400<br>（借方）売 掛 金 100 / （貸方）現 金 100'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '売上返品と立替発送費 ➔ 売掛金に含める',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>立て替えた発送費を売掛金に含める</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                売上返品による売掛金の減少<strong>400円</strong>と、立替払いによる売掛金の増加<strong>100円</strong>を相殺し、貸方に売掛金<strong>300円</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に同店発行の商品券で売り上げた商品につき500円の返品を受け、同額の商品券を返還した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 500 / （貸方）受取商品券 500',
+          '（借方）売 上 500 / （貸方）商 品 券 500',
+          '（借方）受取商品券 500 / （貸方）売 上 500',
+          '（借方）商 品 券 500 / （貸方）売 上 500'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '自己商品券の返品 ➔ 商品券',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>自己商品券を返還した場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                自己商品券を返還したため、売上の取り消しとともに、減少していた<strong>「商品券（負債）」</strong>を貸方に計上して元に戻します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に他店発行の商品券で売り上げた商品につき300円の返品を受け、同額の商品券を返還した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 300 / （貸方）商 品 券 300',
+          '（借方）売 上 300 / （貸方）受取商品券 300',
+          '（借方）受取商品券 300 / （貸方）売 上 300',
+          '（借方）売 掛 金 300 / （貸方）受取商品券 300'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '他店商品券の返品 ➔ 受取商品券',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>他店商品券を返還した場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                他店商品券を返還したため、売上の取り消しとともに、計上していた<strong>「受取商品券（資産）」</strong>を貸方に記入して減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '注文時に受け取った前受金を充当して売り上げた商品につき200円の返品を受け、同額を現金で返金した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）前 受 金 200 / （貸方）現 金 200',
+          '（借方）売 上 200 / （貸方）現 金 200',
+          '（借方）売 上 200 / （貸方）前 受 金 200',
+          '（借方）売 掛 金 200 / （貸方）現 金 200'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '前受金充当売上の返品 ➔ 現金返金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>前受金充当売上の返品</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                売上計上後に返品されたため、借方で<strong>「売上」を取り消し</strong>、現金で返金したため貸方に<strong>「現金」</strong>を計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '注文時に支払った前払金を充当して仕入れた商品につき400円を返品し、同額を普通預金口座への振り込みで返金を受けた。',
+        type: 'shiwake',
+        choices: [
+          '（借方）普通預金 400 / （貸方）前 払 金 400',
+          '（借方）買 掛 金 400 / （貸方）仕 入 400',
+          '（借方）普通預金 400 / （貸方）仕 入 400',
+          '（借方）普通預金 400 / （貸方）売 上 400'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '前払金充当仕入の返品 ➔ 普通預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>前払金充当仕入の返品</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                仕入計上後に返品したため、貸方で<strong>「仕入」を取り消し</strong>、返金された額を借方に<strong>「普通預金」</strong>として計上します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで仕入れた商品の一部200円につき、キズがあったため値引を受け、買掛金から差し引いた。（返品と同様の処理とする）',
+        type: 'shiwake',
+        choices: [
+          '（借方）仕 入 200 / （貸方）買 掛 金 200',
+          '（借方）買 掛 金 200 / （貸方）仕入値引 200',
+          '（借方）買 掛 金 200 / （貸方）仕 入 200',
+          '（借方）現 金 200 / （貸方）買 掛 金 200'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '仕入値引 ➔ 仕入の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>仕入値引を受けた場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                仕入値引を受けた場合も返品（仕入戻し）と同様に、仕入時の<strong>逆仕訳</strong>を行って買掛金と仕入を減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に掛けで売り上げた商品の一部100円につき、品違いがあったため値引を行い、売掛金から差し引いた。（返品と同様の処理とする）',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 100 / （貸方）売 上 100',
+          '（借方）売 上 100 / （貸方）売 掛 金 100',
+          '（借方）売上値引 100 / （貸方）売 掛 金 100',
+          '（借方）売 上 100 / （貸方）現 金 100'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '売上値引 ➔ 売上の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>売上値引を行った場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                売上値引を行った場合も返品（売上戻り）と同様に、販売時の<strong>逆仕訳</strong>を行って売上と売掛金を減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に現金で仕入れた商品につき300円を返品し、代金は後日受け取ることとした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）未収入金 300 / （貸方）仕 入 300',
+          '（借方）買 掛 金 300 / （貸方）仕 入 300',
+          '（借方）売 掛 金 300 / （貸方）仕 入 300',
+          '（借方）現 金 300 / （貸方）仕 入 300'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '現金仕入の返品 ➔ 未収入金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>返品代金を後日受け取る場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品代金の返金として後日金銭を受け取る権利が生じたため、<strong>「未収入金（資産）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '先に現金で売り上げた商品につき400円の返品を受けたが、代金は後日支払うこととした。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 400 / （貸方）買 掛 金 400',
+          '（借方）売 上 400 / （貸方）現 金 400',
+          '（借方）売 上 400 / （貸方）売 掛 金 400',
+          '（借方）売 上 400 / （貸方）未 払 金 400'
+        ],
+        correct: 3,
+        explanation: {
+          concept: '現金売上の返品 ➔ 未払金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>返金を後日支払う場合</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                商品代金の返金として後日金銭を支払う義務が生じたため、<strong>「未払金（負債）」</strong>として処理します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '掛けで仕入れた商品500円の返品を行い、正しく買掛金と相殺したが、誤って借方を「売掛金」として起票していた。本日この誤りを発見したため訂正する。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 500 / （貸方）売 掛 金 500',
+          '（借方）売 掛 金 500 / （貸方）買 掛 金 500',
+          '（借方）買 掛 金 500 / （貸方）仕 入 500',
+          '（借方）売 上 500 / （貸方）売 掛 金 500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '訂正仕訳 ➔ 売掛金を買掛金に修正',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>誤った勘定科目の訂正</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                誤って借方に計上した<strong>「売掛金」を貸方に記入して取り消し</strong>、本来計上すべき<strong>「買掛金」</strong>を借方に計上して訂正します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算において、当期中に発生した掛け売上の返品200円の処理が未記入であることが判明した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 掛 金 200 / （貸方）売 上 200',
+          '（借方）売 上 200 / （貸方）現 金 200',
+          '（借方）売 上 200 / （貸方）売 掛 金 200',
+          '（借方）売 上 200 / （貸方）繰越利益剰余金 200'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '決算時の売上返品漏れ ➔ 売上の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>未記入の返品処理を決算時に行う</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                未記入の返品処理を決算時に行う場合でも、期中と同様に借方に<strong>「売上」</strong>、貸方に<strong>「売掛金」</strong>を計上して減額します。
+              </p>
+            </div>
+          `
+        }
+      },
+      {
+        text: '決算において、当期中に発生した掛け仕入の返品100円の処理が未記入であることが判明した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）買 掛 金 100 / （貸方）仕 入 100',
+          '（借方）仕 入 100 / （貸方）買 掛 金 100',
+          '（借方）買 掛 金 100 / （貸方）現 金 100',
+          '（借方）繰越利益剰余金 100 / （貸方）仕 入 100'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '決算時の仕入返品漏れ ➔ 仕入の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>未記入の仕入返品を決算時に行う</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                未記入の返品処理を決算時に行う場合でも、期中と同様に借方に<strong>「買掛金」</strong>、貸方に<strong>「仕入」</strong>を計上して減額します。
+              </p>
             </div>
           `
         }
@@ -1548,64 +3918,6 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/sales-purchase-returns',
     tags: ['売上値引', '仕入値引', '値引'],
     questions: [
-      {
-        text: '先日掛けで仕入れた商品の一部に品質不良が見つかったため、仕入先に代金の値引きを依頼し、300円の値引きを受けた。',
-        type: 'shiwake',
-        choices: [
-          '（借方）買 掛 金 300 / （貸方）仕 入 300',
-          '（借方）仕 入 300 / （貸方）買 掛 金 300',
-          '（借方）買 掛 金 300 / （貸方）仕入値引 300',
-          '（借方）売 上 300 / （貸方）買 掛 金 300'
-        ],
-        correct: 0,
-        explanation: {
-          concept: '仕入値引 ➔ 仕入の取消し',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>仕入値引を受けた場合の処理</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（買掛金）</div>
-                <p class="text-xs">
-                  仕入値引（品質不良などによる代金の減額）を受けたため、
-                  支払うべき負債が減少します。負債の減少として<strong>「買掛金 300円」</strong>を借方に記入します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（仕入）</div>
-                <p class="text-xs">
-                  仕入値引により、費用（仕入）を取り消す必要があります。
-                  費用の減少として<strong>「仕入 300円」</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    買 掛 金 300
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    仕 入 300
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>貸借が逆（「仕入 300 / 買掛金 300」）になるのは誤りです。費用の取消しなので貸方に「仕入」を記入します。</li>
-                  <li>3分法では<strong>「仕入値引」という勘定科目は使いません</strong>。直接「仕入」を貸方に記入します。</li>
-                  <li>「売上 300 / 買掛金 300」は売上値引（売上側）の処理であり、仕入値引とは別物です。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      }
     ]
   },
   {
@@ -1616,63 +3928,6 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/loans-and-interest',
     tags: ['貸付金', '借入金', '手形借入金'],
     questions: [
-      {
-        text: '取引先への貸付金500円を貸し付けるにあたり、手形を振り出してもらい受け取った。',
-        type: 'shiwake',
-        choices: [
-          '（借方）手形貸付金 500 / （貸方）現 金 500',
-          '（借方）貸 付 金 500 / （貸方）現 金 500',
-          '（借方）現 金 500 / （貸方）手形貸付金 500',
-          '（借方）受取手形 500 / （貸方）現 金 500'
-        ],
-        correct: 0,
-        explanation: {
-          concept: '手形貸付金 ➔ 手形を伴う貸付',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>手形を伴う貸付金の処理</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（手形貸付金）</div>
-                <p class="text-xs">
-                  貸付金を返済してもらうために<strong>手形</strong>を受け取った場合は、
-                  <strong>「手形貸付金」</strong>（資産）として処理します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（現金）</div>
-                <p class="text-xs">
-                  貸し付けたお金が実際に手元から出ていくため、資産の減少として<strong>「現金 500円」</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    手形貸付金 500
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    現 金 500
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li><strong>「貸付金」</strong>は手形を伴わない普通の貸付に使います。手形を受け取った場合は<strong>「手形貸付金」</strong>です。</li>
-                  <li>貸借が逆（「現金 / 手形貸付金」）になるのは誤りです。お金を貸し出すので現金は減少します。</li>
-                  <li><strong>「受取手形」</strong>は商品売買の代金として受け取った手形に使います。貸付金の手形には「手形貸付金」を使います。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      }
     ]
   },
   {
@@ -1683,62 +3938,6 @@ const roadmapLevels = [
     url: 'http://localhost:3001/guides/bills-receivable-payable',
     tags: ['受取手形', '支払手形', '裏書譲渡'],
     questions: [
-      {
-        text: '商品1,200円を仕入れ、代金の決済として約束手形を振り出した。',
-        type: 'shiwake',
-        choices: [
-          '（借方）仕 入 1,200 / （貸方）受取手形 1,200',
-          '（借方）仕 入 1,200 / （貸方）支払手形 1,200',
-          '（借方）買 掛 金 1,200 / （貸方）支払手形 1,200',
-          '（借方）仕 入 1,200 / （貸方）買 掛 金 1,200'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '約束手形の振出 ➔ 支払手形',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>約束手形を振り出して仕入した場合</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（仕入）</div>
-                <p class="text-xs">
-                  商品1,200円を仕入れたため、費用の発生として<strong>「仕入 1,200円」</strong>を借方に記入します。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（支払手形）</div>
-                <p class="text-xs">
-                  約束手形を振り出した（将来支払う約束をした）ので、負債の発生として<strong>「支払手形 1,200円」</strong>を貸方に記入します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    仕 入 1,200
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    支払手形 1,200
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li><strong>「受取手形」は間違い</strong>。手形を受け取った側（売上側）の勘定科目であり、振り出した側は「支払手形」です。</li>
-                  <li>「買掛金 1,200 / 支払手形 1,200」は<strong>掛けで仕入れた後に手形を振り出した場合</strong>の仕訳です。初めから手形で支払う場合は「仕入」を借方にします。</li>
-                  <li>「仕入 1,200 / 買掛金 1,200」は買掛金（掛け）で処理する誤りです。手形を振り出したので「支払手形」を使います。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      }
     ]
   },
   {
@@ -1748,7 +3947,8 @@ const roadmapLevels = [
     subtitle: 'ネット時代の決済『電子記録債権』『電子記録債務』の発生と消滅。',
     url: 'http://localhost:3001/guides/electronically-recorded-monetary-claims',
     tags: ['電子記録債権', '電子記録債務'],
-    questions: []
+    questions: [
+    ]
   },
   {
     id: 'lvl_11',
@@ -1757,67 +3957,7 @@ const roadmapLevels = [
     subtitle: '固定資産（建物・土地・備品）の取得と付随費用、後払い時の「未払金」の区別。',
     url: 'http://localhost:3001/guides/fixed-assets-purchase',
     tags: ['建物', '備品', '未払金', '付随費用'],
-    questions: [
-      {
-        text: '事務所の敷地として土地1,000円を購入し、代金は月末に支払うこととした。なお、購入に際して登記費用50円を現金で支払った。',
-        type: 'shiwake',
-        choices: [
-          '（借方）土 地 1,000 / （貸方）未払金 1,000<br>（借方）支払手数料 50 / （貸方）現 金 50',
-          '（借方）土 地 1,050 / （貸方）未払金 1,000<br>（貸方）現 金 50',
-          '（借方）土 地 1,000 / （貸方）買掛金 1,000<br>（借方）支払手数料 50 / （貸方）現 金 50',
-          '（借方）土 地 1,050 / （貸方）未払金 1,050'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '固定資産の取得 ➔ 付随費用は取得原価に含める',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>土地の購入と付随費用の処理</span>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（土地）</div>
-                <p class="text-xs">
-                  固定資産を取得する際に発生した<strong>登記費用などの付随費用</strong>は、
-                  購入代金に加算して<strong>取得原価</strong>とします。
-                  したがって、土地の金額は <strong>1,000円 ＋ 50円 ＝ 1,050円</strong> となります。
-                </p>
-              </div>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（未払金・現金）</div>
-                <p class="text-xs">
-                  後払いとなる購入代金1,000円は、商品以外の取引であるため<strong>「未払金」</strong>（負債）で処理します。<br>
-                  現金で支払った50円は<strong>「現金」</strong>（資産の減少）で処理します。
-                </p>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    土 地 1,050
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    未払金 1,000<br>現 金 50
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li><strong>付随費用（登記費用）を「支払手数料」で処理するのは誤り</strong>です。取得原価に含めます。</li>
-                  <li>商品以外の購入に対する未払代金は<strong>「未払金」</strong>を使用します。「買掛金」は商品の仕入に使います。</li>
-                  <li>現金で支払った登記費用50円まで「未払金」に含めるのは誤りです。貸方は「未払金 1,000 / 現金 50」に分かれます。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      }
-    ]
+    questions: []
   },
   {
     id: 'lvl_12',
@@ -1826,7 +3966,8 @@ const roadmapLevels = [
     subtitle: '出資から配当までの一連の財務サイクルと主要勘定科目の関係。',
     url: 'http://localhost:3001/guides/corporate-finance-cycle',
     tags: ['資本金', '繰越利益剰余金', '配当'],
-    questions: []
+    questions: [
+    ]
   },
   {
     id: 'lvl_13',
@@ -1898,165 +4039,7 @@ const roadmapLevels = [
     subtitle: '現金実際額と帳簿額が一致しない場合の「現金過不足」の処理。',
     url: 'http://localhost:3001/guides/cash-over-short',
     tags: ['現金過不足', '雑損', '雑益'],
-    questions: [
-      {
-        text: '月末に金庫を調べたところ、現金の実際有高は1,200円であるのに対して、帳簿残高は1,500円であったため、適切に処理した。',
-        type: 'shiwake',
-        choices: [
-          '（借方）現 金 300 / （貸方）現金過不足 300',
-          '（借方）現金過不足 300 / （貸方）現 金 300',
-          '（借方）雑 損 300 / （貸方）現 金 300',
-          '（借方）現金過不足 300 / （貸方）雑 益 300'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '現金過不足 ➔ 仮勘定',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>現金の実際有高と帳簿残高の不一致</span>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <strong>帳簿残高（1,500円）</strong>に対して<strong>実際有高（1,200円）</strong>が
-                <strong>300円不足</strong>しています（1,500円 − 1,200円 = 300円の不足）。
-              </p>
-              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 処理の考え方</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>実際の現金に帳簿を合わせるため、<strong>現金を300円減らす</strong>（貸方に「現金」）</li>
-                  <li>期中の発生時点では、相手科目は<strong>仮勘定「現金過不足」</strong>（借方）を使用</li>
-                </ul>
-              </div>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    現金過不足 300
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    現 金 300
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>実際有高の方が少ないため<strong>現金を減らす</strong>処理が必要。現金を増やす（借方）のは、実際有高が多い場合。</li>
-                  <li>決算時に原因不明の場合に<strong>「雑損」</strong>へ振り替えますが、期中（月末など）の発生時点では<strong>「現金過不足」</strong>勘定を使用します。</li>
-                  <li>「現金過不足」の振替先は原因判明時（立替金・通信費など）であり、期中発生時の貸借の組み合わせに注意。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '以前より処理されていた現金過不足の原因を調べたところ、200円については営業費（費用）の支払いが記帳されていなかったことが判明した。',
-        type: 'shiwake',
-        choices: [
-          '（借方）営 業 費 200 / （貸方）現 金 200',
-          '（借方）営 業 費 200 / （貸方）現金過不足 200',
-          '（借方）現金過不足 200 / （貸方）営 業 費 200',
-          '（借方）雑 損 失 200 / （貸方）現金過不足 200'
-        ],
-        correct: 1,
-        explanation: {
-          concept: '現金過不足の原因判明 ➔ 仮勘定の振替',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>現金過不足の原因判明時の振替</span>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                未記帳であった<strong>営業費（費用）の発生</strong>を正しく認識するため、借方に<strong>「営業費」200円</strong>を記入します（費用の発生）。
-              </p>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                すでに計上されていた仮勘定<strong>「現金過不足」</strong>を取り消すため、発生時（借方記入）とは反対の<strong>貸方</strong>に「現金過不足」200円を記入します。
-              </p>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    営 業 費 200
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    現金過不足 200
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li>現金の減少（貸方：現金）は、過不足発生時の処理で<strong>すでに帳簿へ反映済み</strong>。判明時に再度「現金」を減らすと二重減額になるため、取り消すのは<strong>「現金過不足」</strong>です。</li>
-                  <li>費用は<strong>借方</strong>に発生するため、「営業費」を貸方に記入するのは誤りです。</li>
-                  <li>原因が判明した場合は<strong>判明した勘定科目</strong>（今回は営業費）で処理。「雑損失」は決算期末まで原因不明のときに使います。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      },
-      {
-        text: '決算日となり、以前発生した現金過不足勘定の残高（借方残高100円）について原因が判明しなかったため、適切な勘定科目へ振り替えた。',
-        type: 'shiwake',
-        choices: [
-          '（借方）雑 損 失 100 / （貸方）現金過不足 100',
-          '（借方）現金過不足 100 / （貸方）雑 収 益 100',
-          '（借方）雑 損 失 100 / （貸方）現 金 100',
-          '（借方）現 金 100 / （貸方）雑 収 益 100'
-        ],
-        correct: 0,
-        explanation: {
-          concept: '決算日の現金過不足振替 ➔ 雑損失',
-          brilliantExplanation: `
-            <div class="space-y-3 font-sans">
-              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
-                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
-                <span>決算日の現金過不足の振替（原因不明）</span>
-              </div>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                現金過不足の<strong>借方残高（現金が帳簿より不足していた状態）</strong>の原因が決算日になっても判明しなかったため、
-                費用である<strong>「雑損失」</strong>として計上します。
-              </p>
-              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                決算にあたり、一時的な仮勘定である<strong>「現金過不足」をゼロ</strong>にして財務諸表に残さないようにするため、
-                現在残っている借方残高100円を相殺消去（貸方に記入）します。
-              </p>
-              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
-                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
-                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
-                  <div>貸方 (右)</div>
-                </div>
-                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
-                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
-                    雑 損 失 100
-                  </div>
-                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
-                    現金過不足 100
-                  </div>
-                </div>
-              </div>
-              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
-                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
-                <ul class="list-disc list-inside space-y-1">
-                  <li><strong>貸方残高（現金が実際より多かった状態）</strong>の現金過不足は「雑収益」で振替えますが、今回は<strong>借方残高（現金不足）</strong>の処理なので「雑損失」です。</li>
-                  <li>現金の減少自体は過不足発生時に<strong>すでに帳簿へ反映済み</strong>。決算時に消去すべきなのは「現金過不足」勘定であり、再度「現金」を減らすと二重減額になります。</li>
-                  <li>「現金の増加＋雑収益」は貸方残高の過不足を決算整理する場合の処理で、今回は不適切です。</li>
-                </ul>
-              </div>
-            </div>
-          `
-        }
-      }
-    ]
+    questions: []
   },
   {
     id: 'lvl_21',
@@ -3079,7 +5062,8 @@ document.addEventListener('DOMContentLoaded', () => {
         clickTimer = setTimeout(() => { clickCount = 0; }, 1500);
 
         if (clickCount >= 5) {
-          // 5回連続クリックで全レベルをアンロック
+          // 5回連続クリックで全レベルをアンロック + デバッグモードON（ハート減少なし）
+          state.debugMode = true;
           roadmapLevels.forEach(lvl => {
             state.roadmapProgress[lvl.id] = { unlocked: true, completed: false };
           });
