@@ -859,6 +859,64 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '売掛代金の未収分350円の回収として、取引先A商店が振り出した小切手350円を受け取った。この小切手はすぐに当座預金口座へ入金処理された。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 350 / （貸方）売 掛 金 350',
+          '（借方）当座預金 350 / （貸方）受取手形 350',
+          '（借方）当座預金 350 / （貸方）売 掛 金 350',
+          '（借方）小 切 手 350 / （貸方）当座預金 350'
+        ],
+        correct: 2,
+        explanation: {
+          concept: '他人振出小切手の即時入金 ➔ 当座預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>小切手を直ちに当座預金へ入金した場合</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（当座預金）</div>
+                <p class="text-xs">
+                  他人が振り出した小切手は本来<strong>「通貨代用証券」</strong>として「現金」勘定で処理しますが、
+                  「受け取って<strong>すぐに当座預金に預け入れた</strong>」場合は、一度現金を経由させず、
+                  直接<strong>「当座預金」</strong>の増加として処理します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
+                <p class="text-xs">
+                  売掛金の回収が完了したため、資産の減少として<strong>「売掛金」350円</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    当座預金 350
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    売 掛 金 350
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「他人振出小切手＝現金」という基本ルールのみに注目するのは誤り。<strong>「直ちに当座預金に預け入れた」</strong>という条件がある場合は借方は「当座預金」です。</li>
+                  <li>回収したのは<strong>「売掛金」</strong>であり「受取手形」ではありません。手段が小切手であることや預け入れの処理は合っていても、相手科目が誤ると不正解です。</li>
+                  <li>簿記に<strong>「小切手」という勘定科目は存在しません</strong>。また、売掛金の減少も記録されていないため誤りです。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
