@@ -740,6 +740,56 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '以前より処理されていた現金過不足の原因を調べたところ、200円については営業費（費用）の支払いが記帳されていなかったことが判明した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）営 業 費 200 / （貸方）現 金 200',
+          '（借方）営 業 費 200 / （貸方）現金過不足 200',
+          '（借方）現金過不足 200 / （貸方）営 業 費 200',
+          '（借方）雑 損 失 200 / （貸方）現金過不足 200'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '現金過不足の原因判明 ➔ 仮勘定の振替',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>現金過不足の原因判明時の振替</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                未記帳であった<strong>営業費（費用）の発生</strong>を正しく認識するため、借方に<strong>「営業費」200円</strong>を記入します（費用の発生）。
+              </p>
+              <p class="text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                すでに計上されていた仮勘定<strong>「現金過不足」</strong>を取り消すため、発生時（借方記入）とは反対の<strong>貸方</strong>に「現金過不足」200円を記入します。
+              </p>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    営 業 費 200
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    現金過不足 200
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>現金の減少（貸方：現金）は、過不足発生時の処理で<strong>すでに帳簿へ反映済み</strong>。判明時に再度「現金」を減らすと二重減額になるため、取り消すのは<strong>「現金過不足」</strong>です。</li>
+                  <li>費用は<strong>借方</strong>に発生するため、「営業費」を貸方に記入するのは誤りです。</li>
+                  <li>原因が判明した場合は<strong>判明した勘定科目</strong>（今回は営業費）で処理。「雑損失」は決算期末まで原因不明のときに使います。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
