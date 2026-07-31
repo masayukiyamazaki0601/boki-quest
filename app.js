@@ -1479,7 +1479,66 @@ const roadmapLevels = [
     subtitle: '不良品を返した・返された時の『返品（売上戻り・仕入戻し）』の逆仕訳ルール。',
     url: 'http://localhost:3001/guides/returns-and-shipping',
     tags: ['売上', '仕入', '返品'],
-    questions: []
+    questions: [
+      {
+        text: '先日掛けで販売した商品のうち、一部が不良品のため返品された。返品分の売上金額は1,500円である。',
+        type: 'shiwake',
+        choices: [
+          '（借方）売 上 1,500 / （貸方）売 掛 金 1,500',
+          '（借方）売 掛 金 1,500 / （貸方）売 上 1,500',
+          '（借方）仕 入 1,500 / （貸方）売 掛 金 1,500',
+          '（借方）売 上 戻 り 1,500 / （貸方）売 掛 金 1,500'
+        ],
+        correct: 0,
+        explanation: {
+          concept: '売上返品 ➔ 売上の取消し',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>売上を返品された場合の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（売上）</div>
+                <p class="text-xs">
+                  売上を返品された場合は、収益（売上）を取り消す必要があります。
+                  収益の減少として<strong>「売上 1,500円」</strong>を借方に記入します。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（売掛金）</div>
+                <p class="text-xs">
+                  掛けで販売していたため、返品により売掛金が減少します。
+                  資産の減少として<strong>「売掛金 1,500円」</strong>を貸方に記入します。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    売 上 1,500
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    売 掛 金 1,500
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>貸借が逆（「売掛金 1,500 / 売上 1,500」）になるのは誤りです。売上の取消しなので借方に「売上」を記入します。</li>
+                  <li>「仕入 1,500 / 売掛金 1,500」は仕入の処理です。売上返品は「売上」を取り消します。</li>
+                  <li>3分法では「売上戻り」という勘定科目は使いません。直接「売上」を借方に記入します。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
+      }
+    ]
   },
   {
     id: 'lvl_7',
