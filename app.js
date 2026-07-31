@@ -6491,43 +6491,38 @@ const updateThemeIcon = (isDark) => {
 const playSound = (type) => {
   if (!state.soundEnabled) return;
   try {
-    const ctx = new (window.AudioContext || window.webkitAudioContext)();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    
-    if (type === 'select') {
-      osc.frequency.setValueAtTime(880, ctx.currentTime);
-      gain.gain.setValueAtTime(0.1, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.05);
-    } else if (type === 'correct') {
-      osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-      osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1); // E5
-      osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2); // G5
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.4);
+    if (type === 'correct') {
+      // 正解音: デスクトップの「クイズ正解2.mp3」を使用
+      const audio = new Audio('correct.mp3');
+      audio.play().catch(e => console.warn('Correct sound failed', e));
     } else if (type === 'incorrect') {
-      osc.frequency.setValueAtTime(220, ctx.currentTime); // A3
-      osc.frequency.setValueAtTime(196, ctx.currentTime + 0.15); // G3
-      gain.gain.setValueAtTime(0.2, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.3);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.3);
-    } else if (type === 'level-up') {
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
-      osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.08); // E5
-      osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.16); // G5
-      osc.frequency.setValueAtTime(1046.50, ctx.currentTime + 0.24); // C6
-      gain.gain.setValueAtTime(0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + 0.5);
+      // 不正解音: デスクトップの「クイズ不正解1.mp3」を使用
+      const audio = new Audio('incorrect.mp3');
+      audio.play().catch(e => console.warn('Incorrect sound failed', e));
+    } else {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      if (type === 'select') {
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 0.05);
+      } else if (type === 'level-up') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+        osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.08); // E5
+        osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.16); // G5
+        osc.frequency.setValueAtTime(1046.50, ctx.currentTime + 0.24); // C6
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+        osc.start(ctx.currentTime);
+        osc.stop(ctx.currentTime + 0.5);
+      }
     }
   } catch (e) {
     console.warn('Audio Context failed', e);
