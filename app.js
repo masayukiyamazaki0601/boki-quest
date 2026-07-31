@@ -806,6 +806,59 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '以前から保有していた売掛債権200円の回収手段として、取引先から切り出された小切手200円を受け取った。なお、この小切手は以前に当社が自らの支払いのために振り出したものであった。',
+        type: 'shiwake',
+        choices: [
+          '（借方）現 金 200 / （貸方）売 掛 金 200',
+          '（借方）当座預金 200 / （貸方）売 掛 金 200',
+          '（借方）受取手形 200 / （貸方）売 掛 金 200',
+          '（借方）小 切 手 200 / （貸方）売 掛 金 200'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '自己振出小切手の回収 ➔ 当座預金',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>自己振出小切手が戻ってきた場合の処理</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ なぜ「当座預金」になるのか</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>他人が振り出した小切手（他人振出小切手）は<strong>「現金」</strong>で処理するのが原則</li>
+                  <li>ただし、<strong>自己振出小切手</strong>を回収した場合は処理が異なります</li>
+                  <li>自社が小切手を振り出した際に<strong>「当座預金」の減少</strong>として処理済み</li>
+                  <li>その小切手が自社に戻ってきたため、振り出し時に減少させた当座預金を<strong>元に戻す（増加させる）</strong>必要があります</li>
+                </ul>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    当座預金 200
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    売 掛 金 200
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li><strong>他人振出小切手</strong>は「現金」ですが、<strong>自己振出小切手</strong>は「当座預金」で処理します。「小切手＝現金」の原則に囚われると間違えやすい定番のひっかけです。</li>
+                  <li>約束手形や為替手形を受け取った場合の<strong>「受取手形」</strong>とは勘定科目が異なります。</li>
+                  <li>簿記の勘定科目に<strong>「小切手」</strong>は存在しません。小切手の種類に応じて「現金」または「当座預金」を使用します。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
