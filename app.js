@@ -985,6 +985,73 @@ const roadmapLevels = [
             </div>
           `
         }
+      },
+      {
+        text: '新会計年度の開始日（4月1日）となったため、前期末の決算で当座預金勘定の貸方残高を整理するために計上した当座借越250円について、再振替仕訳（逆仕訳）を実施した。',
+        type: 'shiwake',
+        choices: [
+          '（借方）当座預金 250 / （貸方）当座借越 250',
+          '（借方）当座借越 250 / （貸方）当座預金 250',
+          '（借方）当座借越 250 / （貸方）再振替仕訳 250',
+          '（借方）短期借入金 250 / （貸方）当座預金 250'
+        ],
+        correct: 1,
+        explanation: {
+          concept: '当座借越の再振替仕訳 ➔ 逆仕訳',
+          brilliantExplanation: `
+            <div class="space-y-3 font-sans">
+              <div class="flex items-center gap-2 text-indigo-600 dark:text-indigo-300 font-semibold text-sm">
+                <span class="px-2 py-0.5 rounded bg-indigo-500/10 dark:bg-indigo-500/20">仕訳のポイント</span>
+                <span>期首の当座借越の再振替仕訳</span>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 再振替仕訳とは</div>
+                <p class="text-xs">
+                  前期末の決算において、当座預金のマイナス状態（貸方残高）を整理するために行った
+                  決算振替仕訳（<strong>借方：当座預金 ／ 貸方：当座借越</strong>）は、
+                  期首において元の状態に戻す<strong>「再振替仕訳（逆仕訳）」</strong>を行います。
+                </p>
+                <p class="text-xs mt-1">
+                  再振替仕訳は、決算で行った仕訳の<strong>「借方」と「貸方」を単純に入れ替える</strong>ことで行います。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 借方（当座借越）</div>
+                <p class="text-xs">
+                  負債として計上していた当座借越を消去するため、<strong>当座借越 250円</strong>（負債の減少）とします。
+                </p>
+              </div>
+              <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-emerald-600 dark:text-emerald-400 mb-1">✅ 貸方（当座預金）</div>
+                <p class="text-xs">
+                  当座預金勘定を再びマイナスの状態（貸方残高）に戻すため、<strong>当座預金 250円</strong>（資産の減少側）とします。
+                </p>
+              </div>
+              <div class="border border-gray-200 dark:border-gray-800 rounded-xl overflow-hidden bg-gray-50/50 dark:bg-gray-900/30">
+                <div class="grid grid-cols-2 bg-gray-100 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 text-center font-bold py-1 text-xs text-gray-500 dark:text-gray-400">
+                  <div class="border-r border-gray-200 dark:border-gray-800">借方 (左)</div>
+                  <div>貸方 (右)</div>
+                </div>
+                <div class="flex justify-between items-center py-2 border-b border-gray-200 dark:border-gray-800">
+                  <div class="w-1/2 text-center border-r border-gray-200 dark:border-gray-800 py-1 bg-emerald-500/10 dark:bg-emerald-950/20 text-emerald-600 dark:text-emerald-400 font-bold">
+                    当座借越 250
+                  </div>
+                  <div class="w-1/2 text-center py-1 bg-indigo-500/10 dark:bg-indigo-950/20 text-indigo-600 dark:text-indigo-400 font-bold">
+                    当座預金 250
+                  </div>
+                </div>
+              </div>
+              <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-3 text-gray-600 dark:text-gray-300 text-xs leading-relaxed">
+                <div class="font-bold text-amber-600 dark:text-amber-400 mb-1">⚠️ 誤りやすいポイント</div>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>「借方：当座預金 ／ 貸方：当座借越」は<strong>決算整理時（期末）</strong>に行う振替仕訳そのものです。期首に行う再振替仕訳は<strong>これの逆</strong>になります。</li>
+                  <li><strong>「再振替仕訳」という勘定科目は存在しません</strong>。再振替仕訳は「処理の名称」であり、仕訳自体は通常の勘定科目（当座借越と当座預金）を用います。</li>
+                  <li>前期末の決算処理で<strong>「当座借越」勘定</strong>を用いて整理しているため、期首の再振替でも同一の「当座借越」勘定を相殺消去します。「短期借入金」にすると当座借越の残高が残ってしまいます。</li>
+                </ul>
+              </div>
+            </div>
+          `
+        }
       }
     ]
   },
